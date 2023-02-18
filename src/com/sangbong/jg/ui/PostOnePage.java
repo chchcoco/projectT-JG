@@ -95,7 +95,7 @@ public class PostOnePage extends JFrame {
 		
 		JLabel titleLabel = new JLabel("New label");
 		titleLabel.setBounds(24, 10, 204, 67);
-		titleLabel.setIcon(new ImageIcon("C:\\Users\\tjoeun\\Downloads\\title (1).png"));
+		titleLabel.setIcon(new ImageIcon("images/title.png"));
 		ctgPanel.add(titleLabel);
 		
 		JLabel viewAllLabel = new JLabel("전체 게시판");
@@ -156,6 +156,18 @@ public class PostOnePage extends JFrame {
 		juniorCategoryLabel.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 14));
 		juniorCategoryLabel.setBounds(12, 46, 678, 20);
 		topPanel.add(juniorCategoryLabel);
+		
+		JLabel profilePic = new JLabel("");
+		profilePic.setIcon(new ImageIcon("images/profilePic.png"));
+		profilePic.setBounds(924, 10, 44, 44);
+		topPanel.add(profilePic);
+		
+		JLabel myName = new JLabel("홍길동 님");
+		myName.setHorizontalAlignment(SwingConstants.RIGHT);
+		myName.setForeground(new Color(70, 70, 70));
+		myName.setFont(new Font("Dialog", Font.PLAIN, 16));
+		myName.setBounds(784, 25, 128, 20);
+		topPanel.add(myName);
 		
 		JPanel bodyPanel = new JPanel();
 		bodyPanel.setBackground(new Color(245, 245, 245));
@@ -230,10 +242,10 @@ public class PostOnePage extends JFrame {
 		nextButton.setBounds(563, 456, 128, 27);
 		bodyPanel.add(nextButton);
 		
-		JLabel nextButton_1 = new JLabel("<  이전 페이지");
-		nextButton_1.setHorizontalAlignment(SwingConstants.LEFT);
-		nextButton_1.setFont(new Font("Dialog", Font.PLAIN, 20));
-		nextButton_1.setBounds(318, 456, 128, 27);
-		bodyPanel.add(nextButton_1);
+		JLabel previousButton = new JLabel("<  이전 페이지");
+		previousButton.setHorizontalAlignment(SwingConstants.LEFT);
+		previousButton.setFont(new Font("Dialog", Font.PLAIN, 20));
+		previousButton.setBounds(318, 456, 128, 27);
+		bodyPanel.add(previousButton);
 	}
 }
