@@ -164,7 +164,7 @@ public class PostOnePage extends JFrame {
 		bodyPanel.setLayout(null);
 		
 		JButton btnNewButton_2 = new JButton("New button");
-		btnNewButton_2.setBounds(12, 10, 428, 428);
+		btnNewButton_2.setBounds(12, 10, 394, 394);
 		bodyPanel.add(btnNewButton_2);
 		
 		JLabel priceLabel = new JLabel("999,999,999,000 원");
@@ -185,43 +185,55 @@ public class PostOnePage extends JFrame {
 		textContext.setFont(new Font("나눔고딕", Font.PLAIN, 15));
 		textContext.setText("상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context ");
 		textContext.setLineWrap(true);
-		textContext.setBounds(467, 116, 501, 322);
+		textContext.setBounds(467, 116, 501, 287);
 		bodyPanel.add(textContext);
 		
 		JLabel lblNewLabel_9 = new JLabel("1");
 		lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_9.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 16));
-		lblNewLabel_9.setBounds(162, 454, 14, 15);
+		lblNewLabel_9.setBounds(162, 425, 14, 15);
 		bodyPanel.add(lblNewLabel_9);
 		
 		JLabel lblNewLabel_9_1 = new JLabel("2");
 		lblNewLabel_9_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_9_1.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 16));
-		lblNewLabel_9_1.setBounds(188, 454, 14, 15);
+		lblNewLabel_9_1.setBounds(188, 425, 14, 15);
 		bodyPanel.add(lblNewLabel_9_1);
 		
 		JLabel lblNewLabel_9_2 = new JLabel("3");
 		lblNewLabel_9_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_9_2.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 16));
-		lblNewLabel_9_2.setBounds(214, 454, 14, 15);
+		lblNewLabel_9_2.setBounds(214, 425, 14, 15);
 		bodyPanel.add(lblNewLabel_9_2);
 		
 		JLabel lblNewLabel_9_3 = new JLabel("4");
 		lblNewLabel_9_3.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_9_3.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 16));
-		lblNewLabel_9_3.setBounds(240, 454, 14, 15);
+		lblNewLabel_9_3.setBounds(240, 425, 14, 15);
 		bodyPanel.add(lblNewLabel_9_3);
 		
 		JLabel lblNewLabel_9_4 = new JLabel("5");
 		lblNewLabel_9_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_9_4.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 16));
-		lblNewLabel_9_4.setBounds(266, 454, 14, 15);
+		lblNewLabel_9_4.setBounds(266, 425, 14, 15);
 		bodyPanel.add(lblNewLabel_9_4);
 		
-		JLabel lblNewLabel = new JLabel("돌아가기");
-		lblNewLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(454, 456, 100, 27);
-		bodyPanel.add(lblNewLabel);
+		JLabel backButton = new JLabel("돌아가기");
+		backButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
+		backButton.setHorizontalAlignment(SwingConstants.CENTER);
+		backButton.setBounds(454, 456, 100, 27);
+		bodyPanel.add(backButton);
+		
+		JLabel nextButton = new JLabel("다음 페이지  >");
+		nextButton.setHorizontalAlignment(SwingConstants.RIGHT);
+		nextButton.setFont(new Font("Dialog", Font.PLAIN, 20));
+		nextButton.setBounds(563, 456, 128, 27);
+		bodyPanel.add(nextButton);
+		
+		JLabel nextButton_1 = new JLabel("<  이전 페이지");
+		nextButton_1.setHorizontalAlignment(SwingConstants.LEFT);
+		nextButton_1.setFont(new Font("Dialog", Font.PLAIN, 20));
+		nextButton_1.setBounds(318, 456, 128, 27);
+		bodyPanel.add(nextButton_1);
 	}
 }
