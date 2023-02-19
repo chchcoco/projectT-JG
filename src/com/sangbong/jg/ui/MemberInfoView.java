@@ -97,7 +97,7 @@ public class MemberInfoView extends JFrame {
 		
 		JLabel titleLabel = new JLabel("New label");
 		titleLabel.setBounds(24, 10, 204, 67);
-		titleLabel.setIcon(new ImageIcon("C:\\Users\\tjoeun\\Downloads\\title (1).png"));
+		titleLabel.setIcon(new ImageIcon("images/title.png"));
 		ctgPanel.add(titleLabel);
 		
 		JLabel viewAllLabel = new JLabel("전체 게시판");
@@ -129,6 +129,15 @@ public class MemberInfoView extends JFrame {
 		deactivateButton.setBackground(new Color(241, 87, 87));
 		deactivateButton.setBounds(848, 50, 120, 72);
 		topPanel.add(deactivateButton);
+		deactivateButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int var = JOptionPane.showConfirmDialog(null, "정말로 탈퇴를 진행하시겠습니까?", "회원 탈퇴 재확인"
+						, JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+				System.out.println("선택값 (0일 경우에만 진행) : " + var);
+			}
+		});
 		
 		JLabel postTitleLabel = new JLabel("홍길동 님, 안녕하세요!");
 		postTitleLabel.setForeground(new Color(70, 70, 70));
