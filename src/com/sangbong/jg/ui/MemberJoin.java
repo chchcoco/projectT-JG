@@ -11,6 +11,9 @@ import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import java.awt.BorderLayout;
 import java.awt.Font;
+import javax.swing.JPasswordField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class MemberJoin extends JFrame{
 	
@@ -18,6 +21,8 @@ public class MemberJoin extends JFrame{
 	private String nickname;
 	private String pwd;
 	private String pwdCheck;
+	private JPasswordField pwdField;
+	private JPasswordField pwdCheckField;
 	
 	public MemberJoin()  {
 		setResizable(false);
@@ -58,16 +63,16 @@ public class MemberJoin extends JFrame{
 		pwd.setText("비밀번호");
 		pwd.setBounds(390, 376, 250, 25);
 		
-		JTextField t3 = new JTextField();
-		t3.setBounds(390, 400, 500, 40);
+		pwdField = new JPasswordField();
+		pwdField.setBounds(390, 500, 500, 40);
 		
 		JLabel pwdCheck = new JLabel();
 		pwdCheck.setFont(new Font("굴림", Font.PLAIN, 15));
 		pwdCheck.setText("비밀번호 확인");
 		pwdCheck.setBounds(390, 474, 250, 25);
 		
-		JTextField t4 = new JTextField();
-		t4.setBounds(390, 500, 500, 40);
+		pwdCheckField = new JPasswordField();
+		pwdCheckField.setBounds(390, 398, 500, 40);
 		
 		panel.add(logo);
 		panel.add(email);
@@ -75,17 +80,28 @@ public class MemberJoin extends JFrame{
 		panel.add(nickname);
 		panel.add(t2);
 		panel.add(pwd);
-		panel.add(t3);
+		panel.add(pwdField);
 		panel.add(pwdCheck);
-		panel.add(t4);
+		panel.add(pwdCheckField);
 		
 		JButton join = new JButton("가입완료");
+		join.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+			 = t1.getText();
+				
+				
+			}
+		});
 		join.setFont(new Font("굴림", Font.PLAIN, 17));
 		join.setBackground(new Color(128, 255, 128));
 		join.setBounds(365, 600, 550, 50);
 		panel.add(join);
 		
 		getContentPane().add(panel);
+		
+		
 		
 		
 		setVisible(true);
