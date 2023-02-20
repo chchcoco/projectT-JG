@@ -15,8 +15,11 @@ import java.io.InputStream;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
+import javax.swing.JList;
+
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -416,10 +419,25 @@ public class PostCategory extends JFrame {
 //		writeReportLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
 		ctgPanel.add(writeReportLabel);
 		
-		JScrollPane scrollPane = new JScrollPane();
+
+		/*이후 categoryDTO를 */
+		String[] sList = new String[100];
+		for(int i = 0; i < sList.length; i++) {
+			sList[i] = i + " Category";
+		}
+		
+		JList ctgList = new JList(/*List<CategoryDTO> ctgList*/ sList); 
+		ctgList.setFont(new Font("굴림", Font.PLAIN, 20));
+		ctgList.setVisibleRowCount(10);
+		
+
+		JScrollPane scrollPane = new JScrollPane(ctgList);
+		
 		scrollPane.setBounds(12, 154, 224, 456);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 		ctgPanel.add(scrollPane);
+
+
 		
 		JLabel titleLabel = new JLabel("New label");
 		titleLabel.setBounds(24, 10, 204, 67);
