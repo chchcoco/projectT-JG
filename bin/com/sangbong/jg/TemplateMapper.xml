@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sangbong.jg.TemplateMapper">
+	<!-- 복사해서 쓰라고 만든 Mapper Template.
+		 namespace="이 자리에는 DTO의 저장된 위치와 해당 Mapper의 이름을 .(dot)으로 이어서 쓴다."
+	 -->
+</mapper>
