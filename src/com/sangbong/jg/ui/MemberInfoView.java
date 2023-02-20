@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -99,6 +101,15 @@ public class MemberInfoView extends JFrame {
 		titleLabel.setBounds(24, 10, 204, 67);
 		titleLabel.setIcon(new ImageIcon("images/title.png"));
 		ctgPanel.add(titleLabel);
+		titleLabel.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new PostCategory().setVisible(true);
+				dispose();
+			}
+			
+		});
 		
 		JLabel viewAllLabel = new JLabel("전체 게시판");
 		viewAllLabel.setBounds(27, 111, 200, 33);
