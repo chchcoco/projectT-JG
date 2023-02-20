@@ -101,6 +101,16 @@ public class PostCategoryNonMember extends JFrame {
 		loginButton.setBackground(new Color(0, 255, 128));
 		loginButton.setBounds(848, 10, 120, 72);
 		topPanel.add(loginButton);
+		loginButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+
+				new LogIn().setVisible(true);
+				dispose();
+				
+			}
+		});
 		
 		JLabel juniorCategoryLabel = new JLabel("> 하위 카테고리명");
 		juniorCategoryLabel.setForeground(new Color(70, 70, 70));
