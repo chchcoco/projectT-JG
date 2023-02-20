@@ -9,8 +9,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class LogIn extends JFrame {
+	private final JLabel lblNewLabel = new JLabel("Logo");
 	
 	public LogIn() {
 		
@@ -58,6 +60,10 @@ public class LogIn extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 0, 584, 112);
 		panel.add(panel_1);
+		panel_1.setLayout(null);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(0, 0, 584, 112);
+		panel_1.add(lblNewLabel);
 		
 		setSize(600,400);
 		
