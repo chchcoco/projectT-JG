@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sangbong.jg.member.model.dao.MemberInfoMapper">
+	<!-- 복사해서 쓰라고 만든 Mapper Template.
+		 namespace="이 자리에는 DTO의 저장된 위치와 해당 Mapper의 이름을 .(dot)으로 이어서 쓴다."
+	 -->
+	 
+	 <resultMap type="com.sangbong.jg.model.dto.MemberDTO" id="memberResultMap">
+	 	<id property="email" column="EMAIL"/>
+	 	<result property="pwd" column="PWD"/>
+	 	<result property="memName" column="MEM_NAME"/>
+	 	<result property="penaltyCnt" column="PENALTY_CNT"/>
+	 	<result property="activeYn" column="ACTIVE_YN"/>
+	 	<result property="deacYn" column="DEAC_YN"/>
+	 	<result property="entDate" column="ENT_DATE"/>
+	 	<result property="deacDate" column="DEAC_DATE"/>
+	 	<result property="memType" column="MEM_TYPE"/>
+	 </resultMap>
+	 
+	 <select id="selectMemberById" parameterType="hashMap" resultMap="memberResultMap">
+	 	SELECT
+	 	       A.EMAIL
+	 	     , A.PWD
+	 	     , A.MEM_NAME
+	 	     , A.PENALTY_CNT
+	 	     , A.ACTIVE_YN
+	 	     , A.DEAC_YN
+	 	     , A.ENT_DATE
+	 	     , A.DEAC_DATE
+	 	     , A.MEM_TYPE
+	 	  FROM MEMBER A
+	 	 WHERE A.EMAIL = #{ email }
+	 </select>
+	 
+</mapper>
