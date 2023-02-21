@@ -12,6 +12,7 @@ import com.sangbong.jg.model.dto.MemberDTO;
 public class MemberController {
 	
 	MemberLoginService memberLoginService = new MemberLoginService();
+	MemberJoinService memberJoinService = new MemberJoinService();
 	MemberDTO member;
 
 	public boolean joinMember(String email, String nickname, char[] pwd, char[] pwdCheck) {
@@ -38,7 +39,7 @@ public class MemberController {
 					"모든 항목을 작성해주세요", JOptionPane.DEFAULT_OPTION);
 		}
 		
-		return member.toString();
+		return result;
 	}
 
 	public boolean loginMember(String email, char[] pw) {
