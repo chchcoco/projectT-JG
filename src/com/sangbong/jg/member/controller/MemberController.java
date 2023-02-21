@@ -1,13 +1,17 @@
 package com.sangbong.jg.member.controller;
 
+
+import com.sangbong.jg.member.model.service.MemberLoginService;
+
 import javax.swing.JOptionPane;
 
 import com.sangbong.jg.member.model.service.MemberJoinService;
+
 import com.sangbong.jg.model.dto.MemberDTO;
 
 public class MemberController {
 	
-	MemberJoinService memberJoinService = new MemberJoinService();
+	MemberLoginService memberLoginService = new MemberLoginService();
 	MemberDTO member;
 
 	public boolean joinMember(String email, String nickname, char[] pwd, char[] pwdCheck) {
@@ -34,8 +38,22 @@ public class MemberController {
 					"모든 항목을 작성해주세요", JOptionPane.DEFAULT_OPTION);
 		}
 		
+		return member.toString();
+	}
+
+	public boolean loginMember(String email, char[] pw) {
 		
-		return result;
+
+		MemberDTO member = new MemberDTO();
+		
+		member.setEmail(email);
+		member.setPwd(new StringBuilder().append(pw).toString());
+		
+		memberLoginService.loginCheck(member);
+		return false;
+
+		//return result;
+
 	}
 
 }

@@ -89,8 +89,10 @@ public class MemberJoin extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
+
 			 
 				boolean result = new MemberController().joinMember(t1.getText(), t2.getText(), pwdField.getPassword(), pwdCheckField.getPassword());
+
 				
 				if(result) {
 					JOptionPane.showMessageDialog(null, "축하합니다",

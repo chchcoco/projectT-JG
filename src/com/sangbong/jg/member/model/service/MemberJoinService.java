@@ -8,6 +8,7 @@ import com.sangbong.jg.member.model.dao.MemberJoinMapper;
 import com.sangbong.jg.model.dto.MemberDTO;
 
 public class MemberJoinService {
+
 	MemberJoinMapper mapper;
 	
 	public boolean memberJoin(MemberDTO member) {
@@ -28,5 +29,6 @@ public class MemberJoinService {
 		return result>0? true: false;
 		
 	}
+
 
 }

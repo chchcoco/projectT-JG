@@ -12,6 +12,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * <pre>
@@ -33,6 +35,13 @@ public class PostDelete extends JFrame {
 		
 		JPanel panel = new JPanel();
 		JButton logBtn = new JButton("취소");
+		logBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new PostOnePage().setVisible(true);
+				dispose();
+			}
+		});
 		logBtn.setBounds(351, 570, 300, 50);
 		panel.setLayout(null);
 		panel.add(logBtn);
@@ -48,6 +57,14 @@ public class PostDelete extends JFrame {
 		getContentPane().add(panel);
 		
 		JButton btnNewButton = new JButton("확인");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new PostCategory().setVisible(true);
+				dispose();
+			}
+		});
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
