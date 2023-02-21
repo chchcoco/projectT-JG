@@ -9,26 +9,55 @@ import com.sangbong.jg.ui.MemberInfoView;
 public class MemberInfoController {
 
 	private final MemberInfoService memberInfoService;
-	private MemberInfoView memberInfoView;
+//	private MemberInfoView memberInfoView;
 	
 	public MemberInfoController() {
 		this.memberInfoService = new MemberInfoService();
 	}
 
-	public MemberDTO findMemberInfo(Map<String, String> member) {
+	public MemberDTO findMemberInfo(MemberDTO member) {
 
-		String email = member.get("email");
+		String email = member.getEmail();
 		
 		MemberDTO memberFound = memberInfoService.findMemberInfo(email);
-		this.memberInfoView = new MemberInfoView(memberFound);
+//		this.memberInfoView = new MemberInfoView(memberFound);
 		
 		return memberFound;
 	}
 
-	public int changeMemberName(MemberDTO member) {
+	public int changeMemberName(String input, MemberDTO member) {
+		
+		String email = member.getEmail();
 
-		int result = memberInfoService.changeMemberName(member);
+		int result = memberInfoService.changeMemberName(input, email);
 
+		return result;
+	}
+
+	public MemberDTO confirmPwd(String inputOldPwd, MemberDTO member) {
+
+		String email = member.getEmail();
+		
+		MemberDTO memberFound = memberInfoService.confirmPwd(inputOldPwd, email);
+		
+		return memberFound;
+	}
+
+	public int changePwd(String inputNewPwd, MemberDTO member) {
+
+		String email = member.getEmail();
+		
+		int result = memberInfoService.changePwd(inputNewPwd, email);
+		
+		return result;
+	}
+
+	public int deactivateMember(MemberDTO member) {
+
+		String email = member.getEmail();
+		
+		int result = memberInfoService.deactivateMember(email);
+		
 		return result;
 	}
 	

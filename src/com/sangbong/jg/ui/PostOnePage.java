@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.sangbong.jg.member.controller.MemberInfoController;
+import com.sangbong.jg.model.dto.MemberDTO;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.BufferedInputStream;
@@ -26,6 +30,7 @@ import javax.swing.ScrollPaneConstants;
 import static com.sangbong.jg.common.SetFont.notoSansRegular;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * <pre>
@@ -67,6 +72,11 @@ public class PostOnePage extends JFrame {
 	 * Create the frame.
 	 */
 	public PostOnePage() {
+		
+		/* 테스트용 임시 박멍멍 */
+		MemberDTO member = new MemberDTO("mung@gmail.com", "12345", "박멍멍", 0, 'Y', 'N', null, null, "MEMBER");
+//		String testEmail = "mung@gmail.com";
+		
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
@@ -179,6 +189,18 @@ public class PostOnePage extends JFrame {
 		profilePic.setIcon(new ImageIcon("images/profilePic.png"));
 		profilePic.setBounds(924, 10, 44, 44);
 		topPanel.add(profilePic);
+		profilePic.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MemberInfoController memberInfoController = new MemberInfoController();
+				if(memberInfoController.findMemberInfo(member) != null) {
+					new MemberInfoView(member).setVisible(true);
+					dispose();
+				}
+			}
+			
+		});
 		
 		JLabel myName = new JLabel("홍길동 님");
 		myName.setHorizontalAlignment(SwingConstants.RIGHT);

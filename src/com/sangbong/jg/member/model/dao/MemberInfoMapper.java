@@ -8,4 +8,12 @@ public interface MemberInfoMapper {
 
 	MemberDTO selectMemberById(Map<String, String> map);
 
+	int updateMemberName(Map<String, String> map);
+
+	MemberDTO selectMemberByEmailAndPwd(Map<String, String> map);
+
+	int updatePwd(Map<String, String> map);
+
+	int deleteMember(Map<String, String> map);
+
 }
