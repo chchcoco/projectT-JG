@@ -1,32 +1,25 @@
 package com.sangbong.jg.ui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.util.List;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
-
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.BorderLayout;
-import java.awt.Color;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.ImageIcon;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
-import static com.sangbong.jg.common.SetFont.notoSansRegular;
+import com.sangbong.jg.category.controller.CategoryController;
+import com.sangbong.jg.model.dto.CategoryDTO;
 
 /**
  * <pre>
@@ -421,12 +414,14 @@ public class PostCategory extends JFrame {
 		
 
 		/*이후 categoryDTO를 */
-		String[] sList = new String[100];
+		List<CategoryDTO> categoryList = new CategoryController().getCategoryList();
+		
+		String[] sList = new String[categoryList.size()];
 		for(int i = 0; i < sList.length; i++) {
-			sList[i] = i + " Category";
+			sList[i] = categoryList.get(i).getCategoryName();
 		}
 		
-		JList ctgList = new JList(/*List<CategoryDTO> ctgList*/ sList); 
+		JList ctgList = new JList(sList); 
 		ctgList.setFont(new Font("굴림", Font.PLAIN, 20));
 		ctgList.setVisibleRowCount(10);
 		
