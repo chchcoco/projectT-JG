@@ -1,19 +1,19 @@
 package com.sangbong.jg.ui;
 
 import java.awt.Color;
-import java.awt.Container;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JSpinner;
-import java.awt.BorderLayout;
-import java.awt.Font;
 import javax.swing.JPasswordField;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import javax.swing.JTextField;
+
+import com.sangbong.jg.member.controller.MemberController;
 
 public class MemberJoin extends JFrame{
 	
@@ -89,9 +89,18 @@ public class MemberJoin extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-			 = t1.getText();
+			 
+				boolean result = new MemberController().joinMember(t1.getText(), t2.getText(), pwdField.getPassword(), pwdCheckField.getPassword());
 				
-				
+				if(result) {
+					JOptionPane.showMessageDialog(null, "축하합니다",
+							"회원가입에 성공하셨습니다", JOptionPane.DEFAULT_OPTION);
+					System.out.println("성공");
+				} else {
+					JOptionPane.showMessageDialog(null, "회원가입에 실패했습니다.",
+							"다시 입력해주세요", JOptionPane.DEFAULT_OPTION);
+					System.out.println("실패");
+				}
 			}
 		});
 		join.setFont(new Font("굴림", Font.PLAIN, 17));
@@ -108,8 +117,8 @@ public class MemberJoin extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	public static void main(String[] args) {
-		new MemberJoin();
-	}
+//	public static void main(String[] args) {
+//		new MemberJoin();
+//	}
 }
 

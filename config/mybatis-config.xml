@@ -15,6 +15,6 @@
 		</environment>
 	</environments>
 	<mappers>
-		<package name="" />
+		<package name="com.sangbong.jg.member.model.dao"/>
 	</mappers>
 </configuration>
