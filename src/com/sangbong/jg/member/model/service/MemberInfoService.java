@@ -29,6 +29,87 @@ public class MemberInfoService {
 		return member;
 	}
 
+	public int changeMemberName(String input, String email) {
+
+		SqlSession sqlSession = getSqlSession();
+		mapper = sqlSession.getMapper(MemberInfoMapper.class);
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("newName", input);
+		map.put("email", email);
+		
+		int result = mapper.updateMemberName(map);
+		
+		if(result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		
+		sqlSession.close();
+		
+		return result;
+	}
+
+	public MemberDTO confirmPwd(String inputOldPwd, String email) {
+
+		SqlSession sqlSession = getSqlSession();
+		mapper = sqlSession.getMapper(MemberInfoMapper.class);
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("pwd", inputOldPwd);
+		map.put("email", email);
+		
+		MemberDTO member = mapper.selectMemberByEmailAndPwd(map);
+		
+		sqlSession.close();
+		
+		return member;
+	}
+
+	public int changePwd(String inputNewPwd, String email) {
+
+		SqlSession sqlSession = getSqlSession();
+		mapper = sqlSession.getMapper(MemberInfoMapper.class);
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("newPwd", inputNewPwd);
+		map.put("email", email);
+		
+		int result = mapper.updatePwd(map);
+		
+		if(result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		
+		sqlSession.close();
+		
+		return result;
+	}
+
+	public int deactivateMember(String email) {
+
+		SqlSession sqlSession = getSqlSession();
+		mapper = sqlSession.getMapper(MemberInfoMapper.class);
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("email", email);
+		
+		int result = mapper.deleteMember(map);
+		
+		if(result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		
+		sqlSession.close();
+		
+		return result;
+	}
+
 	
 	
 }
