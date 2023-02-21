@@ -49,8 +49,9 @@ public class MemberController {
 		member.setEmail(email);
 		member.setPwd(new StringBuilder().append(pw).toString());
 		
-		memberLoginService.loginCheck(member);
-		return false;
+		boolean result = memberLoginService.loginCheck(member);
+		
+		return result;
 
 		//return result;
 
