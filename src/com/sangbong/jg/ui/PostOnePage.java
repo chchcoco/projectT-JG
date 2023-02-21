@@ -5,26 +5,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import com.sangbong.jg.member.controller.MemberInfoController;
-import com.sangbong.jg.model.dto.MemberDTO;
-
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Color;
@@ -34,6 +24,8 @@ import javax.swing.ImageIcon;
 import javax.swing.ScrollPaneConstants;
 
 import static com.sangbong.jg.common.SetFont.notoSansRegular;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * <pre>
@@ -53,11 +45,6 @@ public class PostOnePage extends JFrame {
 	 * Windowbuilder GUI Plugin을 사용하여 만들어졌다. open with > windowbuilder 선택하여 하단 디자인 탭 참고할 것! 
 	 */
 	private JPanel contentPane;
-	
-	/* 회원 정보 조회 기능 테스트를 위한 변수 */
-//	private String email = "mung@gmail.com";
-	private Map<String, String> member = new HashMap<>();
-	
 
 	/**
 	 * Launch the application.
@@ -137,6 +124,14 @@ public class PostOnePage extends JFrame {
 		topPanel.add(superCategoryLabel);
 		
 		JButton deleteButton = new JButton("삭제");
+		deleteButton.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new PostDelete().setVisible(true);
+				dispose();
+			}
+		});
 		deleteButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
 		deleteButton.setForeground(new Color(70, 70, 70));
 		deleteButton.setBackground(new Color(241, 87, 87));
@@ -144,6 +139,14 @@ public class PostOnePage extends JFrame {
 		topPanel.add(deleteButton);
 		
 		JButton editButton = new JButton("수정");
+		editButton.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new PostEdit().setVisible(true);
+				dispose();
+			}
+		});
 		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -176,21 +179,6 @@ public class PostOnePage extends JFrame {
 		profilePic.setIcon(new ImageIcon("images/profilePic.png"));
 		profilePic.setBounds(924, 10, 44, 44);
 		topPanel.add(profilePic);
-		profilePic.addMouseListener(new MouseAdapter() {
-			
-			@Override
-			public void mouseClicked(MouseEvent me) {
-				MemberInfoController memberInfoController = new MemberInfoController();
-				member.put("email", "mung@gmail.com");
-				
-				if(memberInfoController.findMemberInfo(member) != null) {
-					new MemberInfoView(memberInfoController.findMemberInfo(member)).setVisible(true);
-					dispose();
-				} else {
-					JOptionPane.showMessageDialog(profilePic, "회원 정보 찾기 실패!", "조회 실패", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-		});
 		
 		JLabel myName = new JLabel("홍길동 님");
 		myName.setHorizontalAlignment(SwingConstants.RIGHT);
