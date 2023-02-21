@@ -27,6 +27,8 @@ import static com.sangbong.jg.common.SetFont.notoSansRegular;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * <pre>
@@ -125,6 +127,14 @@ public class PostEdit extends JFrame {
 		topPanel.add(profilePic);
 		
 		JButton editButton = new JButton("저장");
+		editButton.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new PostOnePage().setVisible(true);
+				dispose();
+			}
+		});
 		editButton.setBounds(848, 10, 120, 72);
 		topPanel.add(editButton);
 		editButton.addActionListener(new ActionListener() {

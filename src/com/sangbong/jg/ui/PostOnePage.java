@@ -24,6 +24,8 @@ import javax.swing.ImageIcon;
 import javax.swing.ScrollPaneConstants;
 
 import static com.sangbong.jg.common.SetFont.notoSansRegular;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * <pre>
@@ -122,6 +124,14 @@ public class PostOnePage extends JFrame {
 		topPanel.add(superCategoryLabel);
 		
 		JButton deleteButton = new JButton("삭제");
+		deleteButton.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new PostDelete().setVisible(true);
+				dispose();
+			}
+		});
 		deleteButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
 		deleteButton.setForeground(new Color(70, 70, 70));
 		deleteButton.setBackground(new Color(241, 87, 87));
@@ -129,6 +139,14 @@ public class PostOnePage extends JFrame {
 		topPanel.add(deleteButton);
 		
 		JButton editButton = new JButton("수정");
+		editButton.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				new PostEdit().setVisible(true);
+				dispose();
+			}
+		});
 		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}

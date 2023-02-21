@@ -89,7 +89,7 @@ public class MemberJoin extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-			 = t1.getText();
+			 t1.getText();
 				
 				
 			}
