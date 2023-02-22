@@ -1,34 +1,30 @@
 package com.sangbong.jg.ui;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Color;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.ImageIcon;
-import javax.swing.ScrollPaneConstants;
-
-import static com.sangbong.jg.common.SetFont.notoSansRegular;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import com.sangbong.jg.model.dto.MemberDTO;
+import com.sangbong.jg.post.controller.PostNewController;
 
 /**
  * <pre>
@@ -126,24 +122,6 @@ public class PostWrite extends JFrame {
 		profilePic.setBounds(924, 10, 44, 44);
 		topPanel.add(profilePic);
 		
-		JButton editButton = new JButton("등록");
-		editButton.addMouseListener(new MouseAdapter() {
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				new PostOnePage().setVisible(true);
-				dispose();
-			}
-		});
-		editButton.setBounds(848, 10, 120, 72);
-		topPanel.add(editButton);
-		editButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		editButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
-		editButton.setForeground(new Color(70, 70, 70));
-		editButton.setBackground(new Color(212, 212, 212));
 		
 		textField = new JTextField();
 		textField.setBounds(12, 113, 956, 35);
@@ -195,5 +173,32 @@ public class PostWrite extends JFrame {
 		textField_1.setBounds(12, 308, 370, 37);
 		bodyPanel.add(textField_1);
 		textField_1.setColumns(10);
+		
+		JButton editButton = new JButton("등록");
+		editButton.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				boolean result = new PostNewController().newPost(comboBox.getSelectedItem().toString(), /*MemberDTO email,*/ textField_1.getText(), textField.getText(), textContext.getText());
+				
+				if(result) {
+					JOptionPane.showMessageDialog(null, "등록완료");
+					new PostOnePage().setVisible(true);
+					dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "등록실패");
+				}
+			}
+		});
+		editButton.setBounds(848, 10, 120, 72);
+		topPanel.add(editButton);
+		editButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		editButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
+		editButton.setForeground(new Color(70, 70, 70));
+		editButton.setBackground(new Color(212, 212, 212));
 	}
 }
