@@ -1,5 +1,7 @@
 package com.sangbong.jg.model.dto;
 
+import java.sql.Date;
+
 public class PostDTO {
 
 	private String categoryCode;
@@ -8,10 +10,13 @@ public class PostDTO {
 	private int price;
 	private String itemName;
 	private char deleteYn;
+	private Date postDate;
+	private String postContext;
 	
 	public PostDTO() {}
 
-	public PostDTO(String categoryCode, String writer, String postCode, int price, String itemName, char deleteYn) {
+	public PostDTO(String categoryCode, String writer, String postCode, int price, String itemName, char deleteYn,
+			Date postDate, String postContext) {
 		super();
 		this.categoryCode = categoryCode;
 		this.writer = writer;
@@ -19,6 +24,8 @@ public class PostDTO {
 		this.price = price;
 		this.itemName = itemName;
 		this.deleteYn = deleteYn;
+		this.postDate = postDate;
+		this.postContext = postContext;
 	}
 
 	public String getCategoryCode() {
@@ -69,10 +76,27 @@ public class PostDTO {
 		this.deleteYn = deleteYn;
 	}
 
+	public Date getPostDate() {
+		return postDate;
+	}
+
+	public void setPostDate(Date postDate) {
+		this.postDate = postDate;
+	}
+
+	public String getPostContext() {
+		return postContext;
+	}
+
+	public void setPostContext(String postContext) {
+		this.postContext = postContext;
+	}
+
 	@Override
 	public String toString() {
 		return "PostDTO [categoryCode=" + categoryCode + ", writer=" + writer + ", postCode=" + postCode + ", price="
-				+ price + ", itemName=" + itemName + ", deleteYn=" + deleteYn + "]";
+				+ price + ", itemName=" + itemName + ", deleteYn=" + deleteYn + ", postDate=" + postDate
+				+ ", postContext=" + postContext + "]";
 	}
 	
 	
