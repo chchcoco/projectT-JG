@@ -130,6 +130,7 @@ public class ReportWrite extends JFrame {
 		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
+			
 		});
 		editButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
 		editButton.setForeground(new Color(70, 70, 70));
