@@ -6,6 +6,11 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.List;
+
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -92,6 +97,18 @@ public class PostCategory extends JFrame {
 		topPanel.add(superCategoryLabel);
 		
 		JButton memberInfoButton = new JButton("회원정보");
+		memberInfoButton.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				
+//				new MemberInfoView(member).setVisible(true);
+				
+				dispose();
+			}
+		});
+		
 		memberInfoButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
 		memberInfoButton.setForeground(new Color(70, 70, 70));
 		memberInfoButton.setBackground(new Color(0, 255, 128));

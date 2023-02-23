@@ -74,6 +74,11 @@ public class PostDTO {
 		return "PostDTO [categoryCode=" + categoryCode + ", writer=" + writer + ", postCode=" + postCode + ", price="
 				+ price + ", itemName=" + itemName + ", deleteYn=" + deleteYn + "]";
 	}
+
+	public void setPostContext(String postContext) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	

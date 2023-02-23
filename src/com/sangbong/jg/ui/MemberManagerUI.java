@@ -26,6 +26,8 @@ import javax.swing.ScrollPaneConstants;
 import static com.sangbong.jg.common.SetFont.notoSansRegular;
 import javax.swing.JTextPane;
 import javax.swing.JTextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * <pre>
@@ -100,6 +102,9 @@ public class MemberManagerUI extends JFrame {
 		topPanel.add(superCategoryLabel);
 		
 		JButton postManagerButton = new JButton("신고관리");
+		postManagerButton.addMouseListener(new MouseAdapter() {
+			
+		});
 		postManagerButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
 		postManagerButton.setForeground(new Color(70, 70, 70));
 		postManagerButton.setBackground(new Color(255, 128, 128));
