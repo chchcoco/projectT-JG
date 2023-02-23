@@ -6,15 +6,17 @@ public class ImgDTO {
 	private String altText;
 	private String postCode;
 	private String imgCode;
+	private String reportCode;
 	
 	public ImgDTO() {}
 
-	public ImgDTO(String imgUrl, String altText, String postCode, String imgCode) {
+	public ImgDTO(String imgUrl, String altText, String postCode, String imgCode, String reportCode) {
 		super();
 		this.imgUrl = imgUrl;
 		this.altText = altText;
 		this.postCode = postCode;
 		this.imgCode = imgCode;
+		this.reportCode = reportCode;
 	}
 
 	public String getImgUrl() {
@@ -48,11 +50,20 @@ public class ImgDTO {
 	public void setImgCode(String imgCode) {
 		this.imgCode = imgCode;
 	}
+	
+
+	public String getReportCode() {
+		return reportCode;
+	}
+
+	public void setReportCode(String reportCode) {
+		this.reportCode = reportCode;
+	}
 
 	@Override
 	public String toString() {
 		return "ImgDTO [imgUrl=" + imgUrl + ", altText=" + altText + ", postCode=" + postCode + ", imgCode=" + imgCode
-				+ "]";
+				+ ", reportCode=" + reportCode + "]";
 	}
 	
 	
