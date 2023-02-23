@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sangbong.jg.post.model.dao.PostEditMapper">
+
+	<update id="postEdit" parameterType="com.sangbong.jg.model.dto.PostDTO">
+		UPDATE
+				POST A
+			SET 
+			    A.POST_CODE = #{postCode} 
+		      , A.CATEGORY_CODE = #{categoryCode}
+		      , A.WRITER = #{writer}
+		      , A.PRICE = #{price}
+		      , A.ITEM_NAME = #{itemName}
+		      , A.DELETE_YN = #{deleteYn}
+		      , A.POST_DATE = SYSDATE 
+		      , A.POST_CONTEXT = #{postContext}
+		  WHERE A.POST_CODE = #{postCode}
+	</update>
+
+</mapper>
