@@ -2,6 +2,8 @@ package com.sangbong.jg.common;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 
 import javax.swing.JLabel;
@@ -9,6 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import com.sangbong.jg.model.dto.PostDTO;
+import com.sangbong.jg.post.controller.PostBoardController;
+import com.sangbong.jg.ui.PostCategory;
+import com.sangbong.jg.ui.PostOnePage;
 
 
 
@@ -26,7 +31,10 @@ import com.sangbong.jg.model.dto.PostDTO;
  * */
 public class PostListReturn {
 	
-	public JPanel getPost() {
+	
+	public JPanel getPost(PostDTO postDTO) {	
+		
+		PostDTO postInfo = postDTO;
 		
 		JPanel post = new JPanel();
 		post.setBounds(27, 10, 300, 130);
@@ -40,38 +48,52 @@ public class PostListReturn {
 		postImage.setBounds(10, 10, 110, 110);
 		post.add(postImage);
 		
-		JLabel postTitleLabel_1 = new JLabel("게시글 제목");
+		JLabel postTitleLabel_1 = new JLabel(postDTO.getItemName());
 		postTitleLabel_1.setForeground(new Color(70, 70, 70));
 		postTitleLabel_1.setFont(new Font("Dialog", Font.PLAIN, 20));
 		postTitleLabel_1.setBounds(132, 10, 168, 29);
 		post.add(postTitleLabel_1);
 		
-		JLabel priceLabel = new JLabel("999,999,000 원");
+		JLabel priceLabel = new JLabel(postDTO.getPrice()+" 원");
 		priceLabel.setForeground(new Color(70, 70, 70));
 		priceLabel.setFont(new Font("나눔스퀘어 네오 ExtraBold", Font.PLAIN, 20));
 		priceLabel.setBounds(132, 91, 168, 29);
 		post.add(priceLabel);
 		
-		JLabel postWriterEmail = new JLabel("작성자 이름(EMAIL@NEVEREVER.LAND)");
+		JLabel postWriterEmail = new JLabel(postDTO.getWriter());
 		postWriterEmail.setHorizontalAlignment(SwingConstants.LEFT);
 		postWriterEmail.setForeground(new Color(70, 70, 70));
 		postWriterEmail.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
 		postWriterEmail.setBounds(134, 49, 166, 16);
 		post.add(postWriterEmail);
 		
+		post.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				new PostCategory().goPost(postInfo);
+				
+			}
+
+			
+		});
+		
 		return post;
 	}
 	
+
 	public List<PostDTO> getAllPost(){
 		/*PostController 작성 후에 완성시킬 예정*/
-		List<PostDTO> postList = PostController.getAllPost();
+		PostBoardController postBoardController = new PostBoardController();
+		List<PostDTO> postList = postBoardController.getAllPost();
 		
 		return postList;
 	}
 	
 	public List<PostDTO> getCtgPost(String ctgName){
-
-		List<PostDTO> postList = PostController.getAllPost(String ctgName);
+		
+		PostBoardController postBoardController = new PostBoardController();
+		List<PostDTO> postList = postBoardController.getAllPost(ctgName);
 		
 		return postList;
 	}
@@ -86,6 +108,7 @@ public class PostListReturn {
 			bodyPanel.add(postList.get(i));
 		}
 	}
+
 
 
 

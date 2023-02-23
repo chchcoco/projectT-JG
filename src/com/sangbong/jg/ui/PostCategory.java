@@ -5,11 +5,10 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
-
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.sangbong.jg.common.PostListReturn;
 import com.sangbong.jg.common.PostRightAsset;
+import com.sangbong.jg.model.dto.PostDTO;
 
 /**
  * <pre>
@@ -41,6 +41,9 @@ public class PostCategory extends JFrame {
 	private JPanel contentPane;
 	private PostRightAsset rightAsset;
 	private PostListReturn postListReturn;
+	private String categoryName;
+	private List<PostDTO> postList;
+	private int page = 0;
 
 	/**
 	 * Launch the application.
@@ -150,273 +153,31 @@ public class PostCategory extends JFrame {
 		
 		/* 게시글을 추가하는 메소드 */
 		postListReturn = new PostListReturn();
-		bodyPanel.add(postListReturn.getPost());
+		
+		if(this.categoryName == null) {
+			postList = postListReturn.getAllPost();
+		} else {
+			postList = postListReturn.getCtgPost(categoryName);
+		}
+		
+		List<JPanel> postPanel = new ArrayList<>();
+		for(int i = 0 + 12*page; i < 12*(page+1); i++) {
+			if(i>=postList.size()) {
+				break;
+			}
+			postPanel.add(postListReturn.getPost(postList.get(i)));
+		}
+		
+		postListReturn.locatePostList(postPanel, bodyPanel);
+//		bodyPanel.add(postListReturn.getPost());
 //
 //		
 //
 //		/* 여기 아래부터는 UI상으로 보여주기 위한 post들.
 //		 * 구현단계에서 사라질 내용들이다.
 //		 * */
-//		JPanel panel_1 = new JPanel();
-//		panel_1.setLayout(null);
-//		panel_1.setBounds(339, 10, 300, 130);
-//		bodyPanel.add(panel_1);
-//		
-//		JLabel lblNewLabel_1_1 = new JLabel("New label");
-//		lblNewLabel_1_1.setBackground(new Color(0, 255, 128));
-//		lblNewLabel_1_1.setBounds(10, 10, 110, 110);
-//		panel_1.add(lblNewLabel_1_1);
-//		
-//		JLabel postTitleLabel_1_1 = new JLabel("게시글 제목");
-//		postTitleLabel_1_1.setForeground(new Color(70, 70, 70));
-//		postTitleLabel_1_1.setFont(new Font("Dialog", Font.PLAIN, 20));
-//		postTitleLabel_1_1.setBounds(132, 10, 168, 29);
-//		panel_1.add(postTitleLabel_1_1);
-//		
-//		JLabel priceLabel_1_1 = new JLabel("999,999,000 원");
-//		priceLabel_1_1.setForeground(new Color(70, 70, 70));
-//		priceLabel_1_1.setFont(new Font("나눔스퀘어 네오 ExtraBold", Font.PLAIN, 20));
-//		priceLabel_1_1.setBounds(132, 91, 168, 29);
-//		panel_1.add(priceLabel_1_1);
-//		
-//		JLabel lblemailnevereverland_1 = new JLabel("작성자 이름(EMAIL@NEVEREVER.LAND)");
-//		lblemailnevereverland_1.setHorizontalAlignment(SwingConstants.RIGHT);
-//		lblemailnevereverland_1.setForeground(new Color(70, 70, 70));
-//		lblemailnevereverland_1.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
-//		lblemailnevereverland_1.setBounds(134, 49, 166, 16);
-//		panel_1.add(lblemailnevereverland_1);
-//		
-//		JPanel panel_2 = new JPanel();
-//		panel_2.setLayout(null);
-//		panel_2.setBounds(649, 10, 300, 130);
-//		bodyPanel.add(panel_2);
-//		
-//		JLabel lblNewLabel_1_2 = new JLabel("New label");
-//		lblNewLabel_1_2.setBackground(new Color(0, 255, 128));
-//		lblNewLabel_1_2.setBounds(10, 10, 110, 110);
-//		panel_2.add(lblNewLabel_1_2);
-//		
-//		JLabel postTitleLabel_1_2 = new JLabel("게시글 제목");
-//		postTitleLabel_1_2.setForeground(new Color(70, 70, 70));
-//		postTitleLabel_1_2.setFont(new Font("Dialog", Font.PLAIN, 20));
-//		postTitleLabel_1_2.setBounds(132, 10, 168, 29);
-//		panel_2.add(postTitleLabel_1_2);
-//		
-//		JLabel priceLabel_1_2 = new JLabel("999,999,000 원");
-//		priceLabel_1_2.setForeground(new Color(70, 70, 70));
-//		priceLabel_1_2.setFont(new Font("나눔스퀘어 네오 ExtraBold", Font.PLAIN, 20));
-//		priceLabel_1_2.setBounds(132, 91, 168, 29);
-//		panel_2.add(priceLabel_1_2);
-//		
-//		JLabel lblemailnevereverland_2 = new JLabel("작성자 이름(EMAIL@NEVEREVER.LAND)");
-//		lblemailnevereverland_2.setHorizontalAlignment(SwingConstants.RIGHT);
-//		lblemailnevereverland_2.setForeground(new Color(70, 70, 70));
-//		lblemailnevereverland_2.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
-//		lblemailnevereverland_2.setBounds(134, 49, 166, 16);
-//		panel_2.add(lblemailnevereverland_2);
-//		
-//		JPanel panel_3 = new JPanel();
-//		panel_3.setLayout(null);
-//		panel_3.setBounds(27, 150, 300, 130);
-//		bodyPanel.add(panel_3);
-//		
-//		JLabel lblNewLabel_1_3 = new JLabel("New label");
-//		lblNewLabel_1_3.setBackground(new Color(0, 255, 128));
-//		lblNewLabel_1_3.setBounds(10, 10, 110, 110);
-//		panel_3.add(lblNewLabel_1_3);
-//		
-//		JLabel postTitleLabel_1_3 = new JLabel("게시글 제목");
-//		postTitleLabel_1_3.setForeground(new Color(70, 70, 70));
-//		postTitleLabel_1_3.setFont(new Font("Dialog", Font.PLAIN, 20));
-//		postTitleLabel_1_3.setBounds(132, 10, 168, 29);
-//		panel_3.add(postTitleLabel_1_3);
-//		
-//		JLabel priceLabel_1_3 = new JLabel("999,999,000 원");
-//		priceLabel_1_3.setForeground(new Color(70, 70, 70));
-//		priceLabel_1_3.setFont(new Font("나눔스퀘어 네오 ExtraBold", Font.PLAIN, 20));
-//		priceLabel_1_3.setBounds(132, 91, 168, 29);
-//		panel_3.add(priceLabel_1_3);
-//		
-//		JLabel lblemailnevereverland_3 = new JLabel("작성자 이름(EMAIL@NEVEREVER.LAND)");
-//		lblemailnevereverland_3.setHorizontalAlignment(SwingConstants.RIGHT);
-//		lblemailnevereverland_3.setForeground(new Color(70, 70, 70));
-//		lblemailnevereverland_3.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
-//		lblemailnevereverland_3.setBounds(134, 49, 166, 16);
-//		panel_3.add(lblemailnevereverland_3);
-//		
-//		JPanel panel_1_1 = new JPanel();
-//		panel_1_1.setLayout(null);
-//		panel_1_1.setBounds(339, 150, 300, 130);
-//		bodyPanel.add(panel_1_1);
-//		
-//		JLabel lblNewLabel_1_1_1 = new JLabel("New label");
-//		lblNewLabel_1_1_1.setBackground(new Color(0, 255, 128));
-//		lblNewLabel_1_1_1.setBounds(10, 10, 110, 110);
-//		panel_1_1.add(lblNewLabel_1_1_1);
-//		
-//		JLabel postTitleLabel_1_1_1 = new JLabel("게시글 제목");
-//		postTitleLabel_1_1_1.setForeground(new Color(70, 70, 70));
-//		postTitleLabel_1_1_1.setFont(new Font("Dialog", Font.PLAIN, 20));
-//		postTitleLabel_1_1_1.setBounds(132, 10, 168, 29);
-//		panel_1_1.add(postTitleLabel_1_1_1);
-//		
-//		JLabel priceLabel_1_1_1 = new JLabel("999,999,000 원");
-//		priceLabel_1_1_1.setForeground(new Color(70, 70, 70));
-//		priceLabel_1_1_1.setFont(new Font("나눔스퀘어 네오 ExtraBold", Font.PLAIN, 20));
-//		priceLabel_1_1_1.setBounds(132, 91, 168, 29);
-//		panel_1_1.add(priceLabel_1_1_1);
-//		
-//		JLabel lblemailnevereverland_1_1 = new JLabel("작성자 이름(EMAIL@NEVEREVER.LAND)");
-//		lblemailnevereverland_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
-//		lblemailnevereverland_1_1.setForeground(new Color(70, 70, 70));
-//		lblemailnevereverland_1_1.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
-//		lblemailnevereverland_1_1.setBounds(134, 49, 166, 16);
-//		panel_1_1.add(lblemailnevereverland_1_1);
-//		
-//		JPanel panel_2_1 = new JPanel();
-//		panel_2_1.setLayout(null);
-//		panel_2_1.setBounds(649, 150, 300, 130);
-//		bodyPanel.add(panel_2_1);
-//		
-//		JLabel lblNewLabel_1_2_1 = new JLabel("New label");
-//		lblNewLabel_1_2_1.setBackground(new Color(0, 255, 128));
-//		lblNewLabel_1_2_1.setBounds(10, 10, 110, 110);
-//		panel_2_1.add(lblNewLabel_1_2_1);
-//		
-//		JLabel postTitleLabel_1_2_1 = new JLabel("게시글 제목");
-//		postTitleLabel_1_2_1.setForeground(new Color(70, 70, 70));
-//		postTitleLabel_1_2_1.setFont(new Font("Dialog", Font.PLAIN, 20));
-//		postTitleLabel_1_2_1.setBounds(132, 10, 168, 29);
-//		panel_2_1.add(postTitleLabel_1_2_1);
-//		
-//		JLabel priceLabel_1_2_1 = new JLabel("999,999,000 원");
-//		priceLabel_1_2_1.setForeground(new Color(70, 70, 70));
-//		priceLabel_1_2_1.setFont(new Font("나눔스퀘어 네오 ExtraBold", Font.PLAIN, 20));
-//		priceLabel_1_2_1.setBounds(132, 91, 168, 29);
-//		panel_2_1.add(priceLabel_1_2_1);
-//		
-//		JLabel lblemailnevereverland_2_1 = new JLabel("작성자 이름(EMAIL@NEVEREVER.LAND)");
-//		lblemailnevereverland_2_1.setHorizontalAlignment(SwingConstants.RIGHT);
-//		lblemailnevereverland_2_1.setForeground(new Color(70, 70, 70));
-//		lblemailnevereverland_2_1.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
-//		lblemailnevereverland_2_1.setBounds(134, 49, 166, 16);
-//		panel_2_1.add(lblemailnevereverland_2_1);
-//		
-//		JPanel panel_3_1 = new JPanel();
-//		panel_3_1.setLayout(null);
-//		panel_3_1.setBounds(27, 290, 300, 130);
-//		bodyPanel.add(panel_3_1);
-//		
-//		JLabel lblNewLabel_1_3_1 = new JLabel("New label");
-//		lblNewLabel_1_3_1.setBackground(new Color(0, 255, 128));
-//		lblNewLabel_1_3_1.setBounds(10, 10, 110, 110);
-//		panel_3_1.add(lblNewLabel_1_3_1);
-//		
-//		JLabel postTitleLabel_1_3_1 = new JLabel("게시글 제목");
-//		postTitleLabel_1_3_1.setForeground(new Color(70, 70, 70));
-//		postTitleLabel_1_3_1.setFont(new Font("Dialog", Font.PLAIN, 20));
-//		postTitleLabel_1_3_1.setBounds(132, 10, 168, 29);
-//		panel_3_1.add(postTitleLabel_1_3_1);
-//		
-//		JLabel priceLabel_1_3_1 = new JLabel("999,999,000 원");
-//		priceLabel_1_3_1.setForeground(new Color(70, 70, 70));
-//		priceLabel_1_3_1.setFont(new Font("나눔스퀘어 네오 ExtraBold", Font.PLAIN, 20));
-//		priceLabel_1_3_1.setBounds(132, 91, 168, 29);
-//		panel_3_1.add(priceLabel_1_3_1);
-//		
-//		JLabel lblemailnevereverland_3_1 = new JLabel("작성자 이름(EMAIL@NEVEREVER.LAND)");
-//		lblemailnevereverland_3_1.setHorizontalAlignment(SwingConstants.RIGHT);
-//		lblemailnevereverland_3_1.setForeground(new Color(70, 70, 70));
-//		lblemailnevereverland_3_1.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
-//		lblemailnevereverland_3_1.setBounds(134, 49, 166, 16);
-//		panel_3_1.add(lblemailnevereverland_3_1);
-//		
-//		JPanel panel_3_1_1 = new JPanel();
-//		panel_3_1_1.setLayout(null);
-//		panel_3_1_1.setBounds(27, 429, 300, 130);
-//		bodyPanel.add(panel_3_1_1);
-//		
-//		JLabel lblNewLabel_1_3_1_1 = new JLabel("New label");
-//		lblNewLabel_1_3_1_1.setBackground(new Color(0, 255, 128));
-//		lblNewLabel_1_3_1_1.setBounds(10, 10, 110, 110);
-//		panel_3_1_1.add(lblNewLabel_1_3_1_1);
-//		
-//		JLabel postTitleLabel_1_3_1_1 = new JLabel("게시글 제목");
-//		postTitleLabel_1_3_1_1.setForeground(new Color(70, 70, 70));
-//		postTitleLabel_1_3_1_1.setFont(new Font("Dialog", Font.PLAIN, 20));
-//		postTitleLabel_1_3_1_1.setBounds(132, 10, 168, 29);
-//		panel_3_1_1.add(postTitleLabel_1_3_1_1);
-//		
-//		JLabel priceLabel_1_3_1_1 = new JLabel("999,999,000 원");
-//		priceLabel_1_3_1_1.setForeground(new Color(70, 70, 70));
-//		priceLabel_1_3_1_1.setFont(new Font("나눔스퀘어 네오 ExtraBold", Font.PLAIN, 20));
-//		priceLabel_1_3_1_1.setBounds(132, 91, 168, 29);
-//		panel_3_1_1.add(priceLabel_1_3_1_1);
-//		
-//		JLabel lblemailnevereverland_3_1_1 = new JLabel("작성자 이름(EMAIL@NEVEREVER.LAND)");
-//		lblemailnevereverland_3_1_1.setHorizontalAlignment(SwingConstants.RIGHT);
-//		lblemailnevereverland_3_1_1.setForeground(new Color(70, 70, 70));
-//		lblemailnevereverland_3_1_1.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
-//		lblemailnevereverland_3_1_1.setBounds(134, 49, 166, 16);
-//		panel_3_1_1.add(lblemailnevereverland_3_1_1);
-//		
-//		JPanel panel_3_1_2 = new JPanel();
-//		panel_3_1_2.setLayout(null);
-//		panel_3_1_2.setBounds(339, 290, 300, 130);
-//		bodyPanel.add(panel_3_1_2);
-//		
-//		JLabel lblNewLabel_1_3_1_2 = new JLabel("New label");
-//		lblNewLabel_1_3_1_2.setBackground(new Color(0, 255, 128));
-//		lblNewLabel_1_3_1_2.setBounds(10, 10, 110, 110);
-//		panel_3_1_2.add(lblNewLabel_1_3_1_2);
-//		
-//		JLabel postTitleLabel_1_3_1_2 = new JLabel("게시글 제목");
-//		postTitleLabel_1_3_1_2.setForeground(new Color(70, 70, 70));
-//		postTitleLabel_1_3_1_2.setFont(new Font("Dialog", Font.PLAIN, 20));
-//		postTitleLabel_1_3_1_2.setBounds(132, 10, 168, 29);
-//		panel_3_1_2.add(postTitleLabel_1_3_1_2);
-//		
-//		JLabel priceLabel_1_3_1_2 = new JLabel("999,999,000 원");
-//		priceLabel_1_3_1_2.setForeground(new Color(70, 70, 70));
-//		priceLabel_1_3_1_2.setFont(new Font("나눔스퀘어 네오 ExtraBold", Font.PLAIN, 20));
-//		priceLabel_1_3_1_2.setBounds(132, 91, 168, 29);
-//		panel_3_1_2.add(priceLabel_1_3_1_2);
-//		
-//		JLabel lblemailnevereverland_3_1_2 = new JLabel("작성자 이름(EMAIL@NEVEREVER.LAND)");
-//		lblemailnevereverland_3_1_2.setHorizontalAlignment(SwingConstants.RIGHT);
-//		lblemailnevereverland_3_1_2.setForeground(new Color(70, 70, 70));
-//		lblemailnevereverland_3_1_2.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
-//		lblemailnevereverland_3_1_2.setBounds(134, 49, 166, 16);
-//		panel_3_1_2.add(lblemailnevereverland_3_1_2);
-//		
-//		JPanel panel_3_1_3 = new JPanel();
-//		panel_3_1_3.setLayout(null);
-//		panel_3_1_3.setBounds(649, 290, 300, 130);
-//		bodyPanel.add(panel_3_1_3);
-//		
-//		JLabel lblNewLabel_1_3_1_3 = new JLabel("New label");
-//		lblNewLabel_1_3_1_3.setBackground(new Color(0, 255, 128));
-//		lblNewLabel_1_3_1_3.setBounds(10, 10, 110, 110);
-//		panel_3_1_3.add(lblNewLabel_1_3_1_3);
-//		
-//		JLabel postTitleLabel_1_3_1_3 = new JLabel("게시글 제목");
-//		postTitleLabel_1_3_1_3.setForeground(new Color(70, 70, 70));
-//		postTitleLabel_1_3_1_3.setFont(new Font("Dialog", Font.PLAIN, 20));
-//		postTitleLabel_1_3_1_3.setBounds(132, 10, 168, 29);
-//		panel_3_1_3.add(postTitleLabel_1_3_1_3);
-//		
-//		JLabel priceLabel_1_3_1_3 = new JLabel("999,999,000 원");
-//		priceLabel_1_3_1_3.setForeground(new Color(70, 70, 70));
-//		priceLabel_1_3_1_3.setFont(new Font("나눔스퀘어 네오 ExtraBold", Font.PLAIN, 20));
-//		priceLabel_1_3_1_3.setBounds(132, 91, 168, 29);
-//		panel_3_1_3.add(priceLabel_1_3_1_3);
-//		
-//		JLabel lblemailnevereverland_3_1_3 = new JLabel("작성자 이름(EMAIL@NEVEREVER.LAND)");
-//		lblemailnevereverland_3_1_3.setHorizontalAlignment(SwingConstants.RIGHT);
-//		lblemailnevereverland_3_1_3.setForeground(new Color(70, 70, 70));
-//		lblemailnevereverland_3_1_3.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
-//		lblemailnevereverland_3_1_3.setBounds(134, 49, 166, 16);
-//		panel_3_1_3.add(lblemailnevereverland_3_1_3);
+
+
 		/* 여기까지 화면상으로 보여주기 위한 Post들.
 		 * 추후 for문으로 List<PostDTO>를 받아와서
 		 * 12개의 post를 mainPanel에 등록할 예정
@@ -424,96 +185,11 @@ public class PostCategory extends JFrame {
 		
 	}
 	
-//	public JPanel getCtgPanel() {
-//		
-//		JPanel ctgPanel = new JPanel();
-//		ctgPanel.setBackground(new Color(245, 245, 245));
-//		ctgPanel.setBounds(0, 0, 248, 681);
-////		contentPane.add(ctgPanel);
-//		ctgPanel.setLayout(null);
-//		
-//		JLabel writeReportLabel = new JLabel("신고글 작성하기");
-//		writeReportLabel.setBounds(24, 630, 200, 28);
-//		writeReportLabel.setForeground(new Color(255, 0, 0));
-//		writeReportLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
-////		writeReportLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
-//		ctgPanel.add(writeReportLabel);
-//		
-//
-//		/*이후 categoryDTO를 */
-//		List<CategoryDTO> categoryList = new CategoryController().getCategoryList();
-//		
-//		String[] sList = new String[categoryList.size()];
-//		for(int i = 0; i < sList.length; i++) {
-//			sList[i] = categoryList.get(i).getCategoryName();
-//		}
-//		
-//		JList ctgList = new JList(sList); 
-//		ctgList.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				String a = (String) ctgList.getSelectedValue();
-//				System.out.println(a);
-//			}
-//		});
-//		ctgList.setFont(new Font("굴림", Font.PLAIN, 20));
-//		ctgList.setVisibleRowCount(10);
-//		
-//
-//		JScrollPane scrollPane = new JScrollPane(ctgList);
-//		
-//		scrollPane.setBounds(12, 154, 224, 456);
-//		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-//		ctgPanel.add(scrollPane);
-//
-//
-//		
-//		JLabel titleLabel = new JLabel("New label");
-//		titleLabel.setBounds(24, 10, 204, 67);
-//		titleLabel.setIcon(new ImageIcon("images//title.png"));
-//		ctgPanel.add(titleLabel);
-//		
-//		JLabel viewAllLabel = new JLabel("전체 게시판");
-//		viewAllLabel.setBounds(27, 111, 200, 33);
-//		viewAllLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
-//		ctgPanel.add(viewAllLabel);
-//		
-//		return ctgPanel;
-//	}
-	
-//	public JPanel getPost() {
-//		
-//		JPanel post = new JPanel();
-//		post.setBounds(27, 10, 300, 130);
-////		bodyPanel.add(post);
-//		post.setLayout(null);
-//		
-//		JLabel postImage = new JLabel("images//title.png");
-//		postImage.setIcon(null);
-//		postImage.setOpaque(true);
-//		postImage.setBackground(new Color(0, 255, 128));
-//		postImage.setBounds(10, 10, 110, 110);
-//		post.add(postImage);
-//		
-//		JLabel postTitleLabel_1 = new JLabel("게시글 제목");
-//		postTitleLabel_1.setForeground(new Color(70, 70, 70));
-//		postTitleLabel_1.setFont(new Font("Dialog", Font.PLAIN, 20));
-//		postTitleLabel_1.setBounds(132, 10, 168, 29);
-//		post.add(postTitleLabel_1);
-//		
-//		JLabel priceLabel = new JLabel("999,999,000 원");
-//		priceLabel.setForeground(new Color(70, 70, 70));
-//		priceLabel.setFont(new Font("나눔스퀘어 네오 ExtraBold", Font.PLAIN, 20));
-//		priceLabel.setBounds(132, 91, 168, 29);
-//		post.add(priceLabel);
-//		
-//		JLabel postWriterEmail = new JLabel("작성자 이름(EMAIL@NEVEREVER.LAND)");
-//		postWriterEmail.setHorizontalAlignment(SwingConstants.LEFT);
-//		postWriterEmail.setForeground(new Color(70, 70, 70));
-//		postWriterEmail.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
-//		postWriterEmail.setBounds(134, 49, 166, 16);
-//		post.add(postWriterEmail);
-//		
-//		return post;
-//	}
+	public void goPost(PostDTO postInfo) {
+		// 게시글 상세조회 페이지로 이동
+		new PostOnePage().setVisible(true);
+		this.dispose();
+	}
+
+
 }
