@@ -3,6 +3,7 @@ package com.sangbong.jg.ui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -69,8 +70,8 @@ public class ReportPanelMaker {
 		
 		reportPanel.addMouseListener(new MouseAdapter() {
 			
-			public void mouseClicked() {
-				
+			public void mouseClicked(MouseEvent e) {
+				new ReportOnePage(report).setVisible(true);
 			}
 			
 		});

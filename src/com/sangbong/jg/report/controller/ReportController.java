@@ -16,4 +16,11 @@ public class ReportController {
 		return reportList;
 	}
 
+	public int manageReport(ReportDTO report, String choice) {
+
+		int result = reportService.manageReport(report, choice);
+		
+		return result;
+	}
+
 }
