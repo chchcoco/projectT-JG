@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 
 import com.sangbong.jg.member.controller.MemberInfoController;
 import com.sangbong.jg.model.dto.MemberDTO;
+import com.sangbong.jg.model.dto.ReportDTO;
+import com.sangbong.jg.report.controller.ReportController;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -16,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
@@ -31,6 +34,10 @@ import static com.sangbong.jg.common.SetFont.notoSansRegular;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.FlowLayout;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 
 /**
  * <pre>
@@ -164,193 +171,18 @@ public class ReportView extends JFrame {
 		JPanel bodyPanel = new JPanel();
 		bodyPanel.setBackground(new Color(245, 245, 245));
 		bodyPanel.setBounds(12, 96, 980, 484);
+		bodyPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		mainPanel.add(bodyPanel);
-		bodyPanel.setLayout(null);
+		bodyPanel.setLayout(new BoxLayout(bodyPanel, BoxLayout.Y_AXIS));
 		
-		JPanel reportPanel = new JPanel();
-		reportPanel.setBounds(12, 10, 956, 84);
-		bodyPanel.add(reportPanel);
-		reportPanel.setLayout(null);
+		ReportPanelMaker reportPanel = new ReportPanelMaker();
+		/* 리스트로 가지러 갈 예정 */
+		ReportController reportController = new ReportController();
+		List<ReportDTO> reportList = reportController.findReportList();
 		
-		JLabel reportReasonLabel = new JLabel("신고 사유 : ");
-		reportReasonLabel.setBounds(10, 42, 436, 16);
-		reportPanel.add(reportReasonLabel);
-		reportReasonLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		reportReasonLabel.setForeground(new Color(70, 70, 70));
-		reportReasonLabel.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
-		
-		JLabel reportTitleLabel = new JLabel("신고글 제목 [승인여부]");
-		reportTitleLabel.setForeground(new Color(70, 70, 70));
-		reportTitleLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 18));
-		reportTitleLabel.setBounds(0, 0, 446, 35);
-		reportPanel.add(reportTitleLabel);
-		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setBounds(872, 0, 84, 84);
-		reportPanel.add(btnNewButton);
-		
-		JLabel reportedEmailLabel = new JLabel("신고 대상");
-		reportedEmailLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		reportedEmailLabel.setForeground(new Color(70, 70, 70));
-		reportedEmailLabel.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
-		reportedEmailLabel.setBounds(10, 68, 436, 16);
-		reportPanel.add(reportedEmailLabel);
-		
-		JTextArea textContext = new JTextArea();
-		textContext.setBounds(448, 10, 412, 64);
-		reportPanel.add(textContext);
-		textContext.setForeground(new Color(70, 70, 70));
-		textContext.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 14));
-		textContext.setText("상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context ");
-		textContext.setLineWrap(true);
-		
-		JPanel reportPanel_1 = new JPanel();
-		reportPanel_1.setLayout(null);
-		reportPanel_1.setBounds(12, 104, 956, 84);
-		bodyPanel.add(reportPanel_1);
-		
-		JLabel reportReasonLabel_1 = new JLabel("신고 사유 : ");
-		reportReasonLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
-		reportReasonLabel_1.setForeground(new Color(70, 70, 70));
-		reportReasonLabel_1.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
-		reportReasonLabel_1.setBounds(10, 42, 436, 16);
-		reportPanel_1.add(reportReasonLabel_1);
-		
-		JLabel reportTitleLabel_1 = new JLabel("신고글 제목 [승인여부]");
-		reportTitleLabel_1.setForeground(new Color(70, 70, 70));
-		reportTitleLabel_1.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 18));
-		reportTitleLabel_1.setBounds(0, 0, 446, 35);
-		reportPanel_1.add(reportTitleLabel_1);
-		
-		JButton btnNewButton_1 = new JButton("New button");
-		btnNewButton_1.setBounds(872, 0, 84, 84);
-		reportPanel_1.add(btnNewButton_1);
-		
-		JLabel reportedEmailLabel_1 = new JLabel("신고 대상");
-		reportedEmailLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
-		reportedEmailLabel_1.setForeground(new Color(70, 70, 70));
-		reportedEmailLabel_1.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
-		reportedEmailLabel_1.setBounds(10, 68, 436, 16);
-		reportPanel_1.add(reportedEmailLabel_1);
-		
-		JTextArea textContext_1 = new JTextArea();
-		textContext_1.setText("상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context ");
-		textContext_1.setLineWrap(true);
-		textContext_1.setForeground(new Color(70, 70, 70));
-		textContext_1.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 14));
-		textContext_1.setBounds(448, 10, 412, 64);
-		reportPanel_1.add(textContext_1);
-		
-		JPanel reportPanel_2 = new JPanel();
-		reportPanel_2.setLayout(null);
-		reportPanel_2.setBounds(12, 198, 956, 84);
-		bodyPanel.add(reportPanel_2);
-		
-		JLabel reportReasonLabel_2 = new JLabel("신고 사유 : ");
-		reportReasonLabel_2.setHorizontalAlignment(SwingConstants.LEFT);
-		reportReasonLabel_2.setForeground(new Color(70, 70, 70));
-		reportReasonLabel_2.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
-		reportReasonLabel_2.setBounds(10, 42, 436, 16);
-		reportPanel_2.add(reportReasonLabel_2);
-		
-		JLabel reportTitleLabel_2 = new JLabel("신고글 제목 [승인여부]");
-		reportTitleLabel_2.setForeground(new Color(70, 70, 70));
-		reportTitleLabel_2.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 18));
-		reportTitleLabel_2.setBounds(0, 0, 446, 35);
-		reportPanel_2.add(reportTitleLabel_2);
-		
-		JButton btnNewButton_2 = new JButton("New button");
-		btnNewButton_2.setBounds(872, 0, 84, 84);
-		reportPanel_2.add(btnNewButton_2);
-		
-		JLabel reportedEmailLabel_2 = new JLabel("신고 대상");
-		reportedEmailLabel_2.setHorizontalAlignment(SwingConstants.LEFT);
-		reportedEmailLabel_2.setForeground(new Color(70, 70, 70));
-		reportedEmailLabel_2.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
-		reportedEmailLabel_2.setBounds(10, 68, 436, 16);
-		reportPanel_2.add(reportedEmailLabel_2);
-		
-		JTextArea textContext_2 = new JTextArea();
-		textContext_2.setText("상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context ");
-		textContext_2.setLineWrap(true);
-		textContext_2.setForeground(new Color(70, 70, 70));
-		textContext_2.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 14));
-		textContext_2.setBounds(448, 10, 412, 64);
-		reportPanel_2.add(textContext_2);
-		
-		JPanel reportPanel_3 = new JPanel();
-		reportPanel_3.setLayout(null);
-		reportPanel_3.setBounds(12, 292, 956, 84);
-		bodyPanel.add(reportPanel_3);
-		
-		JLabel reportReasonLabel_3 = new JLabel("신고 사유 : ");
-		reportReasonLabel_3.setHorizontalAlignment(SwingConstants.LEFT);
-		reportReasonLabel_3.setForeground(new Color(70, 70, 70));
-		reportReasonLabel_3.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
-		reportReasonLabel_3.setBounds(10, 42, 436, 16);
-		reportPanel_3.add(reportReasonLabel_3);
-		
-		JLabel reportTitleLabel_3 = new JLabel("신고글 제목 [승인여부]");
-		reportTitleLabel_3.setForeground(new Color(70, 70, 70));
-		reportTitleLabel_3.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 18));
-		reportTitleLabel_3.setBounds(0, 0, 446, 35);
-		reportPanel_3.add(reportTitleLabel_3);
-		
-		JButton btnNewButton_3 = new JButton("New button");
-		btnNewButton_3.setBounds(872, 0, 84, 84);
-		reportPanel_3.add(btnNewButton_3);
-		
-		JLabel reportedEmailLabel_3 = new JLabel("신고 대상");
-		reportedEmailLabel_3.setHorizontalAlignment(SwingConstants.LEFT);
-		reportedEmailLabel_3.setForeground(new Color(70, 70, 70));
-		reportedEmailLabel_3.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
-		reportedEmailLabel_3.setBounds(10, 68, 436, 16);
-		reportPanel_3.add(reportedEmailLabel_3);
-		
-		JTextArea textContext_3 = new JTextArea();
-		textContext_3.setText("상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context ");
-		textContext_3.setLineWrap(true);
-		textContext_3.setForeground(new Color(70, 70, 70));
-		textContext_3.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 14));
-		textContext_3.setBounds(448, 10, 412, 64);
-		reportPanel_3.add(textContext_3);
-		
-		JPanel reportPanel_4 = new JPanel();
-		reportPanel_4.setLayout(null);
-		reportPanel_4.setBounds(12, 386, 956, 84);
-		bodyPanel.add(reportPanel_4);
-		
-		JLabel reportReasonLabel_4 = new JLabel("신고 사유 : ");
-		reportReasonLabel_4.setHorizontalAlignment(SwingConstants.LEFT);
-		reportReasonLabel_4.setForeground(new Color(70, 70, 70));
-		reportReasonLabel_4.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
-		reportReasonLabel_4.setBounds(10, 42, 436, 16);
-		reportPanel_4.add(reportReasonLabel_4);
-		
-		JLabel reportTitleLabel_4 = new JLabel("신고글 제목 [승인여부]");
-		reportTitleLabel_4.setForeground(new Color(70, 70, 70));
-		reportTitleLabel_4.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 18));
-		reportTitleLabel_4.setBounds(0, 0, 446, 35);
-		reportPanel_4.add(reportTitleLabel_4);
-		
-		JButton btnNewButton_4 = new JButton("New button");
-		btnNewButton_4.setBounds(872, 0, 84, 84);
-		reportPanel_4.add(btnNewButton_4);
-		
-		JLabel reportedEmailLabel_4 = new JLabel("신고 대상");
-		reportedEmailLabel_4.setHorizontalAlignment(SwingConstants.LEFT);
-		reportedEmailLabel_4.setForeground(new Color(70, 70, 70));
-		reportedEmailLabel_4.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
-		reportedEmailLabel_4.setBounds(10, 68, 436, 16);
-		reportPanel_4.add(reportedEmailLabel_4);
-		
-		JTextArea textContext_4 = new JTextArea();
-		textContext_4.setText("상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context ");
-		textContext_4.setLineWrap(true);
-		textContext_4.setForeground(new Color(70, 70, 70));
-		textContext_4.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 14));
-		textContext_4.setBounds(448, 10, 412, 64);
-		reportPanel_4.add(textContext_4);
+		for (int i = 0; i < 5; i++) {
+			reportPanel.PanelMaker(bodyPanel, reportList.get(i));
+		}
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(372, 600, 248, 54);

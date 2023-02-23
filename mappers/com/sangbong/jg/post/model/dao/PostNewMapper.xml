@@ -3,6 +3,7 @@
 <mapper namespace="com.sangbong.jg.post.model.dao.PostNewMapper">
 
 	<insert id="postNew" parameterType="com.sangbong.jg.model.dto.PostDTO">
+
 		INSERT
 		  INTO POST A
 		(

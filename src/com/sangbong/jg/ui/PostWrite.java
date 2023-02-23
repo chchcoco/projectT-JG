@@ -45,6 +45,8 @@ public class PostWrite extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+	private MemberDTO email;
+	
 
 	/**
 	 * Launch the application.
@@ -149,22 +151,64 @@ public class PostWrite extends JFrame {
 		bodyPanel.add(textContext);
 		
 		JButton btnNewButton_2_3 = new JButton("image");
+		btnNewButton_2_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				String str = 
+						JOptionPane.showInputDialog("이미지 경로를 입력하세요");
+						JOptionPane.showMessageDialog(null, str);
+				//경로를 스트링으로 받기 JOptionPanel
+				// 이미지 선택 기능 //
+				
+			}
+		});
 		btnNewButton_2_3.setBounds(12, 353, 180, 130);
 		bodyPanel.add(btnNewButton_2_3);
 		
 		JButton btnNewButton_2_3_1 = new JButton("image");
+		btnNewButton_2_3_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//경로를 스트링으로 받기 
+				// 이미지 선택 기능 //
+			}
+		});
 		btnNewButton_2_3_1.setBounds(204, 353, 180, 130);
 		bodyPanel.add(btnNewButton_2_3_1);
 		
 		JButton btnNewButton_2_3_1_1 = new JButton("image");
+		btnNewButton_2_3_1_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				//경로를 스트링으로 받기 
+				// 이미지 선택 기능 //
+			}
+		});
 		btnNewButton_2_3_1_1.setBounds(396, 353, 180, 130);
 		bodyPanel.add(btnNewButton_2_3_1_1);
 		
 		JButton btnNewButton_2_3_1_2 = new JButton("image");
+		btnNewButton_2_3_1_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//경로를 스트링으로 받기 
+				// 이미지 선택 기능 //
+			}
+		});
 		btnNewButton_2_3_1_2.setBounds(588, 353, 180, 130);
 		bodyPanel.add(btnNewButton_2_3_1_2);
 		
 		JButton btnNewButton_2_3_1_3 = new JButton("image");
+		btnNewButton_2_3_1_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//경로를 스트링으로 받기 
+				// 이미지 선택 기능 //
+				
+			}
+		});
 		btnNewButton_2_3_1_3.setBounds(780, 353, 180, 130);
 		bodyPanel.add(btnNewButton_2_3_1_3);
 		
@@ -180,7 +224,7 @@ public class PostWrite extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				boolean result = new PostNewController().newPost(comboBox.getSelectedItem().toString(), /*MemberDTO email,*/ textField_1.getText(), textField.getText(), textContext.getText());
+				boolean result = new PostNewController().newPost(comboBox.getSelectedItem().toString(), email.getEmail(), textField_1.getText(), textField.getText(), textContext.getText());
 				
 				if(result) {
 					JOptionPane.showMessageDialog(null, "등록완료");

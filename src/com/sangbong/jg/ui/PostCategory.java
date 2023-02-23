@@ -119,6 +119,15 @@ public class PostCategory extends JFrame {
 		topPanel.add(memberInfoButton);
 		
 		JButton writeButton = new JButton("글쓰기");
+		writeButton.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				 
+				new PostWrite().setVisible(true);
+				dispose();
+			}
+		});
 		writeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
