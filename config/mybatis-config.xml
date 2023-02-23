@@ -17,5 +17,6 @@
 	<mappers>
 		<package name="com.sangbong.jg.member.model.dao"/>
 		<package name="com.sangbong.jg.category.model.dao"/>
+		<package name="com.sangbong.jg.post.model.dao"/>
 	</mappers>
 </configuration>
