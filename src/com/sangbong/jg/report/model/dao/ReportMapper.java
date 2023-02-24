@@ -9,6 +9,8 @@ public interface ReportMapper {
 
 	List<ReportDTO> selectAllReport();
 
-	int updateReportStatus(Map<String, String> map);
+	int updateReportStatusApprove(Map<String, String> map);
+
+	int updateReportStatusDiscard(Map<String, String> map);
 
 }

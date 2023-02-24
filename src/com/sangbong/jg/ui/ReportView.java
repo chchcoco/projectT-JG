@@ -175,11 +175,6 @@ public class ReportView extends JFrame {
 		mainPanel.add(bodyPanel);
 		bodyPanel.setLayout(new BoxLayout(bodyPanel, BoxLayout.Y_AXIS));
 		
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(372, 600, 248, 54);
-		mainPanel.add(panel);
-		
 		ReportPanelMaker reportPanel = new ReportPanelMaker();
 		/* 리스트로 가지러 갈 예정 */
 		ReportController reportController = new ReportController();
@@ -187,8 +182,11 @@ public class ReportView extends JFrame {
 		
 		for (int i = 0; i < 5; i++) {
 			reportPanel.PanelMaker(bodyPanel, reportList.get(i));
-			
 		}
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(372, 600, 248, 54);
+		mainPanel.add(panel);
 		
 		JButton page1 = new JButton("1");
 		panel.add(page1);

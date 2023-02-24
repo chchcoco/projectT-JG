@@ -28,15 +28,18 @@
 		 ORDER BY A.REPORT_CODE DESC
 	</select>
 	
-	<update id="updateReportStatus" parameterType="hashMap">
+	<update id="updateReportStatusApprove" parameterType="hashMap">
 		UPDATE REPORT A
-			<if test="reportApproval == 'Y'">
-			SET A.REPORT_APPROVAL = 'Y'
-			</if>
-			<if test="reportApproval == 'N'">
-			SET A.REPORT_APPROVAL = 'N'
-			</if>
+		   SET A.REPORT_APPROVAL = 'Y'
 		 WHERE A.REPORT_CODE = #{ reportCode }
 	</update>
+	
+	<update id="updateReportStatusDiscard" parameterType="hashMap">
+		UPDATE REPORT A
+		   SET A.REPORT_APPROVAL = 'N'
+		 WHERE A.REPORT_CODE = #{ reportCode }
+	</update>
+	
+	
 
 </mapper>

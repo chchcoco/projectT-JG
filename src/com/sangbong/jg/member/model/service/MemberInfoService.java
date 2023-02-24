@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.sangbong.jg.member.model.dao.MemberInfoMapper;
 import com.sangbong.jg.model.dto.MemberDTO;
+import com.sangbong.jg.model.dto.ReportDTO;
 
 import static com.sangbong.jg.common.Template.getSqlSession;
 
@@ -98,6 +99,27 @@ public class MemberInfoService {
 		map.put("email", email);
 		
 		int result = mapper.deleteMember(map);
+		
+		if(result > 0) {
+			sqlSession.commit();
+		} else {
+			sqlSession.rollback();
+		}
+		
+		sqlSession.close();
+		
+		return result;
+	}
+
+	public int addPenaltyToMember(ReportDTO report) {
+
+		SqlSession sqlSession = getSqlSession();
+		mapper = sqlSession.getMapper(MemberInfoMapper.class);
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("reportedEmail", report.getReportedEmail());
+		
+		int result = mapper.updatePenaltyCnt(map);
 		
 		if(result > 0) {
 			sqlSession.commit();

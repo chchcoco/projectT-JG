@@ -135,15 +135,30 @@ public class ReportOnePage extends JFrame {
 		discardButton.setBackground(new Color(241, 87, 87));
 		discardButton.setBounds(848, 76, 120, 72);
 		topPanel.add(discardButton);
+		discardButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ReportController reportController = new ReportController();
+				int result = reportController.discardReport(report);
+				if(result > 0) {
+					new ReportView().setVisible(true);
+					dispose();
+				} else {
+					System.out.println("실패");
+				}
+			}
+		});
 		
 		JButton approveButton = new JButton("승인");
 		approveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ReportController reportController = new ReportController();
-				int result = reportController.manageReport(report, "Y");
-				if(result > 0) {
+				int result1 = reportController.approveReport(report);
+				int result2 = reportController.addPenaltyToMember(report);
+				if(result1 > 0 && result2 > 0) {
 					
-					new ReportOnePage(report);
+					new ReportView().setVisible(true);
 					dispose();
 				} else {
 					System.out.println("실패");
