@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -23,6 +24,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import com.sangbong.jg.category.controller.CategoryController;
+import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
 import com.sangbong.jg.post.controller.PostNewController;
 
@@ -130,8 +133,15 @@ public class PostWrite extends JFrame {
 		topPanel.add(textField);
 		textField.setColumns(10);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"카테고리"}));
+		List<CategoryDTO> categoryList = new CategoryController().getCategoryList();
+		
+		String[] sList = new String[categoryList.size()];
+		for(int i = 0; i < sList.length; i++) {
+			sList[i] = categoryList.get(i).getCategoryName();
+		}
+		
+		JComboBox comboBox = new JComboBox(sList);
+//		comboBox.setModel(new DefaultComboBoxModel(new String[] {"카테고리"}));
 		comboBox.setToolTipText("");
 		comboBox.setBounds(12, 83, 139, 23);
 		topPanel.add(comboBox);
@@ -228,7 +238,7 @@ public class PostWrite extends JFrame {
 				
 				if(result) {
 					JOptionPane.showMessageDialog(null, "등록완료");
-					new PostOnePage().setVisible(true);
+					new PostOnePage(null).setVisible(true);
 					dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "등록실패");

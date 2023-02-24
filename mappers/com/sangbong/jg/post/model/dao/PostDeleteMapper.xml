@@ -5,14 +5,7 @@
 	<delete id="postDelete">
 		DELETE
           FROM POST A
-         WHERE A.POST_CODE = #{postCode} 
-           AND A.CATEGORY_CODE = #{categoryCode}
-           AND A.WRITER = #{writer}
-           AND A.PRICE = #{price}
-           AND A.ITEM_NAME = #{itemName}
-           AND A.DELETE_YN = #{deleteYn}
-           AND A.POST_DATE = SYSDATE 
-           AND A.POST_CONTEXT = #{postContext}
+         WHERE A.POST_CODE = #{postCode}
 	</delete>
 
 </mapper>

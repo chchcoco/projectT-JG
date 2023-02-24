@@ -99,10 +99,6 @@ public class PostDTO {
 				+ ", postContext=" + postContext + "]";
 	}
 
-	public void setPostContext(String postContext) {
-		// TODO Auto-generated method stub
-		
-	}
 	
 	
 	

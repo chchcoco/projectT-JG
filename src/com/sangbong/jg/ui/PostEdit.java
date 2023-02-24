@@ -186,7 +186,7 @@ public class PostEdit extends JFrame {
 				
 				if(result) {
 					JOptionPane.showMessageDialog(null, "수정완료");
-					new PostOnePage().setVisible(true);
+					new PostOnePage(null).setVisible(true);
 					dispose();
 				} else {
 					/* 변경사항이 없을경우 저장 버튼을 비활성화 처리*/
