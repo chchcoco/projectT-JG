@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.PostDTO;
 import com.sangbong.jg.post.controller.PostBoardController;
 import com.sangbong.jg.ui.PostCategory;
@@ -90,10 +91,10 @@ public class PostListReturn {
 		return postList;
 	}
 	
-	public List<PostDTO> getCtgPost(String ctgName){
+	public List<PostDTO> getCtgPost(CategoryDTO category){
 		
 		PostBoardController postBoardController = new PostBoardController();
-		List<PostDTO> postList = postBoardController.getAllPost(ctgName);
+		List<PostDTO> postList = postBoardController.getAllPost(category);
 		
 		return postList;
 	}

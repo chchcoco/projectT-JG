@@ -18,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.sangbong.jg.common.PostListReturn;
 import com.sangbong.jg.common.PostRightAsset;
+import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.PostDTO;
 
 /**
@@ -41,7 +42,7 @@ public class PostCategory extends JFrame {
 	private JPanel contentPane;
 	private PostRightAsset rightAsset;
 	private PostListReturn postListReturn;
-	private String categoryName;
+	private CategoryDTO category;
 	private List<PostDTO> postList;
 	private int page = 0;
 
@@ -65,7 +66,10 @@ public class PostCategory extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PostCategory() {
+	public PostCategory(CategoryDTO category) {
+		
+		this.category = category;
+		
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
@@ -93,7 +97,7 @@ public class PostCategory extends JFrame {
 		mainPanel.add(topPanel);
 		topPanel.setLayout(null);
 		
-		JLabel superCategoryLabel = new JLabel("상위 카테고리명");
+		JLabel superCategoryLabel = new JLabel(category == null ? "전체게시글" : category.getSuperCategory());
 		superCategoryLabel.setForeground(new Color(70, 70, 70));
 		superCategoryLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 18));
 		superCategoryLabel.setBounds(12, 10, 678, 35);
@@ -138,7 +142,7 @@ public class PostCategory extends JFrame {
 		writeButton.setBounds(716, 10, 120, 72);
 		topPanel.add(writeButton);
 		
-		JLabel juniorCategoryLabel = new JLabel("> 하위 카테고리명");
+		JLabel juniorCategoryLabel = new JLabel(category == null ? "전체게시글" : category.getCategoryName());
 		juniorCategoryLabel.setForeground(new Color(70, 70, 70));
 		juniorCategoryLabel.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 14));
 		juniorCategoryLabel.setBounds(12, 46, 678, 20);
@@ -154,10 +158,10 @@ public class PostCategory extends JFrame {
 		/* 게시글을 추가하는 메소드 */
 		postListReturn = new PostListReturn();
 		
-		if(this.categoryName == null) {
+		if(this.category == null) {
 			postList = postListReturn.getAllPost();
 		} else {
-			postList = postListReturn.getCtgPost(categoryName);
+			postList = postListReturn.getCtgPost(category);
 		}
 		
 		List<JPanel> postPanel = new ArrayList<>();
@@ -169,26 +173,25 @@ public class PostCategory extends JFrame {
 		}
 		
 		postListReturn.locatePostList(postPanel, bodyPanel);
-//		bodyPanel.add(postListReturn.getPost());
-//
-//		
-//
-//		/* 여기 아래부터는 UI상으로 보여주기 위한 post들.
-//		 * 구현단계에서 사라질 내용들이다.
-//		 * */
 
-
-		/* 여기까지 화면상으로 보여주기 위한 Post들.
-		 * 추후 for문으로 List<PostDTO>를 받아와서
-		 * 12개의 post를 mainPanel에 등록할 예정
-		 * */
 		
 	}
 	
+	
+	public PostCategory() {
+		this(null);
+	}
+
+	
+	
 	public void goPost(PostDTO postInfo) {
 		// 게시글 상세조회 페이지로 이동
-		new PostOnePage().setVisible(true);
-		this.dispose();
+		new PostOnePage(postInfo).setVisible(true);
+		disposePage(this);
+	}
+	
+	private void disposePage(JFrame page) {
+		page.dispose();
 	}
 
 

@@ -15,6 +15,7 @@ import javax.swing.ScrollPaneConstants;
 
 import com.sangbong.jg.category.controller.CategoryController;
 import com.sangbong.jg.model.dto.CategoryDTO;
+import com.sangbong.jg.ui.PostCategory;
 
 public class PostRightAsset {
 
@@ -91,8 +92,9 @@ public JPanel getCtgPanel() {
 
 	/*카테고리 리스트에서 카테고리 클릭시 해당 카테고리의 게시글들을 보여주는 게시판으로 이동하는 메소드*/
 	public void goCtgPostBoard(String ctgName) {
-				
+		CategoryDTO category = new CategoryController().getOneCategoryByName(ctgName);
 		
+		new PostCategory(category);
 		
 	}
 }
