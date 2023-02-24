@@ -1,19 +1,21 @@
 package com.sangbong.jg.ui;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
+import com.sangbong.jg.model.dto.PostDTO;
+import com.sangbong.jg.post.controller.PostDeleteController;
 
 /**
  * <pre>
@@ -29,7 +31,7 @@ import java.awt.event.MouseEvent;
 public class PostDelete extends JFrame {
 	private JLabel lblNewLabel = new JLabel("Logo");
 	
-	public PostDelete() {
+	public PostDelete(PostDTO postDTO) {
 		
 		setSize(1280, 720);
 		
@@ -38,7 +40,7 @@ public class PostDelete extends JFrame {
 		logBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new PostOnePage().setVisible(true);
+				new PostOnePage(postDTO).setVisible(true);
 				dispose();
 			}
 		});
@@ -61,8 +63,16 @@ public class PostDelete extends JFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new PostCategory().setVisible(true);
-				dispose();
+				
+				boolean result = new PostDeleteController().deletePost(postDTO);
+				
+				if(result) {
+					JOptionPane.showMessageDialog(null, "삭제완료");
+					new PostCategory().setVisible(true);
+					dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "삭제실패");
+				}
 			}
 		});
 		btnNewButton.addActionListener(new ActionListener() {
@@ -87,6 +97,6 @@ public class PostDelete extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		new PostDelete();
+		new PostDelete(null);
 	}
 }

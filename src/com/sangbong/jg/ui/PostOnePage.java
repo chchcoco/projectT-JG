@@ -1,36 +1,29 @@
 package com.sangbong.jg.ui;
 
-import java.awt.EventQueue;
+import static com.sangbong.jg.common.SetFont.notoSansRegular;
 
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.sangbong.jg.member.controller.MemberInfoController;
 import com.sangbong.jg.model.dto.MemberDTO;
-
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.Color;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.ImageIcon;
-import javax.swing.ScrollPaneConstants;
-
-import static com.sangbong.jg.common.SetFont.notoSansRegular;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import com.sangbong.jg.model.dto.PostDTO;
 
 /**
  * <pre>
@@ -50,6 +43,7 @@ public class PostOnePage extends JFrame {
 	 * Windowbuilder GUI Plugin을 사용하여 만들어졌다. open with > windowbuilder 선택하여 하단 디자인 탭 참고할 것! 
 	 */
 	private JPanel contentPane;
+	private PostDTO postDTO;
 
 	/**
 	 * Launch the application.
@@ -59,7 +53,7 @@ public class PostOnePage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PostOnePage frame = new PostOnePage();
+					PostOnePage frame = new PostOnePage(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -71,7 +65,9 @@ public class PostOnePage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PostOnePage() {
+	public PostOnePage(PostDTO postDTO) {
+		
+		this.postDTO = postDTO;
 		
 		/* 테스트용 임시 박멍멍 */
 		MemberDTO member = new MemberDTO("mung@gmail.com", "12345", "박멍멍", 0, 'Y', 'N', null, null, "MEMBER");
@@ -138,7 +134,7 @@ public class PostOnePage extends JFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new PostDelete().setVisible(true);
+				new PostDelete(postDTO).setVisible(true);
 				dispose();
 			}
 		});
@@ -288,4 +284,7 @@ public class PostOnePage extends JFrame {
 		previousButton.setBounds(318, 456, 128, 27);
 		bodyPanel.add(previousButton);
 	}
+	
 }
+
+
