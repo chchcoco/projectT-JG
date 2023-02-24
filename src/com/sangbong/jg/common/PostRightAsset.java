@@ -85,6 +85,7 @@ public JPanel getCtgPanel() {
 		JLabel viewAllLabel = new JLabel("전체 게시판");
 		viewAllLabel.setBounds(27, 111, 200, 33);
 		viewAllLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
+		
 		ctgPanel.add(viewAllLabel);
 		
 		return ctgPanel;
@@ -94,7 +95,7 @@ public JPanel getCtgPanel() {
 	public void goCtgPostBoard(String ctgName) {
 		CategoryDTO category = new CategoryController().getOneCategoryByName(ctgName);
 		
-		new PostCategory(category);
+		new PostCategory(category).setVisible(true);
 		
 	}
 }
