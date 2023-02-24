@@ -27,6 +27,20 @@
 		  ORDER BY A.POST_DATE DESC
 	</select>
 	
+	<select id="selectAllPostByCtg" resultMap="postResultMap" parameterType="com.sangbong.jg.model.dto.CategoryDTO">
+		SELECT
+		 	    A.POST_CODE
+		 	  , A.CATEGORY_CODE
+		 	  , A.WRITER
+		 	  , A.PRICE
+		 	  , A.ITEM_NAME
+		 	  , A.DELETE_YN
+		 	  , A.POST_DATE
+		 	  , A.POST_CONTEXT
+		   FROM POST A
+		  WHERE A.CATEGORY_CODE = #{categoryCode} 
+		  ORDER BY A.POST_DATE DESC
+	</select>
 
 
 </mapper>

@@ -14,4 +14,11 @@ public class CategoryController {
 		return ctgList;
 	}
 
+	public CategoryDTO getOneCategoryByName(String ctgName) {
+
+		CategoryDTO category = new CategoryService().getOneCategoryByName(ctgName);
+		
+		return category;
+	}
+
 }

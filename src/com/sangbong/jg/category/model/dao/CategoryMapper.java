@@ -8,4 +8,6 @@ public interface CategoryMapper {
 
 	List<CategoryDTO> getAllCategory();
 
+	CategoryDTO getOneCategory(String ctgName);
+
 }

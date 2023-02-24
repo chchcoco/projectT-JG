@@ -23,4 +23,14 @@ public class CategoryService {
 		return ctgList;
 	}
 
+	public CategoryDTO getOneCategoryByName(String ctgName) {
+
+		SqlSession sqlSession = getSqlSession();
+		mapper = sqlSession.getMapper(CategoryMapper.class);
+		
+		CategoryDTO category = mapper.getOneCategory(ctgName);
+		
+		return category;
+	}
+
 }
