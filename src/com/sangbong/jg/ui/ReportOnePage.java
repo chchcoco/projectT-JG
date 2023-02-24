@@ -5,13 +5,22 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.sangbong.jg.model.dto.MemberDTO;
+import com.sangbong.jg.model.dto.ReportDTO;
+import com.sangbong.jg.report.controller.ReportController;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
@@ -46,24 +55,24 @@ public class ReportOnePage extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ReportOnePage frame = new ReportOnePage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					ReportOnePage frame = new ReportOnePage();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public ReportOnePage() {
+	public ReportOnePage(ReportDTO report) {
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
@@ -126,10 +135,34 @@ public class ReportOnePage extends JFrame {
 		discardButton.setBackground(new Color(241, 87, 87));
 		discardButton.setBounds(848, 76, 120, 72);
 		topPanel.add(discardButton);
+		discardButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ReportController reportController = new ReportController();
+				int result = reportController.discardReport(report);
+				if(result > 0) {
+					new ReportView().setVisible(true);
+					dispose();
+				} else {
+					System.out.println("실패");
+				}
+			}
+		});
 		
 		JButton approveButton = new JButton("승인");
 		approveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ReportController reportController = new ReportController();
+				int result1 = reportController.approveReport(report);
+				int result2 = reportController.addPenaltyToMember(report);
+				if(result1 > 0 && result2 > 0) {
+					
+					new ReportView().setVisible(true);
+					dispose();
+				} else {
+					System.out.println("실패");
+				}
 			}
 		});
 		approveButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
@@ -138,19 +171,33 @@ public class ReportOnePage extends JFrame {
 		approveButton.setBounds(716, 76, 120, 72);
 		topPanel.add(approveButton);
 		
-		JLabel postTitleLabel = new JLabel("신고글 제목");
+		JLabel postTitleLabel = new JLabel(report.getReportCode());
 		postTitleLabel.setForeground(new Color(70, 70, 70));
 		postTitleLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 32));
 		postTitleLabel.setBounds(12, 76, 678, 50);
 		topPanel.add(postTitleLabel);
 		
-		JLabel dateLabel = new JLabel("2000/10/10");
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		String date = dateFormat.format(report.getReportDate());
+		JLabel dateLabel = new JLabel(date);
 		dateLabel.setForeground(new Color(70, 70, 70));
 		dateLabel.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 14));
 		dateLabel.setBounds(12, 128, 250, 20);
 		topPanel.add(dateLabel);
 		
-		JLabel reportStatusLabel = new JLabel("[ 보류 ]");
+		String approval = "";
+		switch(report.getReportApproval()) {
+		case 'Y':
+			approval = "[ 승인 ]";
+			break;
+		case 'N':
+			approval = "[ 미승인 ]";
+			break;
+		case '-':
+			approval = "[ 보류 ]";
+			break;
+		}
+		JLabel reportStatusLabel = new JLabel(approval);
 		reportStatusLabel.setForeground(new Color(70, 70, 70));
 		reportStatusLabel.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 14));
 		reportStatusLabel.setBounds(12, 46, 678, 20);
@@ -178,7 +225,7 @@ public class ReportOnePage extends JFrame {
 		btnNewButton_2.setBounds(12, 10, 394, 394);
 		bodyPanel.add(btnNewButton_2);
 		
-		JLabel authorEmailLabel = new JLabel("작성자 이름 (EMAIL@NEVEREVER.LAND)");
+		JLabel authorEmailLabel = new JLabel("작성자 : " + report.getReporterEmail());
 		authorEmailLabel.setForeground(new Color(70, 70, 70));
 		authorEmailLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		authorEmailLabel.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
@@ -188,7 +235,7 @@ public class ReportOnePage extends JFrame {
 		JTextArea textContext = new JTextArea();
 		textContext.setForeground(new Color(70, 70, 70));
 		textContext.setFont(new Font("나눔고딕", Font.PLAIN, 14));
-		textContext.setText("상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context ");
+		textContext.setText(report.getRepostContext());
 		textContext.setLineWrap(true);
 		textContext.setBounds(467, 243, 501, 160);
 		bodyPanel.add(textContext);
@@ -228,6 +275,13 @@ public class ReportOnePage extends JFrame {
 		backButton.setHorizontalAlignment(SwingConstants.CENTER);
 		backButton.setBounds(454, 456, 100, 27);
 		bodyPanel.add(backButton);
+		backButton.addMouseListener(new MouseAdapter() {
+			
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+			
+		});
 		
 		JLabel nextButton = new JLabel("다음 페이지  >");
 		nextButton.setHorizontalAlignment(SwingConstants.RIGHT);

@@ -16,4 +16,6 @@ public interface MemberInfoMapper {
 
 	int deleteMember(Map<String, String> map);
 
+	int updatePenaltyCnt(Map<String, String> map);
+
 }

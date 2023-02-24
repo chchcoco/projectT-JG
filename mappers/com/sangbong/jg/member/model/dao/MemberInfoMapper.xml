@@ -66,4 +66,10 @@
 	 	 WHERE A.EMAIL = #{ email }
 	 </delete>
 	 
+	 <update id="updatePenaltyCnt" parameterType="hashMap">
+	 	UPDATE MEMBER A
+	 	   SET A.PENALTY_CNT = A.PENALTY_CNT + 1
+	 	 WHERE A.EMAIL = #{ reportedEmail }
+	 </update>
+	 
 </mapper>

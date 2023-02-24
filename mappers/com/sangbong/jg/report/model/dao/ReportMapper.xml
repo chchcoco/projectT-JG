@@ -27,5 +27,19 @@
 		  FROM REPORT A
 		 ORDER BY A.REPORT_CODE DESC
 	</select>
+	
+	<update id="updateReportStatusApprove" parameterType="hashMap">
+		UPDATE REPORT A
+		   SET A.REPORT_APPROVAL = 'Y'
+		 WHERE A.REPORT_CODE = #{ reportCode }
+	</update>
+	
+	<update id="updateReportStatusDiscard" parameterType="hashMap">
+		UPDATE REPORT A
+		   SET A.REPORT_APPROVAL = 'N'
+		 WHERE A.REPORT_CODE = #{ reportCode }
+	</update>
+	
+	
 
 </mapper>
