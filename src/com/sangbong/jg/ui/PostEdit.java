@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -16,14 +17,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import com.sangbong.jg.category.controller.CategoryController;
+import com.sangbong.jg.common.PostRightAsset;
+import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
+import com.sangbong.jg.model.dto.PostDTO;
 import com.sangbong.jg.post.controller.PostEditController;
 
 /**
@@ -46,6 +49,8 @@ public class PostEdit extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private MemberDTO email;
+	private PostDTO postInfo;
+	private PostRightAsset rightAsset;
 
 	/**
 	 * Launch the application.
@@ -78,26 +83,9 @@ public class PostEdit extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel ctgPanel = new JPanel();
-		ctgPanel.setBackground(new Color(245, 245, 245));
-		ctgPanel.setBounds(0, 0, 248, 681);
+		rightAsset = new PostRightAsset();
+		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
-		ctgPanel.setLayout(null);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 154, 224, 517);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		ctgPanel.add(scrollPane);
-		
-		JLabel titleLabel = new JLabel("New label");
-		titleLabel.setBounds(24, 10, 204, 67);
-		titleLabel.setIcon(new ImageIcon("images/title.png"));
-		ctgPanel.add(titleLabel);
-		
-		JLabel viewAllLabel = new JLabel("전체 게시판");
-		viewAllLabel.setBounds(27, 111, 200, 33);
-		viewAllLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
-		ctgPanel.add(viewAllLabel);
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground(new Color(255, 255, 255));
@@ -125,13 +113,27 @@ public class PostEdit extends JFrame {
 		
 		
 		textField = new JTextField();
-		textField.setText("등록한 게시글 제목 유지");
+		textField.setText(postInfo.getItemName());
 		textField.setBounds(12, 113, 956, 35);
 		topPanel.add(textField);
 		textField.setColumns(10);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"등록한 카테고리 유지"}));
+		int index = 0;
+		
+		List<CategoryDTO> categoryList = new CategoryController().getCategoryList();
+
+		String[] sList = new String[categoryList.size()];
+		for(int i = 0; i < sList.length; i++) {
+			
+			if(categoryList.get(i).getCategoryCode() == postInfo.getCategoryCode() ) {
+				index = i;
+			}
+			sList[i] = categoryList.get(i).getCategoryName();
+		}
+		
+		JComboBox comboBox = new JComboBox(sList);
+		comboBox.setSelectedIndex(index);
+//		comboBox.setModel(new DefaultComboBoxModel(new String[] {" 등록된 카테고리"}));
 		comboBox.setToolTipText("");
 		comboBox.setBounds(12, 83, 139, 23);
 		topPanel.add(comboBox);
@@ -145,7 +147,7 @@ public class PostEdit extends JFrame {
 		JTextArea textContext = new JTextArea();
 		textContext.setForeground(new Color(70, 70, 70));
 		textContext.setFont(new Font("나눔고딕", Font.PLAIN, 15));
-		textContext.setText("등록한 게시글 내용 유지");
+		textContext.setText(postInfo.getPostContext());
 		textContext.setLineWrap(true);
 		textContext.setBounds(12, 10, 948, 287);
 		bodyPanel.add(textContext);
@@ -171,7 +173,7 @@ public class PostEdit extends JFrame {
 		bodyPanel.add(btnNewButton_2_3_1_3);
 		
 		textField_1 = new JTextField();
-		textField_1.setText("등록한 가격 유지");
+		textField_1.setText(postInfo.getPrice()+"");
 		textField_1.setBounds(12, 308, 370, 37);
 		bodyPanel.add(textField_1);
 		textField_1.setColumns(10);
