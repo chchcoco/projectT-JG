@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sangbong.jg.category.model.dao.CategoryMapper">
+<resultMap type="com.sangbong.jg.model.dto.CategoryDTO" id="ctgResultMap">
+	<id property="categoryCode" column="CATEGORY_CODE"/>
+	<result property="categoryName" column="CATEGORY_NAME"/>
+	<result property="superCategory" column="SUPER_CATEGORY"/>
+</resultMap>
+
+<select id="getAllCategory" resultMap="ctgResultMap">
+	SELECT
+		   A.CATEGORY_CODE
+		 , A.CATEGORY_NAME
+		 , A.SUPER_CATEGORY
+	  FROM CATEGORY A	   
+</select>
+
+<select id="getOneCategory" resultMap="ctgResultMap" parameterType="string">
+	SELECT
+		   A.CATEGORY_CODE
+		 , A.CATEGORY_NAME
+		 , A.SUPER_CATEGORY
+	  FROM CATEGORY A
+	 WHERE A.CATEGORY_NAME = #{ctgName} 	   
+</select>
+
+
+</mapper>

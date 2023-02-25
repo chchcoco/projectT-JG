@@ -9,7 +9,7 @@ import com.sangbong.jg.model.dto.MemberDTO;
 
 public class MemberLoginService {
 
-	public boolean loginCheck(MemberDTO member) {
+	public MemberDTO loginCheck(MemberDTO member) {
 		
 		SqlSession sqlSession = getSqlSession();
 		
@@ -19,7 +19,8 @@ public class MemberLoginService {
 		
 		sqlSession.close();
 		
-		return result != null? true: false;
+//		return result != null? true: false;
+		return result;
 	}
 
 	

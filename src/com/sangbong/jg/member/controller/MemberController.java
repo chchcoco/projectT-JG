@@ -42,7 +42,7 @@ public class MemberController {
 		return result;
 	}
 
-	public boolean loginMember(String email, char[] pw) {
+	public MemberDTO loginMember(String email, char[] pw) {
 		
 
 		MemberDTO member = new MemberDTO();
@@ -50,7 +50,7 @@ public class MemberController {
 		member.setEmail(email);
 		member.setPwd(new StringBuilder().append(pw).toString());
 		
-		boolean result = memberLoginService.loginCheck(member);
+		MemberDTO result = memberLoginService.loginCheck(member);
 		
 		return result;
 

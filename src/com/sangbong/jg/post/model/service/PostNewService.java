@@ -11,14 +11,15 @@ public class PostNewService {
 
 	PostNewMapper mapper;
 	
-	public boolean postNew(PostDTO post) {
+	public PostDTO postNew(PostDTO post) {
 		
 		SqlSession sqlSession = getSqlSession();
 		mapper = sqlSession.getMapper(PostNewMapper.class);
 		
 		int result = mapper.postNew(post);
+		PostDTO resultPost = mapper.postGet(post);
 		
-		if(result > 0) {
+		if(result > 0 && post != null) {
 			sqlSession.commit();
 		} else {
 			sqlSession.rollback();
@@ -26,7 +27,7 @@ public class PostNewService {
 		
 		sqlSession.close();
 		
-		return result>0? true: false;
+		return resultPost;
 		
 	}
 

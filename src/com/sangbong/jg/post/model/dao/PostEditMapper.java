@@ -6,4 +6,6 @@ public interface PostEditMapper {
 
 	int postEdit(PostDTO post);
 
+	PostDTO postGetByCode(PostDTO post);
+
 }

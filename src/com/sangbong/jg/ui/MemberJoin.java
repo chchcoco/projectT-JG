@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -34,12 +35,14 @@ public class MemberJoin extends JFrame{
 		panel.setLayout(null);
 		panel.setSize(1280, 720);
 		
-		JButton logo = new JButton("로고");
-		logo.setIcon(null);
+//		JButton logo = new JButton("로고");
+		
+		JLabel logo = new JLabel();
+		logo.setIcon(new ImageIcon("images//title.png"));
+		logo.setHorizontalAlignment(JLabel.CENTER);
 		logo.setLocation(342, 0);
 		logo.setSize(600, 150);
 		logo.setBackground(Color.GREEN);
-		
 		
 		
 		JLabel email = new JLabel();
@@ -98,6 +101,8 @@ public class MemberJoin extends JFrame{
 					JOptionPane.showMessageDialog(null, "축하합니다",
 							"회원가입에 성공하셨습니다", JOptionPane.DEFAULT_OPTION);
 					System.out.println("성공");
+					new LogIn().setVisible(true);
+					dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "회원가입에 실패했습니다.",
 							"다시 입력해주세요", JOptionPane.DEFAULT_OPTION);
@@ -119,8 +124,8 @@ public class MemberJoin extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-//	public static void main(String[] args) {
-//		new MemberJoin();
-//	}
+	public static void main(String[] args) {
+		new MemberJoin();
+	}
 }
 

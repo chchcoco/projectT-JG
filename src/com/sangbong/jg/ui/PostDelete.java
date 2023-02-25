@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import com.sangbong.jg.model.dto.MemberDTO;
 import com.sangbong.jg.model.dto.PostDTO;
 import com.sangbong.jg.post.controller.PostDeleteController;
 
@@ -30,8 +31,11 @@ import com.sangbong.jg.post.controller.PostDeleteController;
  * */
 public class PostDelete extends JFrame {
 	private JLabel lblNewLabel = new JLabel("Logo");
+	private MemberDTO loginInfo;
 	
-	public PostDelete(PostDTO postDTO) {
+	public PostDelete(MemberDTO loginInfo, PostDTO postDTO) {
+		
+		this.loginInfo = loginInfo;
 		
 		setSize(1280, 720);
 		
@@ -40,7 +44,7 @@ public class PostDelete extends JFrame {
 		logBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new PostOnePage(postDTO).setVisible(true);
+				new PostOnePage(loginInfo, postDTO).setVisible(true);
 				dispose();
 			}
 		});
@@ -68,7 +72,7 @@ public class PostDelete extends JFrame {
 				
 				if(result) {
 					JOptionPane.showMessageDialog(null, "삭제완료");
-					new PostCategory().setVisible(true);
+					new PostCategory(loginInfo).setVisible(true);
 					dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "삭제실패");
@@ -97,6 +101,6 @@ public class PostDelete extends JFrame {
 	}
 
 	public static void main(String[] args) {
-		new PostDelete(null);
+		new PostDelete(null, null);
 	}
 }

@@ -52,6 +52,7 @@ public class PostEdit extends JFrame {
 	private PostDTO postInfo;
 	private PostRightAsset rightAsset;
 
+
 	/**
 	 * Launch the application.
 	 */
@@ -60,7 +61,7 @@ public class PostEdit extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PostEdit frame = new PostEdit();
+					PostEdit frame = new PostEdit(null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -72,7 +73,10 @@ public class PostEdit extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PostEdit() {
+	public PostEdit(MemberDTO loginInfo, PostDTO postInfo) {
+		this.email = loginInfo;
+		this.postInfo = postInfo;
+		
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
@@ -184,11 +188,12 @@ public class PostEdit extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				boolean result = new PostEditController().EditPost(comboBox.getSelectedItem().toString(), email.getEmail(), textField_1.getText(), textField.getText(), textContext.getText());
-				
+				PostDTO resultPost = new PostEditController().EditPost(comboBox.getSelectedItem().toString(), email.getEmail(), textField_1.getText(), textField.getText(), textContext.getText(), postInfo);
+				boolean result = (resultPost != null)? true: false;
+				/**/
 				if(result) {
 					JOptionPane.showMessageDialog(null, "수정완료");
-					new PostOnePage(null).setVisible(true);
+					new PostOnePage(email, resultPost).setVisible(true);
 					dispose();
 				} else {
 					/* 변경사항이 없을경우 저장 버튼을 비활성화 처리*/

@@ -10,11 +10,13 @@ public class PostNewController {
 	
 	PostNewService postNewService = new PostNewService();
 	PostDTO post;
+	PostDTO result;
 	
-	public boolean newPost(String categoryCode, String email, String price, String itemName, String postContext) {
+	public PostDTO newPost(String categoryCode, String email, String price, String itemName, String postContext) {
 		
 		int strPrice = Integer.parseInt(price);
-		boolean result = false;
+		
+		
 		
 		if(categoryCode != null && email != null && strPrice != 0 && itemName != null && postContext != null){
 			

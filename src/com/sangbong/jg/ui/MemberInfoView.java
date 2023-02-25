@@ -106,13 +106,13 @@ public class MemberInfoView extends JFrame {
 
 		JLabel titleLabel = new JLabel("New label");
 		titleLabel.setBounds(24, 10, 204, 67);
-		titleLabel.setIcon(new ImageIcon("images/title.png"));
+		titleLabel.setIcon(new ImageIcon("images//title.png"));
 		ctgPanel.add(titleLabel);
 		titleLabel.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new PostCategory().setVisible(true);
+				new PostCategory(member).setVisible(true);
 				dispose();
 			}
 

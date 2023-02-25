@@ -44,6 +44,7 @@ public class PostOnePage extends JFrame {
 	 */
 	private JPanel contentPane;
 	private PostDTO postDTO;
+	private MemberDTO loginInfo;
 
 	/**
 	 * Launch the application.
@@ -53,7 +54,7 @@ public class PostOnePage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PostOnePage frame = new PostOnePage(null);
+					PostOnePage frame = new PostOnePage(null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -65,12 +66,13 @@ public class PostOnePage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PostOnePage(PostDTO postDTO) {
+	public PostOnePage(MemberDTO loginInfo, PostDTO postDTO) {
 		
 		this.postDTO = postDTO;
+		this.loginInfo = loginInfo;
 		
 		/* 테스트용 임시 박멍멍 */
-		MemberDTO member = new MemberDTO("mung@gmail.com", "12345", "박멍멍", 0, 'Y', 'N', null, null, "MEMBER");
+//		MemberDTO member = new MemberDTO("mung@gmail.com", "12345", "박멍멍", 0, 'Y', 'N', null, null, "MEMBER");
 //		String testEmail = "mung@gmail.com";
 		
 		setBackground(new Color(255, 255, 255));
@@ -134,7 +136,7 @@ public class PostOnePage extends JFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new PostDelete(postDTO).setVisible(true);
+				new PostDelete(loginInfo, postDTO).setVisible(true);
 				dispose();
 			}
 		});
@@ -149,7 +151,7 @@ public class PostOnePage extends JFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new PostEdit().setVisible(true);
+				new PostEdit(loginInfo, postDTO).setVisible(true);
 				dispose();
 			}
 		});
@@ -190,8 +192,8 @@ public class PostOnePage extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				MemberInfoController memberInfoController = new MemberInfoController();
-				if(memberInfoController.findMemberInfo(member) != null) {
-					new MemberInfoView(member).setVisible(true);
+				if(memberInfoController.findMemberInfo(loginInfo) != null) {
+					new MemberInfoView(loginInfo).setVisible(true);
 					dispose();
 				}
 			}

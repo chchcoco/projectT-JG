@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sangbong.jg.report.model.dao.ReportMapper">
+	<!-- 복사해서 쓰라고 만든 Mapper Template. namespace="이 자리에는 DTO의 저장된 위치와 해당 Mapper의 
+		이름을 .(dot)으로 이어서 쓴다." -->
+		
+	<resultMap type="com.sangbong.jg.model.dto.ReportDTO"
+		id="reportResultMap">
+		<id property="reportCode" column="REPORT_CODE" />
+		<result property="reporterEmail" column="REPORTER_EMAIL" />
+		<result property="reportedEmail" column="REPORTED_EMAIL" />
+		<result property="reportReason" column="REPORT_REASON" />
+		<result property="reportDate" column="REPORT_DATE" />
+		<result property="repostContext" column="REPORT_CONTEXT" />
+		<result property="reportApproval" column="REPORT_APPROVAL" />
+	</resultMap>
+	
+	<select id="selectAllReport" resultMap="reportResultMap">
+		SELECT
+		       A.REPORT_CODE
+		     , A.REPORTER_EMAIL
+		     , A.REPORTED_EMAIL
+		     , A.REPORT_REASON
+		     , A.REPORT_DATE
+		     , A.REPORT_CONTEXT
+		     , A.REPORT_APPROVAL
+		  FROM REPORT A
+		 ORDER BY A.REPORT_CODE DESC
+	</select>
+	
+	<update id="updateReportStatusApprove" parameterType="hashMap">
+		UPDATE REPORT A
+		   SET A.REPORT_APPROVAL = 'Y'
+		 WHERE A.REPORT_CODE = #{ reportCode }
+	</update>
+	
+	<update id="updateReportStatusDiscard" parameterType="hashMap">
+		UPDATE REPORT A
+		   SET A.REPORT_APPROVAL = 'N'
+		 WHERE A.REPORT_CODE = #{ reportCode }
+	</update>
+	
+	
+
+</mapper>

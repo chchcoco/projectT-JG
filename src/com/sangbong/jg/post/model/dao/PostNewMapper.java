@@ -6,4 +6,6 @@ public interface PostNewMapper {
 
 	int postNew(PostDTO post);
 
+	PostDTO postGet(PostDTO post);
+
 }
