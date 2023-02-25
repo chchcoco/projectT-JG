@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,6 +16,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import com.sangbong.jg.common.HintTextField;
 import com.sangbong.jg.member.controller.MemberController;
 
 /**
@@ -30,10 +32,10 @@ import com.sangbong.jg.member.controller.MemberController;
  * */
 public class LogIn extends JFrame {
 
-	private JLabel lblNewLabel = new JLabel("Logo");
+	private JLabel lblNewLabel = new JLabel();
 	private JLabel emailLabel = new JLabel("이메일 ");
 	private JLabel pwLabel = new JLabel("비밀번호 ");
-	private JTextField emailText = new JTextField();
+	private JTextField emailText = new HintTextField("email");
 	private JPasswordField pwText = new JPasswordField();
 	private JButton loginBtn = new JButton("로그인 ");
 
@@ -45,20 +47,26 @@ public class LogIn extends JFrame {
 
 		JPanel panel = new JPanel();
 		//		panel.setSize(1280, 720);
-
+		
+		lblNewLabel.setBounds(340, 0, 600, 150);
+		lblNewLabel.setIcon(new ImageIcon("images/title.png"));
+		
 		JLabel label = new JLabel("이메일");
 		label.setBounds(390, 229, 53, 15);
 		JLabel pswrd = new JLabel("비밀번호");
 		pswrd.setBounds(390, 322, 69, 15);
-
-		emailText.setText("이메일");
-		emailText.setToolTipText("");
+		emailText.setToolTipText("이메일");
 		emailText.setBounds(390, 254, 500, 40);
 
-		pwText.setToolTipText("");
+		pwText.setToolTipText("비밀번호");
 		pwText.setBounds(390, 347, 500, 40);
 
 		JButton logBtn = new JButton("로그인");
+		logBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		logBtn.setBackground(new Color(128, 255, 128));
 
 		logBtn.addMouseListener(new MouseAdapter() {
 
