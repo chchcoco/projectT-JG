@@ -19,7 +19,9 @@ import javax.swing.border.EmptyBorder;
 import com.sangbong.jg.common.PostListReturn;
 import com.sangbong.jg.common.PostRightAsset;
 import com.sangbong.jg.model.dto.CategoryDTO;
+import com.sangbong.jg.model.dto.MemberDTO;
 import com.sangbong.jg.model.dto.PostDTO;
+
 
 /**
  * <pre>
@@ -45,6 +47,7 @@ public class PostCategory extends JFrame {
 	private CategoryDTO category;
 	private List<PostDTO> postList;
 	private int page = 0;
+	private MemberDTO loginInfo;
 
 	/**
 	 * Launch the application.
@@ -54,7 +57,7 @@ public class PostCategory extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PostCategory frame = new PostCategory();
+					PostCategory frame = new PostCategory(null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -66,8 +69,9 @@ public class PostCategory extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PostCategory(CategoryDTO category) {
+	public PostCategory(MemberDTO loginInfo, CategoryDTO category) {
 		
+		this.loginInfo = loginInfo;
 		this.category = category;
 		
 		setBackground(new Color(255, 255, 255));
@@ -81,7 +85,7 @@ public class PostCategory extends JFrame {
 		contentPane.setLayout(null);
 		
 		/* 우측의 카테고리를 출력하는 메소드. */
-		rightAsset = new PostRightAsset();
+		rightAsset = new PostRightAsset(loginInfo);
 		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
 
@@ -128,7 +132,7 @@ public class PostCategory extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				 
-				new PostWrite().setVisible(true);
+				new PostWrite(loginInfo).setVisible(true);
 				dispose();
 			}
 		});
@@ -156,7 +160,7 @@ public class PostCategory extends JFrame {
 		
 		
 		/* 게시글을 추가하는 메소드 */
-		postListReturn = new PostListReturn();
+		postListReturn = new PostListReturn(loginInfo);
 		
 		if(this.category == null) {
 			postList = postListReturn.getAllPost();
@@ -178,17 +182,21 @@ public class PostCategory extends JFrame {
 	}
 	
 	
+	public PostCategory(MemberDTO loginInfo) {
+		this(loginInfo, null);
+	}
+	
 	public PostCategory() {
 		this(null);
 	}
 
 	
-	
-	public void goPost(PostDTO postInfo) {
-		// 게시글 상세조회 페이지로 이동
-		new PostOnePage(postInfo).setVisible(true);
-		disposePage(this);
-	}
+	/* 해당 기능 PostListReturn클래스로 다시 옮김 */
+//	public void goPost(MemberDTO loginInfo, PostDTO postInfo) {
+//		// 게시글 상세조회 페이지로 이동
+//		new PostOnePage(loginInfo, postInfo).setVisible(true);
+//		disposePage(this);
+//	}
 	
 	private void disposePage(JFrame page) {
 		page.dispose();

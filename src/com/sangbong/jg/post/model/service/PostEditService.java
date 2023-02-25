@@ -11,14 +11,15 @@ public class PostEditService {
 	
 	PostEditMapper mapper;
 
-	public boolean postEdit(PostDTO post) {
+	public PostDTO postEdit(PostDTO post) {
 
 		SqlSession sqlSession = getSqlSession();
 		mapper = sqlSession.getMapper(PostEditMapper.class);
 		
 		int result = mapper.postEdit(post);
+		PostDTO resultPost = mapper.postGetByCode(post);
 		
-		if(result > 0) {
+		if(result > 0 && resultPost != null) {
 			sqlSession.commit();
 		} else {
 			sqlSession.rollback();
@@ -26,7 +27,7 @@ public class PostEditService {
 		
 		sqlSession.close();
 		
-		return result>0? true: false;
+		return resultPost;
 	}
 
 }

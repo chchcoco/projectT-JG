@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import com.sangbong.jg.member.controller.MemberController;
+import com.sangbong.jg.model.dto.MemberDTO;
 
 /**
  * <pre>
@@ -75,12 +76,13 @@ public class LogIn extends JFrame {
 					JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
 					return;
 				} else { 
-
-					boolean result = memberController.loginMember(email, pw);
+					
+					MemberDTO loginInfo = memberController.loginMember(email, pw);
+					boolean result = (loginInfo != null)? true: false;	
 //					System.out.println(email + pw);
 					
 					if(result){
-						new PostCategory().setVisible(true);
+						new PostCategory(loginInfo).setVisible(true);
 						dispose();
 					} else {
 						System.out.println("로그인정보가 일치하지 않습니다.");

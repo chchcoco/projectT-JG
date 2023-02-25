@@ -27,6 +27,7 @@ import javax.swing.border.EmptyBorder;
 import com.sangbong.jg.category.controller.CategoryController;
 import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
+import com.sangbong.jg.model.dto.PostDTO;
 import com.sangbong.jg.post.controller.PostNewController;
 
 /**
@@ -59,7 +60,7 @@ public class PostWrite extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PostWrite frame = new PostWrite();
+					PostWrite frame = new PostWrite(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -71,7 +72,9 @@ public class PostWrite extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PostWrite() {
+	public PostWrite(MemberDTO loginInfo) {
+		this.email = loginInfo;
+		
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
@@ -123,7 +126,7 @@ public class PostWrite extends JFrame {
 		topPanel.add(superCategoryLabel);
 		
 		JLabel profilePic = new JLabel("");
-		profilePic.setIcon(new ImageIcon("images/profilePic.png"));
+		profilePic.setIcon(new ImageIcon("images//profilePic.png"));
 		profilePic.setBounds(924, 10, 44, 44);
 		topPanel.add(profilePic);
 		
@@ -234,11 +237,12 @@ public class PostWrite extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				boolean result = new PostNewController().newPost(comboBox.getSelectedItem().toString(), email.getEmail(), textField_1.getText(), textField.getText(), textContext.getText());
-				
+				 PostDTO resultPost = new PostNewController().newPost(comboBox.getSelectedItem().toString(), email.getEmail(), textField_1.getText(), textField.getText(), textContext.getText());
+				/*수정 필요*/
+				 boolean result = (resultPost != null)? true : false;
 				if(result) {
 					JOptionPane.showMessageDialog(null, "등록완료");
-					new PostOnePage(null).setVisible(true);
+					new PostOnePage(email, resultPost).setVisible(true);
 					dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "등록실패");

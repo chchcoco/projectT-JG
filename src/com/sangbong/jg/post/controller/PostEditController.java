@@ -12,15 +12,17 @@ public class PostEditController {
 
 	PostEditService postEditService = new PostEditService();
 	PostDTO post;
+	PostDTO result;
 	
-	public boolean EditPost(String categoryCode, String email, String price, String itemName, String postContext) {
+	public PostDTO EditPost(String categoryCode, String email, String price, String itemName, String postContext, PostDTO postInfo) {
 		
 		int strPrice = Integer.parseInt(price);
-		boolean result = false;
+		
 		
 		if(categoryCode != null && email != null && strPrice != 0 && itemName != null && postContext != null) {
 			
 			post = new PostDTO();
+			post.setPostCode(postInfo.getPostCode());
 			post.setCategoryCode(categoryCode);
 			post.setPrice(strPrice);
 			post.setItemName(itemName);

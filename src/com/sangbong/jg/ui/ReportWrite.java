@@ -1,32 +1,26 @@
 package com.sangbong.jg.ui;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.ImageIcon;
-import javax.swing.ScrollPaneConstants;
-
-import static com.sangbong.jg.common.SetFont.notoSansRegular;
 import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import com.sangbong.jg.model.dto.MemberDTO;
 
 /**
  * <pre>
@@ -47,6 +41,7 @@ public class ReportWrite extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
+	private MemberDTO loginInfo;
 
 	/**
 	 * Launch the application.
@@ -68,7 +63,15 @@ public class ReportWrite extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	
+	
 	public ReportWrite() {
+		this(null);
+	}
+	
+	public ReportWrite(MemberDTO loginInfo) {
+		this.loginInfo = loginInfo;
+		
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);

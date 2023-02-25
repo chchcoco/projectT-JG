@@ -16,5 +16,8 @@
 	</environments>
 	<mappers>
 		<package name="com.sangbong.jg.member.model.dao"/>
+		<package name="com.sangbong.jg.category.model.dao"/>
+		<package name="com.sangbong.jg.post.model.dao"/>
+		<package name="com.sangbong.jg.report.model.dao"/>
 	</mappers>
 </configuration>
