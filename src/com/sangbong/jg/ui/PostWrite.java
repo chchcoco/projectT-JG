@@ -25,6 +25,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.sangbong.jg.category.controller.CategoryController;
+import com.sangbong.jg.common.PostRightAsset;
 import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
 import com.sangbong.jg.model.dto.PostDTO;
@@ -50,6 +51,7 @@ public class PostWrite extends JFrame {
 	private JTextField textField;
 	private JTextField textField_1;
 	private MemberDTO email;
+	private PostRightAsset rightAsset;
 	
 
 	/**
@@ -85,26 +87,9 @@ public class PostWrite extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel ctgPanel = new JPanel();
-		ctgPanel.setBackground(new Color(245, 245, 245));
-		ctgPanel.setBounds(0, 0, 248, 681);
+		rightAsset = new PostRightAsset();
+		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
-		ctgPanel.setLayout(null);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 154, 224, 517);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		ctgPanel.add(scrollPane);
-		
-		JLabel titleLabel = new JLabel("New label");
-		titleLabel.setBounds(24, 10, 204, 67);
-		titleLabel.setIcon(new ImageIcon("images/title.png"));
-		ctgPanel.add(titleLabel);
-		
-		JLabel viewAllLabel = new JLabel("전체 게시판");
-		viewAllLabel.setBounds(27, 111, 200, 33);
-		viewAllLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
-		ctgPanel.add(viewAllLabel);
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground(new Color(255, 255, 255));
