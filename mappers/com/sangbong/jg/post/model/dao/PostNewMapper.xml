@@ -11,12 +11,14 @@
 		<result property="postDate" column="POST_DATE"/>
 		<result property="postContext" column="POST_CONTEXT"/>
 	</resultMap>
-	<insert id="postNew" parameterType="com.sangbong.jg.model.dto.PostDTO">
+
+	<insert id="postNew"
+		parameterType="com.sangbong.jg.model.dto.PostDTO">
 
 		INSERT
-		  INTO POST A
+		INTO POST A
 		(
-		  A.POST_CODE
+		A.POST_CODE
 		, A.CATEGORY_CODE
 		, A.WRITER
 		, A.PRICE
@@ -26,6 +28,7 @@
 		)
 		VALUES
 		(
+
 		  'P' || LPAD(SEQ_POST_CODE.NEXTVAL, 6, '0')
 		, #{categoryCode}
 		, #{writer}
@@ -34,7 +37,7 @@
 		, SYSDATE  
 		, #{postContext}
 		)
-		  
+
 	</insert>
 	
 	<select id="postGet" parameterType="com.sangbong.jg.model.dto.PostDTO" resultMap="postResultMap">

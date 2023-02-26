@@ -11,16 +11,14 @@
 		<result property="postDate" column="POST_DATE"/>
 		<result property="postContext" column="POST_CONTEXT"/>
 	</resultMap>
+	
 	<update id="postEdit" parameterType="com.sangbong.jg.model.dto.PostDTO">
 		UPDATE
 				POST A
 			SET 
-			    A.POST_CODE = #{postCode} 
 		      , A.CATEGORY_CODE = #{categoryCode}
-		      , A.WRITER = #{writer}
 		      , A.PRICE = #{price}
 		      , A.ITEM_NAME = #{itemName}
-		      , A.DELETE_YN = #{deleteYn}
 		      , A.POST_DATE = SYSDATE 
 		      , A.POST_CONTEXT = #{postContext}
 		  WHERE A.POST_CODE = #{postCode}
