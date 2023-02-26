@@ -1,18 +1,23 @@
 package com.sangbong.jg.member.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import com.sangbong.jg.member.model.service.MemberInfoService;
 import com.sangbong.jg.model.dto.MemberDTO;
+import com.sangbong.jg.model.dto.PostDTO;
+import com.sangbong.jg.post.model.service.PostSearchService;
 import com.sangbong.jg.ui.MemberInfoView;
 
 public class MemberInfoController {
 
 	private final MemberInfoService memberInfoService;
+	private final PostSearchService postSearchService;
 //	private MemberInfoView memberInfoView;
 	
 	public MemberInfoController() {
 		this.memberInfoService = new MemberInfoService();
+		this.postSearchService = new PostSearchService();
 	}
 
 	public MemberDTO findMemberInfo(MemberDTO member) {
@@ -59,6 +64,13 @@ public class MemberInfoController {
 		int result = memberInfoService.deactivateMember(email);
 		
 		return result;
+	}
+
+	public List<PostDTO> findMyPostList(MemberDTO loginInfo) {
+
+		List<PostDTO> myPostList = postSearchService.findMyPostList(loginInfo);
+		
+		return myPostList;
 	}
 	
 	

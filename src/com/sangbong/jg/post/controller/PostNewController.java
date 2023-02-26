@@ -17,11 +17,14 @@ public class PostNewController {
 		
 		int strPrice = Integer.parseInt(price);
 		
-		 CategoryDTO ctgDTO = new CategoryController().getOneCategoryByName(categoryCode);
+
+		CategoryDTO ctgDTO = new CategoryController().getOneCategoryByName(categoryCode);
+
 		
 		if(categoryCode != null && email != null && strPrice != 0 && itemName != null && postContext != null){
 			
 			post = new PostDTO();
+
 			post.setCategoryCode(ctgDTO.getCategoryCode());
 			post.setWriter(email);
 			post.setPrice(strPrice);

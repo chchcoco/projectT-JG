@@ -73,8 +73,7 @@ public class MemberInfoView extends JFrame {
 	 * Create the frame.
 	 * @param memberFound 
 	 */
-	public MemberInfoView(MemberDTO memberFound) {
-		MemberDTO member = memberFound;
+	public MemberInfoView(MemberDTO loginInfo) {
 
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -112,7 +111,7 @@ public class MemberInfoView extends JFrame {
 
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new PostCategory(member).setVisible(true);
+				new PostCategory(loginInfo).setVisible(true);
 				dispose();
 			}
 
@@ -158,7 +157,7 @@ public class MemberInfoView extends JFrame {
 				if(var == 0) {
 					System.out.println("!!!!!!!!!!!!!!!!탈퇴선택!!!!!!!!!!!!!!!!!");
 					MemberInfoController memberInfoController = new MemberInfoController();
-					if(memberInfoController.deactivateMember(member) > 0) {
+					if(memberInfoController.deactivateMember(loginInfo) > 0) {
 						JOptionPane.showMessageDialog(null, "탈퇴가 완료되었습니다. 로그인 화면으로 돌아갑니다.", "탈퇴 완료", JOptionPane.PLAIN_MESSAGE);
 						new LogIn().setVisible(true);
 						dispose();
@@ -169,7 +168,7 @@ public class MemberInfoView extends JFrame {
 			}
 		});
 
-		JLabel postTitleLabel = new JLabel(member.getMemName() + "님, 안녕하세요!");
+		JLabel postTitleLabel = new JLabel(loginInfo.getMemName() + "님, 안녕하세요!");
 		postTitleLabel.setForeground(new Color(70, 70, 70));
 		postTitleLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 32));
 		postTitleLabel.setBounds(12, 76, 678, 50);
@@ -212,7 +211,7 @@ public class MemberInfoView extends JFrame {
 		emailTitle.setBounds(12, 58, 84, 25);
 		bodyPanel.add(emailTitle);
 
-		JLabel memberEmail = new JLabel(member.getEmail());
+		JLabel memberEmail = new JLabel(loginInfo.getEmail());
 		memberEmail.setHorizontalAlignment(SwingConstants.LEFT);
 		memberEmail.setForeground(new Color(70, 70, 70));
 		memberEmail.setFont(new Font("나눔스퀘어 네오 OTF Regular", Font.PLAIN, 16));
@@ -226,7 +225,7 @@ public class MemberInfoView extends JFrame {
 		nameTitle.setBounds(12, 149, 84, 25);
 		bodyPanel.add(nameTitle);
 
-		JLabel memberName = new JLabel(member.getMemName());
+		JLabel memberName = new JLabel(loginInfo.getMemName());
 		memberName.setHorizontalAlignment(SwingConstants.LEFT);
 		memberName.setForeground(new Color(70, 70, 70));
 		memberName.setFont(new Font("나눔스퀘어 네오 OTF Regular", Font.PLAIN, 16));
@@ -247,9 +246,9 @@ public class MemberInfoView extends JFrame {
 				String input = JOptionPane.showInputDialog(null, "변경할 닉네임을 입력해주세요 : ", "닉네임 변경", JOptionPane.QUESTION_MESSAGE);
 
 				MemberInfoController memberInfoController = new MemberInfoController();
-				if(memberInfoController.changeMemberName(input, member) > 0) {
+				if(memberInfoController.changeMemberName(input, loginInfo) > 0) {
 					JOptionPane.showMessageDialog(null, "닉네임이 성공적으로 변경 되었습니다.", "닉네임 변경 완료", JOptionPane.PLAIN_MESSAGE);
-					new MemberInfoView(memberInfoController.findMemberInfo(member)).setVisible(true);
+					new MemberInfoView(memberInfoController.findMemberInfo(loginInfo)).setVisible(true);
 					dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "닉네임 변경에 실패했습니다.", "닉네임 변경 실패", JOptionPane.WARNING_MESSAGE);
@@ -273,13 +272,13 @@ public class MemberInfoView extends JFrame {
 
 				String inputOldPwd = JOptionPane.showInputDialog(null, "현재 비밀번호를 입력해주세요 : ", "비밀번호 확인", JOptionPane.QUESTION_MESSAGE);
 
-				if(memberInfoController.confirmPwd(inputOldPwd, member) != null) {
+				if(memberInfoController.confirmPwd(inputOldPwd, loginInfo) != null) {
 
 					String inputNewPwd = JOptionPane.showInputDialog(null, "변경할 비밀번호를 입력해주세요 : ", "닉네임 변경", JOptionPane.QUESTION_MESSAGE);
 
-					if(memberInfoController.changePwd(inputNewPwd, member) > 0) {
+					if(memberInfoController.changePwd(inputNewPwd, loginInfo) > 0) {
 						JOptionPane.showMessageDialog(null, "비밀번호가 성공적으로 변경 되었습니다.", "닉네임 변경 완료", JOptionPane.PLAIN_MESSAGE);
-						new MemberInfoView(memberInfoController.findMemberInfo(member)).setVisible(true);
+						new MemberInfoView(memberInfoController.findMemberInfo(loginInfo)).setVisible(true);
 						dispose();
 					} else {
 						JOptionPane.showMessageDialog(null, "비밀번호 변경에 실패했습니다.", "비밀번호 변경 실패", JOptionPane.WARNING_MESSAGE);
@@ -299,38 +298,23 @@ public class MemberInfoView extends JFrame {
 		pwd.setFont(new Font("나눔스퀘어 네오 OTF Regular", Font.PLAIN, 16));
 		pwd.setBounds(12, 260, 84, 25);
 		bodyPanel.add(pwd);
+		
+		JButton toMemberPostViewButton = new JButton("내가 쓴 글 보러가기");
+		toMemberPostViewButton.setForeground(new Color(70, 70, 70));
+		toMemberPostViewButton.setFont(new Font("Dialog", Font.PLAIN, 20));
+		toMemberPostViewButton.setBackground(new Color(212, 212, 212));
+		toMemberPostViewButton.setBounds(757, 457, 209, 60);
+		bodyPanel.add(toMemberPostViewButton);
+		toMemberPostViewButton.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
 
-		JLabel myPostTitle = new JLabel("내가 쓴 게시글");
-		myPostTitle.setHorizontalAlignment(SwingConstants.LEFT);
-		myPostTitle.setForeground(new Color(70, 70, 70));
-		myPostTitle.setFont(new Font("나눔스퀘어 네오 OTF Bold", Font.PLAIN, 20));
-		myPostTitle.setBounds(12, 354, 501, 25);
-		bodyPanel.add(myPostTitle);
-
-		JLabel postTitle1 = new JLabel("게시글 제목");
-		postTitle1.setHorizontalAlignment(SwingConstants.LEFT);
-		postTitle1.setForeground(new Color(70, 70, 70));
-		postTitle1.setFont(new Font("나눔스퀘어 네오 OTF Bold", Font.PLAIN, 16));
-		postTitle1.setBounds(12, 401, 427, 25);
-		bodyPanel.add(postTitle1);
-
-		JButton btnNewButton = new JButton("이미지");
-		btnNewButton.setBounds(878, 401, 88, 88);
-		bodyPanel.add(btnNewButton);
-
-		JLabel postTitle1_1 = new JLabel("본문본문본문본문ㅂ");
-		postTitle1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		postTitle1_1.setForeground(new Color(70, 70, 70));
-		postTitle1_1.setFont(new Font("나눔스퀘어 네오 OTF Regular", Font.PLAIN, 16));
-		postTitle1_1.setBounds(12, 464, 427, 25);
-		bodyPanel.add(postTitle1_1);
-
-		JLabel postTitle1_1_1 = new JLabel("카테고리 이름");
-		postTitle1_1_1.setHorizontalAlignment(SwingConstants.LEFT);
-		postTitle1_1_1.setForeground(new Color(121, 121, 121));
-		postTitle1_1_1.setFont(new Font("나눔스퀘어 네오 OTF Regular", Font.PLAIN, 16));
-		postTitle1_1_1.setBounds(12, 433, 427, 25);
-		bodyPanel.add(postTitle1_1_1);
+				MemberPostView memberPostView = new MemberPostView(loginInfo);
+				dispose();
+				
+			}
+		});
 
 	}
 }

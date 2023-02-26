@@ -15,7 +15,18 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.sangbong.jg.member.controller.MemberController;
-
+/**
+ * <pre>
+ * Class : MemberJoinView
+ * Comment : 카테고리별로 게시글을 조회하는 페이지.
+ * History
+ * 2023/02/19 (신예찬) 처음 작성함
+ * 2023/02/25 (신예찬) 로고 부분 이미지 추가, 회원가입 성공시 로그인 페이지로 이동하는 이벤트 추가
+ * </pre>
+ * @author 신예찬
+ * @version 1.0.2
+ * @see 
+ * */
 public class MemberJoin extends JFrame{
 	
 	private String email;

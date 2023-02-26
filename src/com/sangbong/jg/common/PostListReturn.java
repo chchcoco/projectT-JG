@@ -27,9 +27,10 @@ import com.sangbong.jg.ui.PostOnePage;
  * 2023/02/23 (신예찬) 최초 작성. Post 요청시 해당 카테고리에 맞는 게시글들을 12개 가져와 Panel에 추가하는 메소드 구현 및 클래스 분리. common폴더의 PostListReturn 클래스
  * 					 현재 PostController, PostDTO 변경 이슈로 인해 미완 상태.
  * 2023/02/23 (신예찬) 기능 완성
+ * 2023/02/25 (신예찬) PageOnePage이동시 MemberDTO를 함께 전송하도록 변경
  * </pre>
  * @author 신예찬
- * @version 1.0.0
+ * @version 1.0.2
  * @see 
  * */
 public class PostListReturn {

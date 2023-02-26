@@ -28,12 +28,13 @@
 		)
 		VALUES
 		(
-		'P' || LPAD(SEQ_POST_CODE.NEXTVAL, 6, '0')
+
+		  'P' || LPAD(SEQ_POST_CODE.NEXTVAL, 6, '0')
 		, #{categoryCode}
 		, #{writer}
 		, #{price}
 		, #{itemName}
-		, SYSDATE
+		, SYSDATE  
 		, #{postContext}
 		)
 

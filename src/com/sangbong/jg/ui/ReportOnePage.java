@@ -72,7 +72,7 @@ public class ReportOnePage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ReportOnePage(ReportDTO report) {
+	public ReportOnePage(MemberDTO loginInfo, ReportDTO report) {
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
@@ -142,7 +142,7 @@ public class ReportOnePage extends JFrame {
 				ReportController reportController = new ReportController();
 				int result = reportController.discardReport(report);
 				if(result > 0) {
-					new ReportView().setVisible(true);
+					new ReportView(loginInfo).setVisible(true);
 					dispose();
 				} else {
 					System.out.println("실패");
@@ -158,7 +158,7 @@ public class ReportOnePage extends JFrame {
 				int result2 = reportController.addPenaltyToMember(report);
 				if(result1 > 0 && result2 > 0) {
 					
-					new ReportView().setVisible(true);
+					new ReportView(loginInfo).setVisible(true);
 					dispose();
 				} else {
 					System.out.println("실패");

@@ -16,7 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.sangbong.jg.category.controller.CategoryController;
 import com.sangbong.jg.common.PostListReturn;
 import com.sangbong.jg.common.PostRightAsset;
 import com.sangbong.jg.model.dto.CategoryDTO;
@@ -26,19 +25,16 @@ import com.sangbong.jg.model.dto.PostDTO;
 
 /**
  * <pre>
- * Class : PostCategory
- * Comment : 게시글들을 최신 등록순으로 볼 수 있는 전체 페이지를 구현 
+ * Class : PostCategoryAdmin
+ * Comment : 운영자 시점에서 게시글들을 최신 등록순으로 볼 수 있는 전체 페이지를 구현 
  * History
- * 2023/02/18 (신예찬) 처음 작성함
- * 2023/02/23 (신예찬) 우측 카테고리, 로고 등의 에셋을 별도의 클래스로 분리함. 분리한 클래스는 common폴더의 PostRightAsset 클래스에서 메소드 호출시 받아올 수 있음
- * 					 Post 요청시 해당 카테고리에 맞는 게시글들을 12개 가져와 Panel에 추가하는 메소드 구현 및 클래스 분리. common폴더의 PostListReturn 클래스
- * 2023/02/25 (신예찬) 카테고리 조회시, 상위 카테고리가 코드로 출력되는 부분 수정
+ * 2023/02/26 (김유현) 처음 작성함
  * </pre>
- * @author 신예찬
- * @version 1.0.3
+ * @author 김유현
+ * @version 1.0.0
  * @see 
  * */
-public class PostCategory extends JFrame {
+public class PostCategoryAdmin extends JFrame {
 
 	/**
 	 * Windowbuilder GUI Plugin을 사용하여 만들어졌다. open with > windowbuilder 선택하여 하단 디자인 탭 참고할 것! 
@@ -59,7 +55,7 @@ public class PostCategory extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PostCategory frame = new PostCategory(null, null);
+					PostCategoryAdmin frame = new PostCategoryAdmin(null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -71,7 +67,7 @@ public class PostCategory extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PostCategory(MemberDTO loginInfo, CategoryDTO category) {
+	public PostCategoryAdmin(MemberDTO loginInfo, CategoryDTO category) {
 		
 		this.loginInfo = loginInfo;
 		this.category = category;
@@ -103,23 +99,17 @@ public class PostCategory extends JFrame {
 		mainPanel.add(topPanel);
 		topPanel.setLayout(null);
 		
-		/*상위 카테고리 라벨에 등록*/
-		CategoryDTO ctgDTO = null;
-		if(category != null) {
-			ctgDTO = new CategoryController().getOneCategoryByCode(category.getSuperCategory());
-		}
-		JLabel superCategoryLabel = new JLabel(ctgDTO == null ? "전체게시글" : ctgDTO.getCategoryName());
+		JLabel superCategoryLabel = new JLabel(category == null ? "전체게시글" : category.getSuperCategory());
 		superCategoryLabel.setForeground(new Color(70, 70, 70));
 		superCategoryLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 18));
 		superCategoryLabel.setBounds(12, 10, 678, 35);
 		topPanel.add(superCategoryLabel);
 		
-		JButton memberInfoButton = new JButton("회원정보");
-		memberInfoButton.addMouseListener(new MouseAdapter() {
+		JButton siteManagementButton = new JButton("사이트 관리");
+		siteManagementButton.addMouseListener(new MouseAdapter() {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
 				
 //				new MemberInfoView(member).setVisible(true);
 				
@@ -127,11 +117,11 @@ public class PostCategory extends JFrame {
 			}
 		});
 		
-		memberInfoButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
-		memberInfoButton.setForeground(new Color(70, 70, 70));
-		memberInfoButton.setBackground(new Color(0, 255, 128));
-		memberInfoButton.setBounds(848, 10, 120, 72);
-		topPanel.add(memberInfoButton);
+		siteManagementButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
+		siteManagementButton.setForeground(new Color(70, 70, 70));
+		siteManagementButton.setBackground(new Color(0, 255, 128));
+		siteManagementButton.setBounds(822, 10, 146, 72);
+		topPanel.add(siteManagementButton);
 		
 		JButton writeButton = new JButton("글쓰기");
 		writeButton.addMouseListener(new MouseAdapter() {
@@ -150,7 +140,7 @@ public class PostCategory extends JFrame {
 		writeButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
 		writeButton.setForeground(new Color(70, 70, 70));
 		writeButton.setBackground(new Color(212, 212, 212));
-		writeButton.setBounds(716, 10, 120, 72);
+		writeButton.setBounds(690, 10, 120, 72);
 		topPanel.add(writeButton);
 		
 		JLabel juniorCategoryLabel = new JLabel(category == null ? "전체게시글" : category.getCategoryName());
@@ -189,11 +179,11 @@ public class PostCategory extends JFrame {
 	}
 	
 	
-	public PostCategory(MemberDTO loginInfo) {
+	public PostCategoryAdmin(MemberDTO loginInfo) {
 		this(loginInfo, null);
 	}
 	
-	public PostCategory() {
+	public PostCategoryAdmin() {
 		this(null);
 	}
 
