@@ -1,38 +1,30 @@
 package com.sangbong.jg.ui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.sangbong.jg.common.PostRightAsset;
 import com.sangbong.jg.member.controller.MemberInfoController;
+import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Color;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
 import javax.swing.ScrollPaneConstants;
 
 import static com.sangbong.jg.common.SetFont.notoSansRegular;
-import javax.swing.JEditorPane;
 
 /**
  * <pre>
@@ -51,6 +43,7 @@ public class MemberInfoView extends JFrame {
 	 * Windowbuilder GUI Plugin을 사용하여 만들어졌다. open with > windowbuilder 선택하여 하단 디자인 탭 참고할 것! 
 	 */
 	private JPanel contentPane;
+	private PostRightAsset rightAsset;
 
 	/**
 	 * Launch the application.
@@ -85,11 +78,10 @@ public class MemberInfoView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JPanel ctgPanel = new JPanel();
-		ctgPanel.setBackground(new Color(245, 245, 245));
-		ctgPanel.setBounds(0, 0, 248, 681);
+		/* 우측의 카테고리를 출력하는 메소드 */
+		rightAsset = new PostRightAsset(loginInfo);
+		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
-		ctgPanel.setLayout(null);
 
 		JLabel writeReportLabel = new JLabel("신고글 작성하기");
 		writeReportLabel.setBounds(24, 630, 200, 28);
@@ -155,7 +147,6 @@ public class MemberInfoView extends JFrame {
 						, JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 
 				if(var == 0) {
-					System.out.println("!!!!!!!!!!!!!!!!탈퇴선택!!!!!!!!!!!!!!!!!");
 					MemberInfoController memberInfoController = new MemberInfoController();
 					if(memberInfoController.deactivateMember(loginInfo) > 0) {
 						JOptionPane.showMessageDialog(null, "탈퇴가 완료되었습니다. 로그인 화면으로 돌아갑니다.", "탈퇴 완료", JOptionPane.PLAIN_MESSAGE);
@@ -190,19 +181,6 @@ public class MemberInfoView extends JFrame {
 		authorEmailLabel.setFont(new Font("나눔스퀘어 네오 OTF Bold", Font.PLAIN, 20));
 		authorEmailLabel.setBounds(12, 10, 501, 25);
 		bodyPanel.add(authorEmailLabel);
-
-		//		JButton editEmailButton = new JButton("이메일 수정");
-		//		editEmailButton.setBounds(824, 58, 144, 60);
-		//		bodyPanel.add(editEmailButton);
-		//		editEmailButton.addActionListener(new ActionListener() {
-		//			public void actionPerformed(ActionEvent e) {
-		//				String test = JOptionPane.showInputDialog("테스트");
-		//				System.out.println(test);
-		//			}
-		//		});
-		//		editEmailButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
-		//		editEmailButton.setForeground(new Color(70, 70, 70));
-		//		editEmailButton.setBackground(new Color(212, 212, 212));
 
 		JLabel emailTitle = new JLabel("이메일");
 		emailTitle.setHorizontalAlignment(SwingConstants.LEFT);
@@ -310,7 +288,7 @@ public class MemberInfoView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				MemberPostView memberPostView = new MemberPostView(loginInfo);
+				new MemberPostView(loginInfo).setVisible(true);;
 				dispose();
 				
 			}

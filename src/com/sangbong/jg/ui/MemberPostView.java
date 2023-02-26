@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.sangbong.jg.common.PostListReturn;
+import com.sangbong.jg.common.PostRightAsset;
 import com.sangbong.jg.member.controller.MemberInfoController;
 import com.sangbong.jg.model.dto.MemberDTO;
 import com.sangbong.jg.model.dto.PostDTO;
@@ -54,7 +56,7 @@ import javax.swing.JEditorPane;
  * </pre>
  * @author 김유현
  * @version 1.1.0
- * @see 
+ * @see MyPostPanelMaker
  * */
 public class MemberPostView extends JFrame {
 
@@ -62,26 +64,28 @@ public class MemberPostView extends JFrame {
 	 * Windowbuilder GUI Plugin을 사용하여 만들어졌다. open with > windowbuilder 선택하여 하단 디자인 탭 참고할 것! 
 	 */
 	private JPanel contentPane;
+	private PostRightAsset rightAsset;
+	private PostListReturn postListReturn;
 
 	/* 테스트 */	
-	static MemberDTO loginInfo = new MemberDTO("nyang@gmail.com", "12345", "김냥냥", 0, 'Y', 'N', null, null, "ADMIN");
+//	static MemberDTO loginInfo = new MemberDTO("nyang@gmail.com", "12345", "김냥냥", 0, 'Y', 'N', null, null, "ADMIN");
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MemberPostView frame = new MemberPostView(loginInfo);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					MemberPostView frame = new MemberPostView(loginInfo);
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
@@ -99,42 +103,9 @@ public class MemberPostView extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JPanel ctgPanel = new JPanel();
-		ctgPanel.setBackground(new Color(245, 245, 245));
-		ctgPanel.setBounds(0, 0, 248, 681);
+		rightAsset = new PostRightAsset(loginInfo);
+		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
-		ctgPanel.setLayout(null);
-
-		JLabel writeReportLabel = new JLabel("신고글 작성하기");
-		writeReportLabel.setBounds(24, 630, 200, 28);
-		writeReportLabel.setForeground(new Color(255, 0, 0));
-		//		writeReportLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
-		writeReportLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
-		ctgPanel.add(writeReportLabel);
-
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 154, 224, 456);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		ctgPanel.add(scrollPane);
-
-		JLabel titleLabel = new JLabel("New label");
-		titleLabel.setBounds(24, 10, 204, 67);
-		titleLabel.setIcon(new ImageIcon("images//title.png"));
-		ctgPanel.add(titleLabel);
-		titleLabel.addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				new PostCategory(loginInfo).setVisible(true);
-				dispose();
-			}
-
-		});
-
-		JLabel viewAllLabel = new JLabel("전체 게시판");
-		viewAllLabel.setBounds(27, 111, 200, 33);
-		viewAllLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
-		ctgPanel.add(viewAllLabel);
 
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground(new Color(255, 255, 255));
@@ -225,8 +196,5 @@ public class MemberPostView extends JFrame {
 		for (int i = 0; i < 5; i++) {
 			myPostPanel.PanelMaker(loginInfo, bodyPanel, myPostList.get(i));
 		}
-
-
-		//		scroll.setViewportView(bodyPanel);
 	}
 }

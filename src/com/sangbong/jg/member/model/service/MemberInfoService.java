@@ -98,7 +98,7 @@ public class MemberInfoService {
 		Map<String, String> map = new HashMap<>();
 		map.put("email", email);
 		
-		int result = mapper.deleteMember(map);
+		int result = mapper.updateDeacYn(map);
 		
 		if(result > 0) {
 			sqlSession.commit();
