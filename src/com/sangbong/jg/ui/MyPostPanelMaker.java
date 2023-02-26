@@ -4,27 +4,29 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 import com.sangbong.jg.model.dto.MemberDTO;
+import com.sangbong.jg.model.dto.PostDTO;
 import com.sangbong.jg.model.dto.ReportDTO;
 
-public class ReportPanelMaker {
+public class MyPostPanelMaker {
 
-	public void PanelMaker(MemberDTO loginInfo, JPanel bodyPanel, ReportDTO report) {
+public void PanelMaker(MemberDTO loginInfo, JPanel bodyPanel, PostDTO post) {
 		
 		JPanel reportPanel = new JPanel();
 		reportPanel.setSize(956, 84);
 		bodyPanel.add(reportPanel);
 		reportPanel.setLayout(null);
 		
-		JLabel reportReasonLabel = new JLabel("신고 사유 : " + report.getReportReason());
+		JLabel reportReasonLabel = new JLabel("가격 : " + post.getPrice());
 		reportReasonLabel.setBounds(10, 42, 436, 16);
 		reportPanel.add(reportReasonLabel);
 		reportReasonLabel.setHorizontalAlignment(SwingConstants.LEFT);
@@ -32,18 +34,7 @@ public class ReportPanelMaker {
 		reportReasonLabel.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
 		
 		JLabel reportTitleLabel = new JLabel();
-		String reportTitle = report.getReportCode();
-		switch(report.getReportApproval()) {
-		case 'Y':
-			reportTitle += (" [승인]");
-			break;
-		case 'N':
-			reportTitle += (" [거절]");
-			break;
-		case '-':
-			reportTitle += (" [보류]");
-			break;
-		}
+		String reportTitle = post.getItemName();
 		reportTitleLabel.setText(reportTitle);
 		reportTitleLabel.setForeground(new Color(70, 70, 70));
 		reportTitleLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 18));
@@ -54,7 +45,9 @@ public class ReportPanelMaker {
 		btnNewButton.setBounds(872, 0, 84, 84);
 		reportPanel.add(btnNewButton);
 		
-		JLabel reportedEmailLabel = new JLabel("신고 대상 : " + report.getReportedEmail());
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		String date = dateFormat.format(post.getPostDate());
+		JLabel reportedEmailLabel = new JLabel(date);
 		reportedEmailLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		reportedEmailLabel.setForeground(new Color(70, 70, 70));
 		reportedEmailLabel.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
@@ -66,14 +59,14 @@ public class ReportPanelMaker {
 		reportPanel.add(textContext);
 		textContext.setForeground(new Color(70, 70, 70));
 		textContext.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 14));
-		textContext.setText(report.getRepostContext());
+		textContext.setText(post.getPostContext());
 		textContext.setLineWrap(true);
 		textContext.setEditable(false);
 		
 		reportPanel.addMouseListener(new MouseAdapter() {
 			
 			public void mouseClicked(MouseEvent e) {
-				new ReportOnePage(loginInfo, report).setVisible(true);
+				new PostOnePage(loginInfo, post).setVisible(true);
 			}
 			
 		});
