@@ -87,7 +87,7 @@ public class PostEdit extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		rightAsset = new PostRightAsset();
+		rightAsset = new PostRightAsset(loginInfo);
 		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
 		

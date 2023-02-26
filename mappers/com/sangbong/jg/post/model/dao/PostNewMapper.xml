@@ -21,18 +21,16 @@
 		, A.WRITER
 		, A.PRICE
 		, A.ITEM_NAME
-		, A.DELETE_YN
 		, A.POST_DATE
 		, A.POST_CONTEXT
 		)
 		VALUES
 		(
-		  #{postCode}
+		  'P' || LPAD(SEQ_POST_CODE.NEXTVAL, 6, '0')
 		, #{categoryCode}
 		, #{writer}
 		, #{price}
 		, #{itemName}
-		, #{deleteYn}
 		, SYSDATE  
 		, #{postContext}
 		)

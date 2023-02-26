@@ -10,4 +10,6 @@ public interface CategoryMapper {
 
 	CategoryDTO getOneCategory(String ctgName);
 
+	CategoryDTO getOneCategoryByCode(String categoryCode);
+
 }

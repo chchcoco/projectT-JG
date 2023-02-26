@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.sangbong.jg.category.controller.CategoryController;
 import com.sangbong.jg.common.PostListReturn;
 import com.sangbong.jg.common.PostRightAsset;
 import com.sangbong.jg.model.dto.CategoryDTO;
@@ -31,9 +32,10 @@ import com.sangbong.jg.model.dto.PostDTO;
  * 2023/02/18 (신예찬) 처음 작성함
  * 2023/02/23 (신예찬) 우측 카테고리, 로고 등의 에셋을 별도의 클래스로 분리함. 분리한 클래스는 common폴더의 PostRightAsset 클래스에서 메소드 호출시 받아올 수 있음
  * 					 Post 요청시 해당 카테고리에 맞는 게시글들을 12개 가져와 Panel에 추가하는 메소드 구현 및 클래스 분리. common폴더의 PostListReturn 클래스
+ * 2023/02/25 (신예찬) 카테고리 조회시, 상위 카테고리가 코드로 출력되는 부분 수정
  * </pre>
  * @author 신예찬
- * @version 1.0.1
+ * @version 1.0.3
  * @see 
  * */
 public class PostCategory extends JFrame {
@@ -101,7 +103,12 @@ public class PostCategory extends JFrame {
 		mainPanel.add(topPanel);
 		topPanel.setLayout(null);
 		
-		JLabel superCategoryLabel = new JLabel(category == null ? "전체게시글" : category.getSuperCategory());
+		/*상위 카테고리 라벨에 등록*/
+		CategoryDTO ctgDTO = null;
+		if(category != null) {
+			ctgDTO = new CategoryController().getOneCategoryByCode(category.getSuperCategory());
+		}
+		JLabel superCategoryLabel = new JLabel(ctgDTO == null ? "전체게시글" : ctgDTO.getCategoryName());
 		superCategoryLabel.setForeground(new Color(70, 70, 70));
 		superCategoryLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 18));
 		superCategoryLabel.setBounds(12, 10, 678, 35);

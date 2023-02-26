@@ -87,7 +87,7 @@ public class PostWrite extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		rightAsset = new PostRightAsset();
+		rightAsset = new PostRightAsset(loginInfo);
 		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
 		
@@ -222,7 +222,7 @@ public class PostWrite extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				 PostDTO resultPost = new PostNewController().newPost(comboBox.getSelectedItem().toString(), email.getEmail(), textField_1.getText(), textField.getText(), textContext.getText());
+				PostDTO resultPost = new PostNewController().newPost(comboBox.getSelectedItem().toString(), email.getEmail(), textField_1.getText(), textField.getText(), textContext.getText());
 				/*수정 필요*/
 				 boolean result = (resultPost != null)? true : false;
 				if(result) {
