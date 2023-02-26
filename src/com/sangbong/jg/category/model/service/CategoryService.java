@@ -33,4 +33,14 @@ public class CategoryService {
 		return category;
 	}
 
+	public CategoryDTO getOneCategoryByCode(String superCategory) {
+		
+		SqlSession sqlSession = getSqlSession();
+		mapper = sqlSession.getMapper(CategoryMapper.class);
+		
+		CategoryDTO category = mapper.getOneCategoryByCode(superCategory);
+		
+		return null;
+	}
+
 }

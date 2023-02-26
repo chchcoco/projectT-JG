@@ -21,4 +21,11 @@ public class CategoryController {
 		return category;
 	}
 
+	public CategoryDTO getOneCategoryByCode(String superCategory) {
+		
+		CategoryDTO category = new CategoryService().getOneCategoryByCode(superCategory);
+		
+		return category;
+	}
+
 }

@@ -24,5 +24,12 @@
 	 WHERE A.CATEGORY_NAME = #{ctgName} 	   
 </select>
 
-
+<select id="getOneCategoryByCode" resultMap="ctgResultMap" parameterType="string">
+	SELECT
+		   A.CATEGORY_CODE
+		 , A.CATEGORY_NAME
+		 , A.SUPER_CATEGORY
+	  FROM CATEGORY A
+	 WHERE A.CATEGORY_CODE = #{categoryCode} 	   
+</select>
 </mapper>
