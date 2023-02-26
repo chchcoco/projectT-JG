@@ -87,7 +87,7 @@ public class PostWrite extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		rightAsset = new PostRightAsset();
+		rightAsset = new PostRightAsset(loginInfo);
 		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
 		
@@ -143,7 +143,7 @@ public class PostWrite extends JFrame {
 		JTextArea textContext = new JTextArea();
 		textContext.setForeground(new Color(70, 70, 70));
 		textContext.setFont(new Font("나눔고딕", Font.PLAIN, 15));
-		textContext.setText("상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context ");
+		textContext.setText("");
 		textContext.setLineWrap(true);
 		textContext.setBounds(12, 10, 948, 287);
 		bodyPanel.add(textContext);

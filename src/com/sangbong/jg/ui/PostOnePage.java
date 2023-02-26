@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,7 +22,10 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import com.sangbong.jg.category.controller.CategoryController;
+import com.sangbong.jg.common.PostRightAsset;
 import com.sangbong.jg.member.controller.MemberInfoController;
+import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
 import com.sangbong.jg.model.dto.PostDTO;
 
@@ -45,6 +49,7 @@ public class PostOnePage extends JFrame {
 	private JPanel contentPane;
 	private PostDTO postDTO;
 	private MemberDTO loginInfo;
+	private PostRightAsset rightAsset;
 
 	/**
 	 * Launch the application.
@@ -85,33 +90,38 @@ public class PostOnePage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel ctgPanel = new JPanel();
-		ctgPanel.setBackground(new Color(245, 245, 245));
-		ctgPanel.setBounds(0, 0, 248, 681);
+		
+		rightAsset = new PostRightAsset(loginInfo);
+		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
-		ctgPanel.setLayout(null);
 		
-		JLabel writeReportLabel = new JLabel("신고글 작성하기");
-		writeReportLabel.setBounds(24, 630, 200, 28);
-		writeReportLabel.setForeground(new Color(255, 0, 0));
+//		JPanel ctgPanel = new JPanel();
+//		ctgPanel.setBackground(new Color(245, 245, 245));
+//		ctgPanel.setBounds(0, 0, 248, 681);
+//		contentPane.add(ctgPanel);
+//		ctgPanel.setLayout(null);
+//		
+//		JLabel writeReportLabel = new JLabel("신고글 작성하기");
+//		writeReportLabel.setBounds(24, 630, 200, 28);
+//		writeReportLabel.setForeground(new Color(255, 0, 0));
 //		writeReportLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
-		writeReportLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
-		ctgPanel.add(writeReportLabel);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 154, 224, 456);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		ctgPanel.add(scrollPane);
-		
-		JLabel titleLabel = new JLabel("New label");
-		titleLabel.setBounds(24, 10, 204, 67);
-		titleLabel.setIcon(new ImageIcon("images/title.png"));
-		ctgPanel.add(titleLabel);
-		
-		JLabel viewAllLabel = new JLabel("전체 게시판");
-		viewAllLabel.setBounds(27, 111, 200, 33);
-		viewAllLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
-		ctgPanel.add(viewAllLabel);
+//		writeReportLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
+//		ctgPanel.add(writeReportLabel);
+//		
+//		JScrollPane scrollPane = new JScrollPane();
+//		scrollPane.setBounds(12, 154, 224, 456);
+//		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+//		ctgPanel.add(scrollPane);
+//		
+//		JLabel titleLabel = new JLabel("New label");
+//		titleLabel.setBounds(24, 10, 204, 67);
+//		titleLabel.setIcon(new ImageIcon("images/title.png"));
+//		ctgPanel.add(titleLabel);
+//		
+//		JLabel viewAllLabel = new JLabel("전체 게시판");
+//		viewAllLabel.setBounds(27, 111, 200, 33);
+//		viewAllLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
+//		ctgPanel.add(viewAllLabel);
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground(new Color(255, 255, 255));
@@ -125,7 +135,7 @@ public class PostOnePage extends JFrame {
 		mainPanel.add(topPanel);
 		topPanel.setLayout(null);
 		
-		JLabel superCategoryLabel = new JLabel("상위 카테고리명");
+		JLabel superCategoryLabel = new JLabel(postDTO.getCategoryCode());
 		superCategoryLabel.setForeground(new Color(70, 70, 70));
 		superCategoryLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 18));
 		superCategoryLabel.setBounds(12, 10, 678, 35);
@@ -165,19 +175,19 @@ public class PostOnePage extends JFrame {
 		editButton.setBounds(716, 76, 120, 72);
 		topPanel.add(editButton);
 		
-		JLabel postTitleLabel = new JLabel("게시글 제목");
+		JLabel postTitleLabel = new JLabel(postDTO.getItemName());
 		postTitleLabel.setForeground(new Color(70, 70, 70));
 		postTitleLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 32));
 		postTitleLabel.setBounds(12, 76, 678, 50);
 		topPanel.add(postTitleLabel);
 		
-		JLabel dateLabel = new JLabel("2000/10/10");
+		JLabel dateLabel = new JLabel(new StringBuilder().append(postDTO.getPostDate()).toString());
 		dateLabel.setForeground(new Color(70, 70, 70));
 		dateLabel.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 14));
 		dateLabel.setBounds(12, 128, 250, 20);
 		topPanel.add(dateLabel);
 		
-		JLabel juniorCategoryLabel = new JLabel("> 하위 카테고리명");
+		JLabel juniorCategoryLabel = new JLabel(postDTO.getCategoryCode());
 		juniorCategoryLabel.setForeground(new Color(70, 70, 70));
 		juniorCategoryLabel.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 14));
 		juniorCategoryLabel.setBounds(12, 46, 678, 20);
@@ -200,7 +210,7 @@ public class PostOnePage extends JFrame {
 			
 		});
 		
-		JLabel myName = new JLabel("홍길동 님");
+		JLabel myName = new JLabel(loginInfo.getMemName());
 		myName.setHorizontalAlignment(SwingConstants.RIGHT);
 		myName.setForeground(new Color(70, 70, 70));
 		myName.setFont(new Font("Dialog", Font.PLAIN, 16));
@@ -217,13 +227,14 @@ public class PostOnePage extends JFrame {
 		btnNewButton_2.setBounds(12, 10, 394, 394);
 		bodyPanel.add(btnNewButton_2);
 		
-		JLabel priceLabel = new JLabel("999,999,999,000 원");
+		JLabel priceLabel = new JLabel(new StringBuilder().append(postDTO.getPrice()).toString());
+
 		priceLabel.setForeground(new Color(70, 70, 70));
 		priceLabel.setFont(new Font("나눔스퀘어 네오 ExtraBold", Font.PLAIN, 40));
 		priceLabel.setBounds(467, 10, 501, 50);
 		bodyPanel.add(priceLabel);
 		
-		JLabel authorEmailLabel = new JLabel("작성자 이름 (EMAIL@NEVEREVER.LAND)");
+		JLabel authorEmailLabel = new JLabel(postDTO.getWriter());
 		authorEmailLabel.setForeground(new Color(70, 70, 70));
 		authorEmailLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		authorEmailLabel.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
@@ -233,7 +244,7 @@ public class PostOnePage extends JFrame {
 		JTextArea textContext = new JTextArea();
 		textContext.setForeground(new Color(70, 70, 70));
 		textContext.setFont(new Font("나눔고딕", Font.PLAIN, 15));
-		textContext.setText("상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context 상세 내용 Context ");
+		textContext.setText(postDTO.getPostContext());
 		textContext.setLineWrap(true);
 		textContext.setBounds(467, 116, 501, 287);
 		bodyPanel.add(textContext);
