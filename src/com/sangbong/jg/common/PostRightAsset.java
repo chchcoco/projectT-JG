@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -16,23 +17,24 @@ import javax.swing.ScrollPaneConstants;
 import com.sangbong.jg.category.controller.CategoryController;
 import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
+import com.sangbong.jg.run.Application;
 import com.sangbong.jg.ui.PostCategory;
 import com.sangbong.jg.ui.ReportWrite;
 
+/**
+ * <pre>
+ * Class : PostCategory
+ * Comment : 게시글들을 최신 등록순으로 볼 수 있는 전체 페이지를 구현 
+ * History
+ * 2023/02/23 (신예찬) 최초 작성. 우측 카테고리, 로고 등의 에셋을 별도의 클래스로 분리함. 분리한 클래스는 common폴더의 PostRightAsset 클래스에서 메소드 호출시 받아올 수 있음
+ * 2023/02/25 (신예찬) 전체 게시글 이동, 
+ * </pre>
+ * 
+ * @author 신예찬
+ * @version 1.0.1
+ * @see
+ */
 public class PostRightAsset {
-	/**
-	 * <pre>
-	 * Class : PostCategory
-	 * Comment : 게시글들을 최신 등록순으로 볼 수 있는 전체 페이지를 구현 
-	 * History
-	 * 2023/02/23 (신예찬) 최초 작성. 우측 카테고리, 로고 등의 에셋을 별도의 클래스로 분리함. 분리한 클래스는 common폴더의 PostRightAsset 클래스에서 메소드 호출시 받아올 수 있음
-	 * 2023/02/25 (신예찬) 전체 게시글 이동, 
-	 * </pre>
-	 * 
-	 * @author 신예찬
-	 * @version 1.0.1
-	 * @see
-	 */
 
 	private MemberDTO loginInfo;
 	
@@ -40,7 +42,7 @@ public class PostRightAsset {
 		this.loginInfo = loginInfo;
 	}
 	
-	public JPanel getCtgPanel() {
+	public JPanel getCtgPanel(JFrame page) {
 
 		JPanel ctgPanel = new JPanel();
 		ctgPanel.setBackground(new Color(245, 245, 245));
@@ -58,6 +60,7 @@ public class PostRightAsset {
 			public void mouseClicked(MouseEvent e) {
 				
 				new ReportWrite(loginInfo).setVisible(true);
+				page.dispose();
 			}
 		});
 		
@@ -80,7 +83,7 @@ public class PostRightAsset {
 			public void mouseClicked(MouseEvent e) {
 
 				String ctgName = (String) ctgList.getSelectedValue();
-				goCtgPostBoard(ctgName);
+				goCtgPostBoard(ctgName, page);
 			}
 
 		});
@@ -105,7 +108,7 @@ public class PostRightAsset {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				goCtgPostBoard(null);
+				goCtgPostBoard(null, page);
 			}
 		});
 
@@ -115,7 +118,7 @@ public class PostRightAsset {
 	}
 
 	/* 카테고리 리스트에서 카테고리 클릭시 해당 카테고리의 게시글들을 보여주는 게시판으로 이동하는 메소드 */
-	public void goCtgPostBoard(String ctgName) {
+	public void goCtgPostBoard(String ctgName, JFrame page) {
 		
 		CategoryDTO category = null;
 		if(ctgName != null) {
@@ -123,6 +126,9 @@ public class PostRightAsset {
 		}
 		
 		new PostCategory(loginInfo, category).setVisible(true);
+		page.dispose();
 
 	}
+
+
 }

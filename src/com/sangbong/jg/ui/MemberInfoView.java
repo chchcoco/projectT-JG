@@ -80,7 +80,7 @@ public class MemberInfoView extends JFrame {
 
 		/* 우측의 카테고리를 출력하는 메소드 */
 		rightAsset = new PostRightAsset(loginInfo);
-		JPanel ctgPanel = rightAsset.getCtgPanel();
+		JPanel ctgPanel = rightAsset.getCtgPanel(this);
 		contentPane.add(ctgPanel);
 
 		JLabel writeReportLabel = new JLabel("신고글 작성하기");

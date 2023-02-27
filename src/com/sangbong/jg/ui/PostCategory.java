@@ -22,6 +22,7 @@ import com.sangbong.jg.common.PostRightAsset;
 import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
 import com.sangbong.jg.model.dto.PostDTO;
+import com.sangbong.jg.run.Application;
 
 
 /**
@@ -88,7 +89,7 @@ public class PostCategory extends JFrame {
 		
 		/* 우측의 카테고리를 출력하는 메소드. */
 		rightAsset = new PostRightAsset(loginInfo);
-		JPanel ctgPanel = rightAsset.getCtgPanel();
+		JPanel ctgPanel = rightAsset.getCtgPanel(this);
 		contentPane.add(ctgPanel);
 
 		JPanel mainPanel = new JPanel();
@@ -167,7 +168,7 @@ public class PostCategory extends JFrame {
 		
 		
 		/* 게시글을 추가하는 메소드 */
-		postListReturn = new PostListReturn(loginInfo);
+		postListReturn = new PostListReturn(loginInfo, this);
 		
 		if(this.category == null) {
 			postList = postListReturn.getAllPost();
@@ -185,17 +186,31 @@ public class PostCategory extends JFrame {
 		
 		postListReturn.locatePostList(postPanel, bodyPanel);
 
-		
+//		System.out.println(Application.shutdown);
+//		Thread thread = new Thread(this);
+//		thread.start();
+
 	}
 	
 	
 	public PostCategory(MemberDTO loginInfo) {
 		this(loginInfo, null);
 	}
+
 	
 	public PostCategory() {
 		this(null);
 	}
+	
+//	public void run() {
+//		while(true) {
+//			if(Application.shutdown == 1) {
+//				System.out.println("스레드");
+//				Application.shutdown = 0;
+//				dispose();
+//			}
+//		}
+//	}
 
 	
 	/* 해당 기능 PostListReturn클래스로 다시 옮김 */

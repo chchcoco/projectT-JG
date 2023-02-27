@@ -6,6 +6,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -14,7 +15,6 @@ import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
 import com.sangbong.jg.model.dto.PostDTO;
 import com.sangbong.jg.post.controller.PostBoardController;
-import com.sangbong.jg.ui.PostCategory;
 import com.sangbong.jg.ui.PostOnePage;
 
 
@@ -36,10 +36,12 @@ import com.sangbong.jg.ui.PostOnePage;
 public class PostListReturn {
 	
 	private MemberDTO loginInfo;
+	private JFrame page;
 	
-	public PostListReturn(MemberDTO loginInfo) {
+	public PostListReturn(MemberDTO loginInfo, JFrame page) {
 	
 		this.loginInfo = loginInfo;
+		this.page = page;
 	}
 	
 	
@@ -83,7 +85,6 @@ public class PostListReturn {
 			public void mouseClicked(MouseEvent e) {
 
 				goPost(loginInfo, postInfo);
-				
 			}
 
 		});
@@ -122,6 +123,7 @@ public class PostListReturn {
 	public void goPost(MemberDTO loginInfo, PostDTO postInfo) {
 		// 게시글 상세조회 페이지로 이동
 		new PostOnePage(loginInfo, postInfo).setVisible(true);
+		page.dispose();
 		
 	}
 

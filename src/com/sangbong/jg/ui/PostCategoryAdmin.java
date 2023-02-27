@@ -84,7 +84,7 @@ public class PostCategoryAdmin extends JFrame {
 		
 		/* 우측의 카테고리를 출력하는 메소드. */
 		rightAsset = new PostRightAsset(loginInfo);
-		JPanel ctgPanel = rightAsset.getCtgPanel();
+		JPanel ctgPanel = rightAsset.getCtgPanel(this);
 		contentPane.add(ctgPanel);
 
 		JPanel mainPanel = new JPanel();
@@ -157,7 +157,7 @@ public class PostCategoryAdmin extends JFrame {
 		
 		
 		/* 게시글을 추가하는 메소드 */
-		postListReturn = new PostListReturn(loginInfo);
+		postListReturn = new PostListReturn(loginInfo, this);
 		
 		if(this.category == null) {
 			postList = postListReturn.getAllPost();

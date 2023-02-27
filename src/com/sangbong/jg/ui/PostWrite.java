@@ -89,7 +89,7 @@ public class PostWrite extends JFrame {
 		contentPane.setLayout(null);
 		
 		rightAsset = new PostRightAsset(loginInfo);
-		JPanel ctgPanel = rightAsset.getCtgPanel();
+		JPanel ctgPanel = rightAsset.getCtgPanel(this);
 		contentPane.add(ctgPanel);
 		
 		JPanel mainPanel = new JPanel();
