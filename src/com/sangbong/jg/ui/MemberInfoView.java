@@ -8,11 +8,13 @@ import com.sangbong.jg.common.PostRightAsset;
 import com.sangbong.jg.member.controller.MemberInfoController;
 import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
+import com.sangbong.jg.model.dto.PostDTO;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
@@ -287,9 +289,17 @@ public class MemberInfoView extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
+				MemberInfoController memberInfoController = new MemberInfoController();
+				List<PostDTO> myPostList = memberInfoController.findMyPostList(loginInfo);
+				
+				if(myPostList.size() != 0) {
+					new MemberPostView(loginInfo).setVisible(true);;
+					dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "아직 게시글을 작성하지 않으셨습니다.", "게시글 존재하지 않음", JOptionPane.INFORMATION_MESSAGE);
+				}
 
-				new MemberPostView(loginInfo).setVisible(true);;
-				dispose();
 				
 			}
 		});
