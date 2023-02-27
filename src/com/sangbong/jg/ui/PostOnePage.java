@@ -1,7 +1,5 @@
 package com.sangbong.jg.ui;
 
-import static com.sangbong.jg.common.SetFont.notoSansRegular;
-
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -9,23 +7,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import com.sangbong.jg.category.controller.CategoryController;
 import com.sangbong.jg.common.PostRightAsset;
 import com.sangbong.jg.member.controller.MemberInfoController;
-import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
 import com.sangbong.jg.model.dto.PostDTO;
 
@@ -146,8 +140,13 @@ public class PostOnePage extends JFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new PostDelete(loginInfo, postDTO).setVisible(true);
-				dispose();
+				if(loginInfo.getEmail().equals(postDTO.getWriter())) {
+					new PostDelete(loginInfo, postDTO).setVisible(true);
+					dispose();
+				}  else {
+					JOptionPane.showMessageDialog(null, "회원님이 작성한 글이 아닙니다.",
+							"삭제할 권한이 없습니다.", JOptionPane.DEFAULT_OPTION);
+				}
 			}
 		});
 		deleteButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
@@ -158,11 +157,17 @@ public class PostOnePage extends JFrame {
 		
 		JButton editButton = new JButton("수정");
 		editButton.addMouseListener(new MouseAdapter() {
-			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				new PostEdit(loginInfo, postDTO).setVisible(true);
-				dispose();
+				
+				if(loginInfo.getEmail().equals(postDTO.getWriter())) {
+					new PostEdit(loginInfo, postDTO).setVisible(true);
+					dispose();
+				} else {
+					JOptionPane.showMessageDialog(null, "회원님이 작성한 글이 아닙니다.",
+							"수정할 권한이 없습니다.", JOptionPane.DEFAULT_OPTION);
+				}
+				
 			}
 		});
 		editButton.addActionListener(new ActionListener() {

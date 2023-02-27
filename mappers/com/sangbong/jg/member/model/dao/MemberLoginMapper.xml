@@ -28,6 +28,7 @@
 	 	  FROM MEMBER A
 	 	  WHERE A.EMAIL = #{ email }
 	 	  	AND A.PWD = #{ pwd }
+	 	  	AND A.DEAC_YN = 'N'
 	</select>
 	
 </mapper>
