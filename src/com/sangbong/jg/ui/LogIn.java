@@ -63,10 +63,11 @@ public class LogIn extends JFrame {
       pwText.setBounds(390, 347, 500, 40);
 
       JButton logBtn = new JButton("로그인");
-      logBtn.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) {
-         }
-      });
+//      logBtn.addActionListener(new ActionListener() {
+//         public void actionPerformed(ActionEvent e) {
+//         }
+//      });
+      
       logBtn.setBackground(new Color(128, 255, 128));
 
       logBtn.addMouseListener(new MouseAdapter() {
@@ -74,17 +75,21 @@ public class LogIn extends JFrame {
          @Override
          public void mouseClicked(MouseEvent e) {
 
-
+        	System.out.println(1);
             String email = emailText.getText()/*.trim()*/;
             char[] pw = pwText.getPassword()/*.trim()*/;
-
-            if(email.equals("") || pw.equals("")) {
+       
+            System.out.println(email + pw);
+           String pwd = new StringBuilder().append(pw).toString();
+            
+            if(email.equals("email") || pwd.equals("")) {
+            	System.out.println(2);
                JOptionPane.showMessageDialog(null, "이메일 또는 비밀번호를 입력 하셔야 됩니다.",
                      "아이디나 비밀번호를 입력!", JOptionPane.DEFAULT_OPTION);
-               JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
+//               JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
                return;
             } else { 
-               
+               System.out.println(3);
                MemberDTO loginInfo = memberController.loginMember(email, pw);
                boolean result = (loginInfo != null)? true: false;   
 //               System.out.println(email + pw);
@@ -93,6 +98,7 @@ public class LogIn extends JFrame {
                   new PostCategory(loginInfo).setVisible(true);
                   dispose();
                } else {
+            	   JOptionPane.showMessageDialog(null, "회원가입 후 로그인해주세요!", "로그인 실패", JOptionPane.DEFAULT_OPTION);
                   System.out.println("로그인정보가 일치하지 않습니다.");
                }
 
@@ -171,7 +177,7 @@ public class LogIn extends JFrame {
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    }
 
-   public static void main(String[] args) {
-      new LogIn();
-   }
+//   public static void main(String[] args) {
+//      new LogIn();
+//   }
 }
