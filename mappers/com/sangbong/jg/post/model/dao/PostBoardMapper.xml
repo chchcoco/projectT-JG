@@ -24,6 +24,7 @@
 		 	  , A.POST_DATE
 		 	  , A.POST_CONTEXT
 		   FROM POST A
+		  WHERE A.DELETE_YN = 'N'
 		  ORDER BY A.POST_DATE DESC
 	</select>
 	
@@ -39,6 +40,7 @@
 		 	  , A.POST_CONTEXT
 		   FROM POST A
 		  WHERE A.CATEGORY_CODE = #{categoryCode} 
+		    AND A.DELETE_YN = 'N'
 		  ORDER BY A.POST_DATE DESC
 	</select>
 

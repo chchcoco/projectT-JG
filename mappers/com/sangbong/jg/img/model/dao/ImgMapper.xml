@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sangbong.jg.img.model.dao.ImgMapper">
+	<resultMap type="com.sangbong.jg.model.dto.ImgDTO" id="imgResultMap">
+	 	<id property="imgCode" column="IMG_CODE"/>
+	 	<id property="postCode" column="POST_CODE"/>
+	 	<result property="reportCode" column="REPORT_CODE"/>
+	 	<result property="imgUrl" column="IMG_URL"/>
+	 	<result property="altText" column="ALT_TEXT"/>
+	 </resultMap>
+
+	<select id="selectAllByPost" parameterType="string" resultMap="imgResultMap">
+		SELECT
+		       A.IMG_CODE
+		     , A.POST_CODE
+		     , A.REPORT_CODE
+		     , A.IMG_URL
+		     , A.ALT_TEXT
+		  FROM IMG A
+		 WHERE A.POST_CODE = #{postCode}      
+	</select>
+	
+	<delete id="deleteImgByPost" parameterType="com.sangbong.jg.model.dto.ImgDTO">
+		DELETE
+		  FROM IMG A
+		 WHERE A.POST_CODE = #{postCode}  
+	</delete>
+	
+	<insert id="insertImg" parameterType="com.sangbong.jg.model.dto.ImgDTO">
+		INSERT
+		  INTO IMG A
+		(
+		  A.IMG_CODE
+		, A.POST_CODE
+		, A.REPORT_CODE
+		, A.IMG_URL
+		, A.ALT_TEXT  
+		)  
+		VALUES
+		(
+		  'I' || LPAD(SEQ_POST_CODE.NEXTVAL, 6, '0')
+		, #{postCode}
+		, null
+		, #{imgUrl} 
+		, 'Empty IMG'
+		)
+		
+	</insert>
+
+</mapper>

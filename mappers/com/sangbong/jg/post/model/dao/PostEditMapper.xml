@@ -13,7 +13,7 @@
 	</resultMap>
 	
 	<update id="postEdit" parameterType="com.sangbong.jg.model.dto.PostDTO">
-		UPDATE
+		 UPDATE
 				POST A
 			SET 
 		        A.CATEGORY_CODE = #{categoryCode}

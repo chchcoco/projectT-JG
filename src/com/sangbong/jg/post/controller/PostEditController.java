@@ -1,12 +1,12 @@
 package com.sangbong.jg.post.controller;
 
-import java.sql.Date;
-
 import javax.swing.JOptionPane;
 
 import com.sangbong.jg.category.controller.CategoryController;
 import com.sangbong.jg.model.dto.CategoryDTO;
+
 import com.sangbong.jg.model.dto.MemberDTO;
+
 import com.sangbong.jg.model.dto.PostDTO;
 import com.sangbong.jg.post.model.service.PostEditService;
 
@@ -21,6 +21,7 @@ public class PostEditController {
 		int strPrice = Integer.parseInt(price);
 		
 		CategoryDTO ctgDTO = new CategoryController().getOneCategoryByName(categoryCode);
+
 		
 		if(categoryCode != null && strPrice != 0 && itemName != null && postContext != null) {
 			

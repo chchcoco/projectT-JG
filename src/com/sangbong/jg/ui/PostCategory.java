@@ -103,16 +103,16 @@ public class PostCategory extends JFrame {
 		mainPanel.add(topPanel);
 		topPanel.setLayout(null);
 		
-		/*상위 카테고리 라벨에 등록*/
-		CategoryDTO ctgDTO = null;
-		if(category != null) {
-			ctgDTO = new CategoryController().getOneCategoryByCode(category.getSuperCategory());
-		}
-		JLabel superCategoryLabel = new JLabel(ctgDTO == null ? "전체게시글" : ctgDTO.getCategoryName());
-		superCategoryLabel.setForeground(new Color(70, 70, 70));
-		superCategoryLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 18));
-		superCategoryLabel.setBounds(12, 10, 678, 35);
-		topPanel.add(superCategoryLabel);
+		/*카테고리 라벨에 등록*/
+//		CategoryDTO ctgDTO = null;
+//		if(category != null) {
+//			ctgDTO = new CategoryController().getOneCategoryByCode(category.getSuperCategory());
+//		}
+		JLabel categoryLabel = new JLabel(category == null ? "전체게시글" : category.getCategoryName());
+		categoryLabel.setForeground(new Color(70, 70, 70));
+		categoryLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 18));
+		categoryLabel.setBounds(12, 10, 678, 35);
+		topPanel.add(categoryLabel);
 		
 		JButton memberInfoButton = new JButton("회원정보");
 		memberInfoButton.addMouseListener(new MouseAdapter() {
@@ -153,11 +153,11 @@ public class PostCategory extends JFrame {
 		writeButton.setBounds(716, 10, 120, 72);
 		topPanel.add(writeButton);
 		
-		JLabel juniorCategoryLabel = new JLabel(category == null ? "전체게시글" : category.getCategoryName());
-		juniorCategoryLabel.setForeground(new Color(70, 70, 70));
-		juniorCategoryLabel.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 14));
-		juniorCategoryLabel.setBounds(12, 46, 678, 20);
-		topPanel.add(juniorCategoryLabel);
+//		JLabel juniorCategoryLabel = new JLabel(category == null ? "전체게시글" : category.getCategoryName());
+//		juniorCategoryLabel.setForeground(new Color(70, 70, 70));
+//		juniorCategoryLabel.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 14));
+//		juniorCategoryLabel.setBounds(12, 46, 678, 20);
+//		topPanel.add(juniorCategoryLabel);
 		
 		JPanel bodyPanel = new JPanel();
 		bodyPanel.setBackground(new Color(245, 245, 245));
@@ -205,9 +205,9 @@ public class PostCategory extends JFrame {
 //		disposePage(this);
 //	}
 	
-	private void disposePage(JFrame page) {
-		page.dispose();
-	}
+//	private void disposePage(JFrame page) {
+//		page.dispose();
+//	}
 
 
 }

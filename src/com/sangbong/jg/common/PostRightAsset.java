@@ -26,6 +26,7 @@ public class PostRightAsset {
 	 * Comment : 게시글들을 최신 등록순으로 볼 수 있는 전체 페이지를 구현 
 	 * History
 	 * 2023/02/23 (신예찬) 최초 작성. 우측 카테고리, 로고 등의 에셋을 별도의 클래스로 분리함. 분리한 클래스는 common폴더의 PostRightAsset 클래스에서 메소드 호출시 받아올 수 있음
+	 * 2023/02/25 (신예찬) 전체 게시글 이동, 
 	 * </pre>
 	 * 
 	 * @author 신예찬
