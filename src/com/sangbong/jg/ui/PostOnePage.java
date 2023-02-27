@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,10 +20,10 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+import com.sangbong.jg.category.controller.CategoryController;
 import com.sangbong.jg.common.PostRightAsset;
 import com.sangbong.jg.img.controller.ImgController;
 import com.sangbong.jg.member.controller.MemberInfoController;
-
 import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.ImgDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
@@ -233,7 +234,7 @@ public class PostOnePage extends JFrame {
 		
 		/*==============================================================================================================================*/
 		System.out.println("준비");
-		System.out.println("size : " + imgList.size() +"\nurl : " + imgList.get(0).getImgUrl() );
+		
 		imgLabel = new JLabel("image");
 		if(imgList != null && imgList.size() > 0) {
 			System.out.println("이미지 넣기");
@@ -256,7 +257,7 @@ public class PostOnePage extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if(imgList != null && imgList.size() > 0) {
 					
-					inputLabel(imgLabel, imgList.get(0));
+					imgLabel = inputLabel(imgLabel, imgList.get(0));
 				}
 			}
 		});
@@ -271,7 +272,7 @@ public class PostOnePage extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if(imgList != null && imgList.size() > 1) {
 					
-					inputLabel(imgLabel, imgList.get(1));
+					imgLabel = inputLabel(imgLabel, imgList.get(1));
 				}
 			}
 		});
@@ -286,7 +287,7 @@ public class PostOnePage extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if(imgList != null && imgList.size() > 2) {
 					
-					inputLabel(imgLabel, imgList.get(2));
+					imgLabel = inputLabel(imgLabel, imgList.get(2));
 				}
 			}
 		});
@@ -301,7 +302,7 @@ public class PostOnePage extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if(imgList != null && imgList.size() > 3) {
 					
-					inputLabel(imgLabel, imgList.get(3));
+					imgLabel = inputLabel(imgLabel, imgList.get(3));
 				}
 			}
 		});
@@ -316,7 +317,7 @@ public class PostOnePage extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				if(imgList != null && imgList.size() > 4) {
 					
-					inputLabel(imgLabel, imgList.get(4));
+					imgLabel = inputLabel(imgLabel, imgList.get(4));
 				}
 			}
 		});
@@ -345,7 +346,7 @@ public class PostOnePage extends JFrame {
 		
 	}
 	
-	public void inputLabel(JLabel imgLabel, ImgDTO img) {
+	public JLabel inputLabel(JLabel imgLabel, ImgDTO img) {
 		
 		System.out.println("이미지 넣기");
 		ImageIcon icon = new ImageIcon(img.getImgUrl());
@@ -353,7 +354,7 @@ public class PostOnePage extends JFrame {
 		icon = new ImageIcon(image.getScaledInstance(390, 390, Image.SCALE_SMOOTH));
 		imgLabel = new JLabel(icon);
 			
-//		return imgLabel;
+		return imgLabel;
 	}
 }
 
