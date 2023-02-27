@@ -60,9 +60,9 @@
 	 	 WHERE A.EMAIL = #{ email }
 	 </update>
 	 
-	 <delete id="deleteMember" parameterType="hashMap">
-	 	DELETE
-	 	  FROM MEMBER A
+	 <delete id="updateDeacYn" parameterType="hashMap">
+	 	UPDATE MEMBER A
+	 	   SET (A.DEAC_YN, A.DEAC_DATE) = ('Y', SYSDATE)
 	 	 WHERE A.EMAIL = #{ email }
 	 </delete>
 	 

@@ -17,6 +17,18 @@ import com.sangbong.jg.model.dto.MemberDTO;
 import com.sangbong.jg.model.dto.PostDTO;
 import com.sangbong.jg.model.dto.ReportDTO;
 
+/**
+ * <pre>
+ * Class : MyPostPanelMaker
+ * Comment : 회원 자기 자신의 게시글을 조회하는 화면을 위한 패널 생성 및 배치 클래스
+ * History
+ * 2023/02/25 (김유현) 처음 작성함
+ * 2023/02/26 (김유현) 정돈 + 수정
+ * </pre>
+ * @author 김유현
+ * @version 1.1.0
+ * @see MemberPostView
+ * */
 public class MyPostPanelMaker {
 
 public void PanelMaker(MemberDTO loginInfo, JPanel bodyPanel, PostDTO post) {

@@ -14,7 +14,7 @@ public interface MemberInfoMapper {
 
 	int updatePwd(Map<String, String> map);
 
-	int deleteMember(Map<String, String> map);
+	int updateDeacYn(Map<String, String> map);
 
 	int updatePenaltyCnt(Map<String, String> map);
 
