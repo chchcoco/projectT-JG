@@ -121,7 +121,7 @@ public class PostCategory extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				
 				
-//				new MemberInfoView(member).setVisible(true);
+				new MemberInfoView(loginInfo).setVisible(true);
 				
 				dispose();
 			}
