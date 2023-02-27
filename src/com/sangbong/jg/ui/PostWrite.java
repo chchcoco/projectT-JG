@@ -7,9 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -17,15 +17,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import com.sangbong.jg.category.controller.CategoryController;
 import com.sangbong.jg.common.PostRightAsset;
+import com.sangbong.jg.img.controller.ImgController;
+import com.sangbong.jg.img.view.ImgView;
 import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
 import com.sangbong.jg.model.dto.PostDTO;
@@ -37,6 +37,7 @@ import com.sangbong.jg.post.controller.PostNewController;
  * Comment : 게시글 작성 페이지 화면 구현
  * History
  * 2023/02/20 (손동필) 처음 작성함
+ * 2023/02/27 (신예찬) 이미지 등록기능 추가
  * </pre>
  * @author 손동필
  * @version 1.0.0
@@ -52,7 +53,7 @@ public class PostWrite extends JFrame {
 	private JTextField textField_1;
 	private MemberDTO email;
 	private PostRightAsset rightAsset;
-	
+	private List<String> imgUrlList = new ArrayList<>();
 
 	/**
 	 * Launch the application.
@@ -153,11 +154,14 @@ public class PostWrite extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				String str = 
-						JOptionPane.showInputDialog("이미지 경로를 입력하세요");
-						JOptionPane.showMessageDialog(null, str);
-				//경로를 스트링으로 받기 JOptionPanel
-				// 이미지 선택 기능 //
+				String imgUrl = new ImgView().getImgUrl();
+				if (imgUrl != null ? true : false) {
+					if(imgUrlList.size() > 0) {
+						imgUrlList.set(0, imgUrl);
+					} else {
+						imgUrlList.add(imgUrl);
+					}
+				}
 				
 			}
 		});
@@ -168,8 +172,14 @@ public class PostWrite extends JFrame {
 		btnNewButton_2_3_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//경로를 스트링으로 받기 
-				// 이미지 선택 기능 //
+				String imgUrl = new ImgView().getImgUrl();
+				if (imgUrl != null ? true : false) {
+					if(imgUrlList.size() > 1) {
+						imgUrlList.set(1, imgUrl);
+					} else {
+						imgUrlList.add(imgUrl);
+					}
+				}
 			}
 		});
 		btnNewButton_2_3_1.setBounds(204, 353, 180, 130);
@@ -179,9 +189,14 @@ public class PostWrite extends JFrame {
 		btnNewButton_2_3_1_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
-				//경로를 스트링으로 받기 
-				// 이미지 선택 기능 //
+				String imgUrl = new ImgView().getImgUrl();
+				if (imgUrl != null ? true : false) {
+					if(imgUrlList.size() > 2) {
+						imgUrlList.set(2, imgUrl);
+					} else {
+						imgUrlList.add(imgUrl);
+					}
+				}
 			}
 		});
 		btnNewButton_2_3_1_1.setBounds(396, 353, 180, 130);
@@ -191,8 +206,14 @@ public class PostWrite extends JFrame {
 		btnNewButton_2_3_1_2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//경로를 스트링으로 받기 
-				// 이미지 선택 기능 //
+				String imgUrl = new ImgView().getImgUrl();
+				if (imgUrl != null ? true : false) {
+					if(imgUrlList.size() > 3) {
+						imgUrlList.set(3, imgUrl);
+					} else {
+						imgUrlList.add(imgUrl);
+					}
+				}
 			}
 		});
 		btnNewButton_2_3_1_2.setBounds(588, 353, 180, 130);
@@ -202,9 +223,14 @@ public class PostWrite extends JFrame {
 		btnNewButton_2_3_1_3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				//경로를 스트링으로 받기 
-				// 이미지 선택 기능 //
-				
+				String imgUrl = new ImgView().getImgUrl();
+				if (imgUrl != null ? true : false) {
+					if(imgUrlList.size() > 4) {
+						imgUrlList.set(4, imgUrl);
+					} else {
+						imgUrlList.add(imgUrl);
+					}
+				}
 			}
 		});
 		btnNewButton_2_3_1_3.setBounds(780, 353, 180, 130);
@@ -222,9 +248,10 @@ public class PostWrite extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				PostDTO resultPost = new PostNewController().newPost(comboBox.getSelectedItem().toString(), email.getEmail(), textField_1.getText(), textField.getText(), textContext.getText());
+				PostDTO resultPost = new PostNewController().newPost(comboBox.getSelectedItem().toString(), email.getEmail(), textField_1.getText()/*가격*/, textField.getText(), textContext.getText());
 				/*수정 필요*/
-				 boolean result = (resultPost != null)? true : false;
+				boolean isImgUpload = new ImgController().insertImgPost(imgUrlList, resultPost);
+				boolean result = (resultPost != null)&& isImgUpload? true : false;
 				if(result) {
 					JOptionPane.showMessageDialog(null, "등록완료");
 					new PostOnePage(email, resultPost).setVisible(true);

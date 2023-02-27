@@ -21,9 +21,9 @@ public class CategoryController {
 		return category;
 	}
 
-	public CategoryDTO getOneCategoryByCode(String superCategory) {
+	public CategoryDTO getOneCategoryByCode(String categoryCode) {
 		
-		CategoryDTO category = new CategoryService().getOneCategoryByCode(superCategory);
+		CategoryDTO category = new CategoryService().getOneCategoryByCode(categoryCode);
 		
 		return category;
 	}

@@ -29,6 +29,7 @@
 		 	  , A.POST_CONTEXT
 		   FROM POST A
 		  WHERE A.WRITER = #{ email }
+		    AND A.DELETE_YN = 'N'
 		  ORDER BY A.POST_DATE DESC
 	</select>
 
