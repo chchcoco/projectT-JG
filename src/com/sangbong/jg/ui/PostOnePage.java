@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,10 +19,10 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import com.sangbong.jg.category.controller.CategoryController;
 import com.sangbong.jg.common.PostRightAsset;
 import com.sangbong.jg.img.controller.ImgController;
 import com.sangbong.jg.member.controller.MemberInfoController;
+
 import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.ImgDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
@@ -80,10 +79,6 @@ public class PostOnePage extends JFrame {
 		this.loginInfo = loginInfo;
 		List<ImgDTO> imgList = new ImgController().getAllImgByPost(postDTO);
 		
-		/* 테스트용 임시 박멍멍 */
-//		MemberDTO member = new MemberDTO("mung@gmail.com", "12345", "박멍멍", 0, 'Y', 'N', null, null, "MEMBER");
-//		String testEmail = "mung@gmail.com";
-		
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
@@ -98,34 +93,6 @@ public class PostOnePage extends JFrame {
 		rightAsset = new PostRightAsset(loginInfo);
 		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
-		
-//		JPanel ctgPanel = new JPanel();
-//		ctgPanel.setBackground(new Color(245, 245, 245));
-//		ctgPanel.setBounds(0, 0, 248, 681);
-//		contentPane.add(ctgPanel);
-//		ctgPanel.setLayout(null);
-//		
-//		JLabel writeReportLabel = new JLabel("신고글 작성하기");
-//		writeReportLabel.setBounds(24, 630, 200, 28);
-//		writeReportLabel.setForeground(new Color(255, 0, 0));
-//		writeReportLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
-//		writeReportLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
-//		ctgPanel.add(writeReportLabel);
-//		
-//		JScrollPane scrollPane = new JScrollPane();
-//		scrollPane.setBounds(12, 154, 224, 456);
-//		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-//		ctgPanel.add(scrollPane);
-//		
-//		JLabel titleLabel = new JLabel("New label");
-//		titleLabel.setBounds(24, 10, 204, 67);
-//		titleLabel.setIcon(new ImageIcon("images/title.png"));
-//		ctgPanel.add(titleLabel);
-//		
-//		JLabel viewAllLabel = new JLabel("전체 게시판");
-//		viewAllLabel.setBounds(27, 111, 200, 33);
-//		viewAllLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
-//		ctgPanel.add(viewAllLabel);
 		
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground(new Color(255, 255, 255));
@@ -154,7 +121,9 @@ public class PostOnePage extends JFrame {
 				if(loginInfo.getEmail().equals(postDTO.getWriter())) {
 					new PostDelete(loginInfo, postDTO).setVisible(true);
 					dispose();
-				} else {
+
+				}  else {
+
 					JOptionPane.showMessageDialog(null, "회원님이 작성한 글이 아닙니다.",
 							"삭제할 권한이 없습니다.", JOptionPane.DEFAULT_OPTION);
 				}
@@ -168,9 +137,9 @@ public class PostOnePage extends JFrame {
 		
 		JButton editButton = new JButton("수정");
 		editButton.addMouseListener(new MouseAdapter() {
-			
 			@Override
 			public void mouseClicked(MouseEvent e) {
+
 				if(loginInfo.getEmail().equals(postDTO.getWriter())) {
 					new PostEdit(loginInfo, postDTO).setVisible(true);
 					dispose();
@@ -178,6 +147,7 @@ public class PostOnePage extends JFrame {
 					JOptionPane.showMessageDialog(null, "회원님이 작성한 글이 아닙니다.",
 							"수정할 권한이 없습니다.", JOptionPane.DEFAULT_OPTION);
 				}
+
 			}
 		});
 		editButton.addActionListener(new ActionListener() {

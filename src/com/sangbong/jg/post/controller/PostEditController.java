@@ -4,6 +4,9 @@ import javax.swing.JOptionPane;
 
 import com.sangbong.jg.category.controller.CategoryController;
 import com.sangbong.jg.model.dto.CategoryDTO;
+
+import com.sangbong.jg.model.dto.MemberDTO;
+
 import com.sangbong.jg.model.dto.PostDTO;
 import com.sangbong.jg.post.model.service.PostEditService;
 

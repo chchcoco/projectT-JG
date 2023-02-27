@@ -23,7 +23,7 @@
 		      , A.POST_CONTEXT = #{postContext}
 		  WHERE A.POST_CODE = #{postCode}
 	</update>
-	
+
 	<select id="postGetByCode" parameterType="com.sangbong.jg.model.dto.PostDTO" resultMap="postResultMap">
 		SELECT
 		       A.POST_CODE

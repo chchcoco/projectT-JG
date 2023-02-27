@@ -133,14 +133,18 @@ public class PostEdit extends JFrame {
 		List<CategoryDTO> categoryList = new CategoryController().getCategoryList();
 
 		String[] sList = new String[categoryList.size()];
+
 		for (int i = 0; i < sList.length; i++) {
 			if (categoryList.get(i).getCategoryCode().equals(postInfo.getCategoryCode())) {
+
 				index = i;
 			}
 			sList[i] = categoryList.get(i).getCategoryName();
 		}
 
+
 		JComboBox comboBox = new JComboBox(sList);
+
 		comboBox.setSelectedIndex(index);
 //		comboBox.setModel(new DefaultComboBoxModel(new String[] {" 등록된 카테고리"}));
 		comboBox.setToolTipText("");
@@ -289,6 +293,7 @@ public class PostEdit extends JFrame {
 						textField_1.getText(), textField.getText(), textContext.getText(), postInfo);
 				boolean isImgUpload = new ImgController().insertImgPost(imgUrlList, postInfo);
 				boolean result = (resultPost != null)&& isImgUpload ? true : false;
+
 				/**/
 				if (result) {
 					JOptionPane.showMessageDialog(null, "수정완료");
