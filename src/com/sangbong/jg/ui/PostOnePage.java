@@ -57,19 +57,19 @@ public class PostOnePage extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PostOnePage frame = new PostOnePage(null, null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					PostOnePage frame = new PostOnePage(null, null);
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
@@ -91,7 +91,7 @@ public class PostOnePage extends JFrame {
 		contentPane.setLayout(null);
 		
 		
-		rightAsset = new PostRightAsset(loginInfo);
+		rightAsset = new PostRightAsset(loginInfo, this);
 		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
 		
@@ -331,18 +331,25 @@ public class PostOnePage extends JFrame {
 		backButton.setHorizontalAlignment(SwingConstants.CENTER);
 		backButton.setBounds(454, 456, 100, 27);
 		bodyPanel.add(backButton);
+		backButton.addMouseListener(new MouseAdapter() {
+
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+
+		});
 		
-		JLabel nextButton = new JLabel("다음 페이지  >");
-		nextButton.setHorizontalAlignment(SwingConstants.RIGHT);
-		nextButton.setFont(new Font("Dialog", Font.PLAIN, 20));
-		nextButton.setBounds(563, 456, 128, 27);
-		bodyPanel.add(nextButton);
-		
-		JLabel previousButton = new JLabel("<  이전 페이지");
-		previousButton.setHorizontalAlignment(SwingConstants.LEFT);
-		previousButton.setFont(new Font("Dialog", Font.PLAIN, 20));
-		previousButton.setBounds(318, 456, 128, 27);
-		bodyPanel.add(previousButton);
+//		JLabel nextButton = new JLabel("다음 페이지  >");
+//		nextButton.setHorizontalAlignment(SwingConstants.RIGHT);
+//		nextButton.setFont(new Font("Dialog", Font.PLAIN, 20));
+//		nextButton.setBounds(563, 456, 128, 27);
+//		bodyPanel.add(nextButton);
+//		
+//		JLabel previousButton = new JLabel("<  이전 페이지");
+//		previousButton.setHorizontalAlignment(SwingConstants.LEFT);
+//		previousButton.setFont(new Font("Dialog", Font.PLAIN, 20));
+//		previousButton.setBounds(318, 456, 128, 27);
+//		bodyPanel.add(previousButton);
 		
 	}
 	

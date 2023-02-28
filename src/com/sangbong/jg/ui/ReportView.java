@@ -60,6 +60,7 @@ public class ReportView extends JFrame {
 	/**
 	 * Windowbuilder GUI Plugin을 사용하여 만들어졌다. open with > windowbuilder 선택하여 하단 디자인 탭 참고할 것! 
 	 */
+	private ReportView view;
 	private JPanel contentPane;
 	private PostRightAsset rightAsset;
 	private MemberDTO loginInfo;
@@ -103,7 +104,7 @@ public class ReportView extends JFrame {
 		contentPane.setLayout(null);
 
 		/* 우측의 카테고리를 출력하는 메소드. */
-		rightAsset = new PostRightAsset(loginInfo);
+		rightAsset = new PostRightAsset(loginInfo, this);
 		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
 		

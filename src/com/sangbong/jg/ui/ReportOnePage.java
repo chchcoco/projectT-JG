@@ -87,7 +87,7 @@ public class ReportOnePage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		rightAsset = new PostRightAsset(loginInfo);
+		rightAsset = new PostRightAsset(loginInfo, this);
 		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
 
@@ -263,30 +263,30 @@ public class ReportOnePage extends JFrame {
 
 		});
 
-		JLabel nextButton = new JLabel("다음 페이지  >");
-		nextButton.setHorizontalAlignment(SwingConstants.RIGHT);
-		nextButton.setFont(new Font("Dialog", Font.PLAIN, 20));
-		nextButton.setBounds(563, 456, 128, 27);
-		bodyPanel.add(nextButton);
-		nextButton.addMouseListener(new MouseAdapter() {
-
-			public void mouseClicked(MouseEvent e) {
-			}
-
-		});
-
-		JLabel previousButton = new JLabel("<  이전 페이지");
-		previousButton.setHorizontalAlignment(SwingConstants.LEFT);
-		previousButton.setFont(new Font("Dialog", Font.PLAIN, 20));
-		previousButton.setBounds(318, 456, 128, 27);
-		bodyPanel.add(previousButton);
-		previousButton.addMouseListener(new MouseAdapter() {
-
-			public void mouseClicked(MouseEvent e) {
-
-			}
-
-		});
+//		JLabel nextButton = new JLabel("다음 페이지  >");
+//		nextButton.setHorizontalAlignment(SwingConstants.RIGHT);
+//		nextButton.setFont(new Font("Dialog", Font.PLAIN, 20));
+//		nextButton.setBounds(563, 456, 128, 27);
+//		bodyPanel.add(nextButton);
+//		nextButton.addMouseListener(new MouseAdapter() {
+//
+//			public void mouseClicked(MouseEvent e) {
+//			}
+//
+//		});
+//
+//		JLabel previousButton = new JLabel("<  이전 페이지");
+//		previousButton.setHorizontalAlignment(SwingConstants.LEFT);
+//		previousButton.setFont(new Font("Dialog", Font.PLAIN, 20));
+//		previousButton.setBounds(318, 456, 128, 27);
+//		bodyPanel.add(previousButton);
+//		previousButton.addMouseListener(new MouseAdapter() {
+//
+//			public void mouseClicked(MouseEvent e) {
+//
+//			}
+//
+//		});
 
 		JLabel authorEmailLabel_1 = new JLabel("신고대상 이메일");
 		authorEmailLabel_1.setHorizontalAlignment(SwingConstants.LEFT);

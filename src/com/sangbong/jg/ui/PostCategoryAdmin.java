@@ -50,19 +50,19 @@ public class PostCategoryAdmin extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PostCategoryAdmin frame = new PostCategoryAdmin(null, null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					PostCategoryAdmin frame = new PostCategoryAdmin(null, null);
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
@@ -83,7 +83,7 @@ public class PostCategoryAdmin extends JFrame {
 		contentPane.setLayout(null);
 		
 		/* 우측의 카테고리를 출력하는 메소드. */
-		rightAsset = new PostRightAsset(loginInfo);
+		rightAsset = new PostRightAsset(loginInfo, this);
 		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
 
@@ -105,14 +105,13 @@ public class PostCategoryAdmin extends JFrame {
 		superCategoryLabel.setBounds(12, 10, 678, 35);
 		topPanel.add(superCategoryLabel);
 		
-		JButton siteManagementButton = new JButton("사이트 관리");
+		JButton siteManagementButton = new JButton("신고글 관리");
 		siteManagementButton.addMouseListener(new MouseAdapter() {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-//				new MemberInfoView(member).setVisible(true);
-				
+				new ReportView(loginInfo).setVisible(true);
 				dispose();
 			}
 		});
@@ -157,7 +156,7 @@ public class PostCategoryAdmin extends JFrame {
 		
 		
 		/* 게시글을 추가하는 메소드 */
-		postListReturn = new PostListReturn(loginInfo);
+		postListReturn = new PostListReturn(loginInfo, this);
 		
 		if(this.category == null) {
 			postList = postListReturn.getAllPost();
