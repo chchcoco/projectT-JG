@@ -34,6 +34,7 @@ public class MemberController {
 				JOptionPane.showMessageDialog(null, "입력한 비밀번호와 비밀번호 확인이 일치하지 않습니다.",
 						"비밀번호 재입력!", JOptionPane.DEFAULT_OPTION);
 			}
+			
 		} else {
 			JOptionPane.showMessageDialog(null, "이메일, 닉네임, 비밀번호 중 하나를 비워두었습니다.",
 					"모든 항목을 작성해주세요", JOptionPane.DEFAULT_OPTION);
@@ -53,9 +54,6 @@ public class MemberController {
 		MemberDTO result = memberLoginService.loginCheck(member);
 		
 		return result;
-
-		//return result;
-
 	}
 
 }

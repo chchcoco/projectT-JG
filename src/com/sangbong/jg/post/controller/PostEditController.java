@@ -35,11 +35,11 @@ public class PostEditController {
 			result = postEditService.postEdit(post);
 			
 		} else {
+			
 			JOptionPane.showMessageDialog(null, "필수정보를 모두 입력해야합니다.");
 		}
 		
 		return result;
 	}
-
 }
 

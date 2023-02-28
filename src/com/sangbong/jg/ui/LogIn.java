@@ -1,6 +1,7 @@
 package com.sangbong.jg.ui;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -19,6 +20,8 @@ import javax.swing.SwingConstants;
 import com.sangbong.jg.common.HintTextField;
 import com.sangbong.jg.member.controller.MemberController;
 import com.sangbong.jg.model.dto.MemberDTO;
+
+import static com.sangbong.jg.common.SetFont.notoSansRegular;
 
 /**
  * <pre>
@@ -48,15 +51,16 @@ public class LogIn extends JFrame {
 		setSize(1280, 720);
 
 		JPanel panel = new JPanel();
-		//      panel.setSize(1280, 720);
 
 		lblNewLabel.setBounds(340, 0, 600, 150);
 		lblNewLabel.setIcon(new ImageIcon("images/title.png"));
 
 		JLabel label = new JLabel("이메일");
 		label.setBounds(390, 229, 53, 15);
+		label.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 12f));
 		JLabel pswrd = new JLabel("비밀번호");
 		pswrd.setBounds(390, 322, 69, 15);
+		pswrd.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 12f));
 		emailText.setToolTipText("이메일");
 		emailText.setBounds(390, 254, 500, 40);
 
@@ -64,11 +68,7 @@ public class LogIn extends JFrame {
 		pwText.setBounds(390, 347, 500, 40);
 
 		JButton logBtn = new JButton("로그인");
-		//      logBtn.addActionListener(new ActionListener() {
-		//         public void actionPerformed(ActionEvent e) {
-		//         }
-		//      });
-
+		logBtn.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 14f));
 		logBtn.setBackground(new Color(128, 255, 128));
 
 		logBtn.addMouseListener(new MouseAdapter() {
@@ -87,13 +87,12 @@ public class LogIn extends JFrame {
 					System.out.println(2);
 					JOptionPane.showMessageDialog(null, "이메일 또는 비밀번호를 입력 하셔야 됩니다.",
 							"아이디나 비밀번호를 입력!", JOptionPane.DEFAULT_OPTION);
-					//               JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
+					
 					return;
 				} else { 
 					System.out.println(3);
 					MemberDTO loginInfo = memberController.loginMember(email, pw);
 					boolean result = (loginInfo != null)? true: false;   
-					//               System.out.println(email + pw);
 
 					if(result && (loginInfo.getMemType().equals("MEMBER"))){
 						new PostCategory(loginInfo).setVisible(true);	
@@ -105,17 +104,7 @@ public class LogIn extends JFrame {
 						JOptionPane.showMessageDialog(null, "회원가입 후 로그인해주세요!", "로그인 실패", JOptionPane.DEFAULT_OPTION);
 						System.out.println("로그인정보가 일치하지 않습니다.");
 					}
-
 				}
-
-				//            if(email.equals("test") && pw.equals("test1")) {
-				//
-				//               JOptionPane.showMessageDialog(null, "로그인 성공", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
-				//
-				//               return;
-				//
-				//               }
-
 			}
 		});
 
@@ -128,41 +117,10 @@ public class LogIn extends JFrame {
 		panel.add(pwText);
 		panel.add(logBtn);
 
-
-		//      
-		//      loginBtn.addMouseListener(new MouseAdapter(){
-		//         
-		//         @Override
-		//         public void mousePressed (MouseEvent e) {
-		//            
-		//            String email = emailText.getText()/*.trim()*/;
-		//            String pw = pwText.getText()/*.trim()*/;
-		//            
-		//            System.out.println(email + 0 + pw);
-		//            
-		//            
-		//            if(email.equals("") || pw.equals("")) {
-		//               JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호를 입력 하셔야 됩니다.",
-		//               "아이디나 비밀번호를 입력!", JOptionPane.DEFAULT_OPTION);
-		//               return;
-		//            }
-		//            
-		//            if(email.equals("test") && pw.equals("test1")) {
-		//
-		//               JOptionPane.showMessageDialog(null, "로그인 성공", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
-		//
-		//               return;
-		//
-		//            }
-		//            
-		//            JOptionPane.showMessageDialog(null, "로그인 실패", "로그인 확인!", JOptionPane.DEFAULT_OPTION);
-		//            
-		//         }
-		//      });
-
 		getContentPane().add(panel);
 
 		JButton btnNewButton = new JButton("회원가입");
+		btnNewButton.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 14f));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -180,9 +138,4 @@ public class LogIn extends JFrame {
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
-
-	//   public static void main(String[] args) {
-	//      new LogIn();
-	//   }
-
 }

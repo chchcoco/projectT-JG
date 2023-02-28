@@ -13,7 +13,6 @@ public class MemberInfoController {
 
 	private final MemberInfoService memberInfoService;
 	private final PostSearchService postSearchService;
-//	private MemberInfoView memberInfoView;
 	
 	public MemberInfoController() {
 		this.memberInfoService = new MemberInfoService();
@@ -25,7 +24,6 @@ public class MemberInfoController {
 		String email = member.getEmail();
 		
 		MemberDTO memberFound = memberInfoService.findMemberInfo(email);
-//		this.memberInfoView = new MemberInfoView(memberFound);
 		
 		return memberFound;
 	}
@@ -72,7 +70,4 @@ public class MemberInfoController {
 		
 		return myPostList;
 	}
-	
-	
-	
 }

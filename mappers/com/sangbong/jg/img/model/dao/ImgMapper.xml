@@ -9,7 +9,7 @@
 	 	<result property="altText" column="ALT_TEXT"/>
 	 </resultMap>
 
-	<select id="selectAllByPost" parameterType="string" resultMap="imgResultMap">
+	<select id="selectAllByPost" parameterType="string" resultMap="imgResultMap"> 
 		SELECT
 		       A.IMG_CODE
 		     , A.POST_CODE
