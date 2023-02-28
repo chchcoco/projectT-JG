@@ -146,7 +146,7 @@ public class PostWrite extends JFrame {
 		textContext.setFont(new Font("나눔고딕", Font.PLAIN, 15));
 		textContext.setText("");
 		textContext.setLineWrap(true);
-		textContext.setBounds(12, 10, 948, 287);
+		textContext.setBounds(12, 10, 948, 381);
 		bodyPanel.add(textContext);
 		
 		JButton btnNewButton_2_3 = new JButton("image");
@@ -165,80 +165,12 @@ public class PostWrite extends JFrame {
 				
 			}
 		});
-		btnNewButton_2_3.setBounds(12, 353, 180, 130);
+		btnNewButton_2_3.setBounds(793, 421, 167, 37);
 		bodyPanel.add(btnNewButton_2_3);
-		
-		JButton btnNewButton_2_3_1 = new JButton("image");
-		btnNewButton_2_3_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String imgUrl = new ImgView().getImgUrl();
-				if (imgUrl != null ? true : false) {
-					if(imgUrlList.size() > 1) {
-						imgUrlList.set(1, imgUrl);
-					} else {
-						imgUrlList.add(imgUrl);
-					}
-				}
-			}
-		});
-		btnNewButton_2_3_1.setBounds(204, 353, 180, 130);
-		bodyPanel.add(btnNewButton_2_3_1);
-		
-		JButton btnNewButton_2_3_1_1 = new JButton("image");
-		btnNewButton_2_3_1_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String imgUrl = new ImgView().getImgUrl();
-				if (imgUrl != null ? true : false) {
-					if(imgUrlList.size() > 2) {
-						imgUrlList.set(2, imgUrl);
-					} else {
-						imgUrlList.add(imgUrl);
-					}
-				}
-			}
-		});
-		btnNewButton_2_3_1_1.setBounds(396, 353, 180, 130);
-		bodyPanel.add(btnNewButton_2_3_1_1);
-		
-		JButton btnNewButton_2_3_1_2 = new JButton("image");
-		btnNewButton_2_3_1_2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String imgUrl = new ImgView().getImgUrl();
-				if (imgUrl != null ? true : false) {
-					if(imgUrlList.size() > 3) {
-						imgUrlList.set(3, imgUrl);
-					} else {
-						imgUrlList.add(imgUrl);
-					}
-				}
-			}
-		});
-		btnNewButton_2_3_1_2.setBounds(588, 353, 180, 130);
-		bodyPanel.add(btnNewButton_2_3_1_2);
-		
-		JButton btnNewButton_2_3_1_3 = new JButton("image");
-		btnNewButton_2_3_1_3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String imgUrl = new ImgView().getImgUrl();
-				if (imgUrl != null ? true : false) {
-					if(imgUrlList.size() > 4) {
-						imgUrlList.set(4, imgUrl);
-					} else {
-						imgUrlList.add(imgUrl);
-					}
-				}
-			}
-		});
-		btnNewButton_2_3_1_3.setBounds(780, 353, 180, 130);
-		bodyPanel.add(btnNewButton_2_3_1_3);
 		
 		textField_1 = new JTextField();
 		textField_1.setText("가격");
-		textField_1.setBounds(12, 308, 370, 37);
+		textField_1.setBounds(12, 421, 371, 37);
 		bodyPanel.add(textField_1);
 		textField_1.setColumns(10);
 		

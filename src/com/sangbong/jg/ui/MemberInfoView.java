@@ -67,35 +67,35 @@ public class MemberInfoView extends JFrame {
 		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
 
-		JLabel writeReportLabel = new JLabel("신고글 작성하기");
-		writeReportLabel.setBounds(24, 630, 200, 28);
-		writeReportLabel.setForeground(new Color(255, 0, 0));
-		//		writeReportLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
-		writeReportLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
-		ctgPanel.add(writeReportLabel);
-
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 154, 224, 456);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		ctgPanel.add(scrollPane);
-
-		JLabel titleLabel = new JLabel("New label");
-		titleLabel.setBounds(24, 10, 204, 67);
-		titleLabel.setIcon(new ImageIcon("images//title.png"));
-		ctgPanel.add(titleLabel);
-		titleLabel.addMouseListener(new MouseAdapter() {
-
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				new PostCategory(loginInfo).setVisible(true);
-				dispose();
-			}
-		});
-
-		JLabel viewAllLabel = new JLabel("전체 게시판");
-		viewAllLabel.setBounds(27, 111, 200, 33);
-		viewAllLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
-		ctgPanel.add(viewAllLabel);
+//		JLabel writeReportLabel = new JLabel("신고글 작성하기");
+//		writeReportLabel.setBounds(24, 630, 200, 28);
+//		writeReportLabel.setForeground(new Color(255, 0, 0));
+//		//		writeReportLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
+//		writeReportLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
+//		ctgPanel.add(writeReportLabel);
+//
+//		JScrollPane scrollPane = new JScrollPane();
+//		scrollPane.setBounds(12, 154, 224, 456);
+//		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+//		ctgPanel.add(scrollPane);
+//
+//		JLabel titleLabel = new JLabel("New label");
+//		titleLabel.setBounds(24, 10, 204, 67);
+//		titleLabel.setIcon(new ImageIcon("images//title.png"));
+//		ctgPanel.add(titleLabel);
+//		titleLabel.addMouseListener(new MouseAdapter() {
+//
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				new PostCategory(loginInfo).setVisible(true);
+//				dispose();
+//			}
+//		});
+//
+//		JLabel viewAllLabel = new JLabel("전체 게시판");
+//		viewAllLabel.setBounds(27, 111, 200, 33);
+//		viewAllLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
+//		ctgPanel.add(viewAllLabel);
 
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground(new Color(255, 255, 255));
@@ -197,7 +197,7 @@ public class MemberInfoView extends JFrame {
 		editNameButton.setForeground(new Color(70, 70, 70));
 		editNameButton.setFont(new Font("Dialog", Font.PLAIN, 20));
 		editNameButton.setBackground(new Color(212, 212, 212));
-		editNameButton.setBounds(824, 149, 144, 60);
+		editNameButton.setBounds(741, 149, 227, 60);
 		bodyPanel.add(editNameButton);
 		editNameButton.addActionListener(new ActionListener() {
 
@@ -221,7 +221,7 @@ public class MemberInfoView extends JFrame {
 		editPwdButton.setForeground(new Color(70, 70, 70));
 		editPwdButton.setFont(new Font("Dialog", Font.PLAIN, 20));
 		editPwdButton.setBackground(new Color(212, 212, 212));
-		editPwdButton.setBounds(811, 244, 157, 60);
+		editPwdButton.setBounds(741, 244, 227, 60);
 		bodyPanel.add(editPwdButton);
 		editPwdButton.addActionListener(new ActionListener() {
 
@@ -260,7 +260,7 @@ public class MemberInfoView extends JFrame {
 		toMemberPostViewButton.setForeground(new Color(70, 70, 70));
 		toMemberPostViewButton.setFont(new Font("Dialog", Font.PLAIN, 20));
 		toMemberPostViewButton.setBackground(new Color(212, 212, 212));
-		toMemberPostViewButton.setBounds(757, 457, 209, 60);
+		toMemberPostViewButton.setBounds(743, 339, 225, 60);
 		bodyPanel.add(toMemberPostViewButton);
 		toMemberPostViewButton.addActionListener(new ActionListener() {
 			
