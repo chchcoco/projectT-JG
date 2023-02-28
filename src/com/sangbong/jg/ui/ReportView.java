@@ -1,12 +1,9 @@
 package com.sangbong.jg.ui;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.sangbong.jg.common.PostListReturn;
 import com.sangbong.jg.common.PostRightAsset;
 import com.sangbong.jg.member.controller.MemberInfoController;
 import com.sangbong.jg.model.dto.MemberDTO;
@@ -15,30 +12,18 @@ import com.sangbong.jg.report.controller.ReportController;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Color;
 import java.awt.Component;
 
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
-import javax.swing.ScrollPaneConstants;
 
-import static com.sangbong.jg.common.SetFont.notoSansRegular;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.FlowLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -50,6 +35,7 @@ import javax.swing.BoxLayout;
  * History
  * 2023/02/16 (김유현) 처음 작성함
  * 2023/02/17 (김유현) 프로젝트 내부의 폰트, 이미지 파일과 연결
+ * 2023/02/28 (김유현) 마지막 정리
  * </pre>
  * @author 김유현
  * @version 1.1.0
@@ -60,37 +46,16 @@ public class ReportView extends JFrame {
 	/**
 	 * Windowbuilder GUI Plugin을 사용하여 만들어졌다. open with > windowbuilder 선택하여 하단 디자인 탭 참고할 것! 
 	 */
-	private ReportView view;
 	private JPanel contentPane;
 	private PostRightAsset rightAsset;
 	private MemberDTO loginInfo;
 	
-//	private static MemberDTO loginInfo = new MemberDTO("nyang@gmail.com", "12345", "김냥냥", 0, 'Y', 'N', null, null, "ADMIN");
-
-	/**
-	 * Launch the application.
-	 */
-//		public static void main(String[] args) {
-//			
-//			EventQueue.invokeLater(new Runnable() {
-//				public void run() {
-//					try {
-//						ReportView frame = new ReportView(loginInfo);
-//						frame.setVisible(true);
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//					}
-//				}
-//			});
-//		}
-
 	/**
 	 * Create the frame.
 	 */
 	public ReportView(MemberDTO loginInfo) {
 		
 		this.loginInfo = loginInfo;
-
 
 		/* 기본 프레임 생성 */
 		setBackground(new Color(255, 255, 255));
@@ -140,7 +105,6 @@ public class ReportView extends JFrame {
 					dispose();
 				}
 			}
-
 		});
 
 		JLabel myName = new JLabel("ADMIN " + loginInfo.getMemName() + " 님");

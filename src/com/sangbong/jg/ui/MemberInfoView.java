@@ -6,7 +6,6 @@ import javax.swing.border.EmptyBorder;
 
 import com.sangbong.jg.common.PostRightAsset;
 import com.sangbong.jg.member.controller.MemberInfoController;
-import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
 import com.sangbong.jg.model.dto.PostDTO;
 
@@ -46,23 +45,6 @@ public class MemberInfoView extends JFrame {
 	 */
 	private JPanel contentPane;
 	private PostRightAsset rightAsset;
-
-	/**
-	 * Launch the application.
-	 */
-	//	public static void main(String[] args) {
-	//		
-	//		EventQueue.invokeLater(new Runnable() {
-	//			public void run() {
-	//				try {
-	//					MemberInfoView frame = new MemberInfoView();
-	//					frame.setVisible(true);
-	//				} catch (Exception e) {
-	//					e.printStackTrace();
-	//				}
-	//			}
-	//		});
-	//	}
 
 	/**
 	 * Create the frame.
@@ -108,7 +90,6 @@ public class MemberInfoView extends JFrame {
 				new PostCategory(loginInfo).setVisible(true);
 				dispose();
 			}
-
 		});
 
 		JLabel viewAllLabel = new JLabel("전체 게시판");
@@ -233,7 +214,6 @@ public class MemberInfoView extends JFrame {
 				} else {
 					JOptionPane.showMessageDialog(null, "닉네임 변경에 실패했습니다.", "닉네임 변경 실패", JOptionPane.WARNING_MESSAGE);
 				}
-
 			}
 		});
 
@@ -266,9 +246,6 @@ public class MemberInfoView extends JFrame {
 				} else {
 					JOptionPane.showMessageDialog(null, "비밀번호가 틀립니다.", "비밀번호 불일치", JOptionPane.WARNING_MESSAGE);
 				}
-
-
-
 			}
 		});
 
@@ -299,10 +276,7 @@ public class MemberInfoView extends JFrame {
 				} else {
 					JOptionPane.showMessageDialog(null, "아직 게시글을 작성하지 않으셨습니다.", "게시글 존재하지 않음", JOptionPane.INFORMATION_MESSAGE);
 				}
-
-				
 			}
 		});
-
 	}
 }

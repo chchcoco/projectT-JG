@@ -334,6 +334,7 @@ public class PostOnePage extends JFrame {
 		backButton.addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent e) {
+				new PostCategory(loginInfo, ctgDTO).setVisible(true);;
 				dispose();
 			}
 

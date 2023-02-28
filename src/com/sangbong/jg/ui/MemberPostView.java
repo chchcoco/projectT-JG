@@ -1,8 +1,5 @@
 package com.sangbong.jg.ui;
 
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -12,40 +9,21 @@ import com.sangbong.jg.common.PostRightAsset;
 import com.sangbong.jg.member.controller.MemberInfoController;
 import com.sangbong.jg.model.dto.MemberDTO;
 import com.sangbong.jg.model.dto.PostDTO;
-import com.sangbong.jg.model.dto.ReportDTO;
-import com.sangbong.jg.report.controller.ReportController;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
 import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.GridLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.ScrollPaneConstants;
 
 import static com.sangbong.jg.common.SetFont.notoSansRegular;
-import javax.swing.JEditorPane;
 
 /**
  * <pre>
@@ -66,26 +44,6 @@ public class MemberPostView extends JFrame {
 	private JPanel contentPane;
 	private PostRightAsset rightAsset;
 	private PostListReturn postListReturn;
-
-	/* 테스트 */	
-//	static MemberDTO loginInfo = new MemberDTO("nyang@gmail.com", "12345", "김냥냥", 0, 'Y', 'N', null, null, "ADMIN");
-
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					MemberPostView frame = new MemberPostView(loginInfo);
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
 	/**
 	 * Create the frame.
