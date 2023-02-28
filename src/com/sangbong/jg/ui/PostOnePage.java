@@ -91,7 +91,7 @@ public class PostOnePage extends JFrame {
 		contentPane.setLayout(null);
 		
 		
-		rightAsset = new PostRightAsset(loginInfo);
+		rightAsset = new PostRightAsset(loginInfo, this);
 		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
 		

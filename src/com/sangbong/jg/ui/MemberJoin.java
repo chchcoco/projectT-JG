@@ -39,14 +39,10 @@ public class MemberJoin extends JFrame{
 	public MemberJoin()  {
 		setResizable(false);
 		setSize(1280, 720);
-//		this.setL
-//		JPanel panel = new Jpanel();
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setSize(1280, 720);
-		
-//		JButton logo = new JButton("로고");
 		
 		JLabel logo = new JLabel();
 		logo.setIcon(new ImageIcon("images//title.png"));
@@ -54,7 +50,6 @@ public class MemberJoin extends JFrame{
 		logo.setLocation(342, 0);
 		logo.setSize(600, 150);
 		logo.setBackground(Color.GREEN);
-		
 		
 		JLabel email = new JLabel();
 		email.setFont(new Font("굴림", Font.PLAIN, 15));
@@ -103,11 +98,7 @@ public class MemberJoin extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-
-			 
 				boolean result = new MemberController().joinMember(t1.getText(), t2.getText(), pwdField.getPassword(), pwdCheckField.getPassword());
-
-				
 				if(result) {
 					JOptionPane.showMessageDialog(null, "축하합니다",
 							"회원가입에 성공하셨습니다", JOptionPane.DEFAULT_OPTION);
@@ -127,9 +118,6 @@ public class MemberJoin extends JFrame{
 		panel.add(join);
 		
 		getContentPane().add(panel);
-		
-		
-		
 		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

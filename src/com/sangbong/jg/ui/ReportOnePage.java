@@ -87,7 +87,7 @@ public class ReportOnePage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		rightAsset = new PostRightAsset(loginInfo);
+		rightAsset = new PostRightAsset(loginInfo, this);
 		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
 
