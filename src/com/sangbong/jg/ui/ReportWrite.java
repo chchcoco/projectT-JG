@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
@@ -50,6 +51,7 @@ public class ReportWrite extends JFrame {
 	private MemberDTO email;
 	private MemberDTO loginInfo;
 	private PostRightAsset rightAsset;
+	private List<String> imgUrlList = new ArrayList<>();
 	/**
 	 * Launch the application.
 	 */
@@ -223,7 +225,7 @@ public class ReportWrite extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				ReportDTO resultReport = new ReportNewController().newReport(/*comboBox.getSelectedItem().toString(),*/ loginInfo.getEmail(), /*textField.getText(),*/ textField_1.getText(), comboBox_1.getSelectedItem().toString() ,textContext.getText());
+				ReportDTO resultReport = new ReportNewController().newReport( loginInfo.getEmail(), /* 신고대상 이메일 */textField_1.getText(), comboBox_1.getSelectedItem().toString() ,textContext.getText());
 				/*수정 필요*/
 //				boolean isImgUpload = new ImgController().insertImgPost(imgUrlList, resultPost);
 				boolean result = (resultReport != null)/*&& isImgUpload*/? true : false;
