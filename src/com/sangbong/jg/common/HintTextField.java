@@ -7,76 +7,64 @@ import java.awt.event.FocusEvent;
 
 import javax.swing.JTextField;
 
+import static com.sangbong.jg.common.SetFont.notoSansRegular;
+
 public class HintTextField extends JTextField {
 
-	  Font gainFont = new Font("Tahoma", Font.PLAIN, 11);  //사용자가 입력할때
-	  Font lostFont = new Font("Tahoma", Font.ITALIC, 11); //placeholder 
-	
-	 public HintTextField(final String hint) {  
+//	Font gainFont = new Font("Tahoma", Font.PLAIN, 11);  //사용자가 입력할때
+	Font gainFont = notoSansRegular("Regular").deriveFont(Font.PLAIN, 11f);  //사용자가 입력할때
+//	Font lostFont = new Font("Tahoma", Font.ITALIC, 11); //placeholder 
+	Font lostFont = notoSansRegular("Regular").deriveFont(Font.ITALIC, 11f); //placeholder 
 
-		    setText(hint);  
+	public HintTextField(final String hint) {  
 
-		    setFont(lostFont);  
+		setText(hint);  
 
-		    setForeground(Color.GRAY);  
+		setFont(lostFont);  
 
-		  
+		setForeground(Color.GRAY);  
 
-		    this.addFocusListener(new FocusAdapter() {  
+		this.addFocusListener(new FocusAdapter() {  
 
-		  
+			@Override  
+			public void focusGained(FocusEvent e) {  
 
-		      @Override  
+				if (getText().equals(hint)) {  
 
-		      public void focusGained(FocusEvent e) {  
+					setText("");  
 
-		        if (getText().equals(hint)) {  
+					setFont(gainFont);  
 
-		          setText("");  
+				} else {  
 
-		          setFont(gainFont);  
+					setText(getText());  
 
-		        } else {  
+					setFont(gainFont);  
 
-		          setText(getText());  
+				}  
+			}  
 
-		          setFont(gainFont);  
+			@Override  
+			public void focusLost(FocusEvent e) {  
 
-		        }  
+				if (getText().equals(hint)|| getText().length()==0) {  
 
-		      }  
+					setText(hint);  
 
-		  
+					setFont(lostFont);  
 
-		      @Override  
+					setForeground(Color.GRAY);  
 
-		      public void focusLost(FocusEvent e) {  
+				} else {  
 
-		        if (getText().equals(hint)|| getText().length()==0) {  
+					setText(getText());  
 
-		          setText(hint);  
+					setFont(gainFont);  
 
-		          setFont(lostFont);  
+					setForeground(Color.BLACK);  
 
-		          setForeground(Color.GRAY);  
-
-		        } else {  
-
-		          setText(getText());  
-
-		          setFont(gainFont);  
-
-		          setForeground(Color.BLACK);  
-
-		        }  
-
-		      }  
-
-
-
-		    });  
-
-		  
-
-		  }  
+				}  
+			}  
+		});  
+	}  
 }

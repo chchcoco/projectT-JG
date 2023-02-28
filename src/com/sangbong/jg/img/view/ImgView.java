@@ -36,19 +36,15 @@ public class ImgView {
 			img = "";
 		}
 
-//		System.out.println(img == null ? "null" : img);
-
-		
 		/* 파일 주소를 받아와 images 폴더에 저장하는 코드 */
 		String extension = null;
 		extension =  img.substring(img.indexOf('.')+1);
 		if (canSave) {
-//			System.out.println(1);
+
 			try {
 				BufferedImage image = ImageIO.read(new File(img));
 				
 				File imgFile = new File("images//"+img.substring(img.lastIndexOf("\\")));
-//				System.out.println("images//"+img.substring(img.lastIndexOf("\\")));
 				
 				ImageIO.write(image, extension, imgFile);
 			} catch (MalformedURLException e) {
@@ -69,7 +65,7 @@ public class ImgView {
 	}
 
 	public String getImgUrl() {
-		// TODO Auto-generated method stub
+	
 		JFileChooser ch = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
 		ch.setFileFilter(new FileNameExtensionFilter("img file", "jpg", "jpeg", "png"));
 		ch.setDialogTitle("사진 등록");

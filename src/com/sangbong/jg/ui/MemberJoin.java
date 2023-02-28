@@ -1,5 +1,7 @@
 package com.sangbong.jg.ui;
 
+import static com.sangbong.jg.common.SetFont.notoSansRegular;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -53,6 +55,7 @@ public class MemberJoin extends JFrame{
 		
 		JLabel email = new JLabel();
 		email.setFont(new Font("굴림", Font.PLAIN, 15));
+		email.setFont(notoSansRegular("Regular").deriveFont(Font.PLAIN, 15f));
 		email.setText("이메일");
 		email.setBounds(390, 177, 250, 25);
 		
@@ -61,6 +64,7 @@ public class MemberJoin extends JFrame{
 		
 		JLabel nickname = new JLabel();
 		nickname.setFont(new Font("굴림", Font.PLAIN, 15));
+		nickname.setFont(notoSansRegular("Regular").deriveFont(Font.PLAIN, 15f));
 		nickname.setText("닉네임");
 		nickname.setBounds(390, 276, 250, 25);
 		
@@ -69,6 +73,7 @@ public class MemberJoin extends JFrame{
 		
 		JLabel pwd = new JLabel();
 		pwd.setFont(new Font("굴림", Font.PLAIN, 15));
+		pwd.setFont(notoSansRegular("Regular").deriveFont(Font.PLAIN, 15f));
 		pwd.setText("비밀번호");
 		pwd.setBounds(390, 376, 250, 25);
 		
@@ -77,6 +82,7 @@ public class MemberJoin extends JFrame{
 		
 		JLabel pwdCheck = new JLabel();
 		pwdCheck.setFont(new Font("굴림", Font.PLAIN, 15));
+		pwdCheck.setFont(notoSansRegular("Regular").deriveFont(Font.PLAIN, 15f));
 		pwdCheck.setText("비밀번호 확인");
 		pwdCheck.setBounds(390, 474, 250, 25);
 		
@@ -113,6 +119,7 @@ public class MemberJoin extends JFrame{
 			}
 		});
 		join.setFont(new Font("굴림", Font.PLAIN, 17));
+		join.setFont(notoSansRegular("Regular").deriveFont(Font.PLAIN, 17f));
 		join.setBackground(new Color(128, 255, 128));
 		join.setBounds(365, 600, 550, 50);
 		panel.add(join);

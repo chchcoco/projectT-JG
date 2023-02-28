@@ -17,9 +17,10 @@ import javax.swing.ScrollPaneConstants;
 import com.sangbong.jg.category.controller.CategoryController;
 import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
-import com.sangbong.jg.run.Application;
 import com.sangbong.jg.ui.PostCategory;
 import com.sangbong.jg.ui.ReportWrite;
+
+import static com.sangbong.jg.common.SetFont.notoSansRegular;
 
 /**
  * <pre>
@@ -42,34 +43,35 @@ public class PostRightAsset {
 
 	private MemberDTO loginInfo;
 	private JFrame page;
-	
+
 	public PostRightAsset(MemberDTO loginInfo, JFrame page) {
+
 		this.loginInfo = loginInfo;
 		this.page = page;
 	}
-	
+
 	public JPanel getCtgPanel() {
 
 		JPanel ctgPanel = new JPanel();
 		ctgPanel.setBackground(new Color(245, 245, 245));
 		ctgPanel.setBounds(0, 0, 248, 681);
-//		contentPane.add(ctgPanel);
+		//		contentPane.add(ctgPanel);
 		ctgPanel.setLayout(null);
 
 		JLabel writeReportLabel = new JLabel("신고글 작성하기");
 		writeReportLabel.setBounds(24, 630, 200, 28);
 		writeReportLabel.setForeground(new Color(255, 0, 0));
-		writeReportLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
-//		writeReportLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
+		writeReportLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
 		writeReportLabel.addMouseListener(new MouseAdapter() {
+
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 				new ReportWrite(loginInfo).setVisible(true);
 				page.dispose();
 			}
 		});
-		
+
 		ctgPanel.add(writeReportLabel);
 
 		/* 이후 categoryDB에서 categoryList를 받아와 categoryName만 뽑아
@@ -81,7 +83,7 @@ public class PostRightAsset {
 			sList[i] = categoryList.get(i).getCategoryName();
 		}
 
-		
+
 		/* 카테고리 이름 배열을 List에 추가 */
 		JList ctgList = new JList(sList);
 		ctgList.addMouseListener(new MouseAdapter() {
@@ -93,7 +95,7 @@ public class PostRightAsset {
 			}
 
 		});
-		ctgList.setFont(new Font("굴림", Font.PLAIN, 20));
+		ctgList.setFont(notoSansRegular("Regular").deriveFont(Font.PLAIN, 20f));
 		ctgList.setVisibleRowCount(10);
 
 		JScrollPane scrollPane = new JScrollPane(ctgList);
@@ -108,7 +110,7 @@ public class PostRightAsset {
 
 		JLabel viewAllLabel = new JLabel("전체 게시판");
 		viewAllLabel.setBounds(27, 111, 200, 33);
-		viewAllLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
+		viewAllLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
 		viewAllLabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -126,15 +128,15 @@ public class PostRightAsset {
 	 *  해당 메소드는 위의 getCtgPanel()메소드 내부에 선언되어있는 메소드이다.
 	 */
 	public void goCtgPostBoard(String ctgName, JFrame page) {
-		
+
 		CategoryDTO category = null;
 		if(ctgName != null) {
 			category = new CategoryController().getOneCategoryByName(ctgName);
 		}
-		
+
 		new PostCategory(loginInfo, category).setVisible(true);
 		page.dispose();
- 
+
 	}
 
 
