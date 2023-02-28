@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sangbong.jg.report.model.dao.ReportNewMapper">
+
+<resultMap type="com.sangbong.jg.model.dto.ReportDTO" id="reportResultMap">
+		<id property="reportCode" column="REPORT_CODE"/>
+		<result property="reporterEmail" column="REPORTER_EMAIL"/>
+		<result property="reportedEmail" column="REPORTED_EMAIL"/>
+		<result property="reportReason" column="REPORT_REASON"/>
+		<result property="reportDate" column="REPORT_DATE"/>
+		<result property="repostContext" column="REPORT_CONTEXT"/>
+		<result property="reportApproval" column="REPORT_APPROVAL"/>
+	</resultMap>
+
+	<insert id="reportNew"
+		parameterType="com.sangbong.jg.model.dto.ReportDTO">
+
+		INSERT
+		INTO REPORT A
+		(
+		  A.REPORT_CODE
+		, A.REPORTER_EMAIL
+		, A.REPORTED_EMAIL
+		, A.REPORT_REASON
+		, A.REPORT_DATE
+		, A.REPORT_CONTEXT
+		)
+		VALUES
+		(
+
+		  'R' || LPAD(SEQ_POST_CODE.NEXTVAL, 6, '0')
+		, #{reporterEmail}
+		, #{reportedEmail}
+		, #{reportReason}
+		, SYSDATE  
+		, #{repostContext}
+		)
+
+	</insert>
+	
+	<select id="reportGet" parameterType="com.sangbong.jg.model.dto.ReportDTO" resultMap="reportResultMap">
+		SELECT
+	 		  A.REPROT_CODE
+			, A.REPROTER_EMAIL
+			, A.REPORTED_EMAIL
+			, A.REPROT_REASON
+			, A.REPORT_DATE
+			, A.REPROT_CONTEXT
+			, A.REPROT_APPROVAL
+		  FROM REPORT A
+		 WHERE A.REPROTER_EMAIL = #{reporterEmail}
+		   AND A.REPORTED_EMAIL = #{reportedEmail}
+		   AND A.REPROT_REASON = #{reportReason}
+		   AND A.REPORT_DATE = SYSDATE
+		   
+	</select>
+
+</mapper>

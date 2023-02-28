@@ -33,6 +33,7 @@ import com.sangbong.jg.model.dto.MemberDTO;
  * */
 public class LogIn extends JFrame {
 
+
 	private JLabel lblNewLabel = new JLabel();
 	private JLabel emailLabel = new JLabel("이메일 ");
 	private JLabel pwLabel = new JLabel("비밀번호 ");
@@ -183,4 +184,5 @@ public class LogIn extends JFrame {
 	//   public static void main(String[] args) {
 	//      new LogIn();
 	//   }
+
 }
