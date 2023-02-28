@@ -23,7 +23,6 @@ import javax.swing.border.EmptyBorder;
 
 import com.sangbong.jg.category.controller.CategoryController;
 import com.sangbong.jg.common.PostRightAsset;
-import com.sangbong.jg.img.controller.ImgController;
 import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
 import com.sangbong.jg.model.dto.ReportDTO;
@@ -111,7 +110,7 @@ public class ReportWrite extends JFrame {
 		//		viewAllLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
 		//		ctgPanel.add(viewAllLabel);
 
-		rightAsset = new PostRightAsset(loginInfo);
+		rightAsset = new PostRightAsset(loginInfo, this);
 		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
 

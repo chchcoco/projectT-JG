@@ -134,7 +134,7 @@ public class PostRightAsset {
 		
 		new PostCategory(loginInfo, category).setVisible(true);
 		page.dispose();
-
+ 
 	}
 
 
