@@ -30,19 +30,24 @@ public class ImgController {
 		boolean result = false;
 		int i = 0;
 		for(String imgUrl: imgUrlList) {
-			
+			if(imgUrl.equals("")) {
+				System.out.println("imgUrl null");
+				continue;
+			}
+			System.out.println("imgUrl : " + imgUrl);
 			imgList.add(new ImgDTO());
 			imgList.get(i).setPostCode(postInfo.getPostCode());
 			imgList.get(i++).setImgUrl(imgUrl);
 		
 		} 
-		if(imgUrlList == null) {
-			return true;
+		if(imgUrlList != null && imgUrlList.size() != 0) {
+			result = imgService.saveImgList(imgList);
+			System.out.println("result : " + result);
+			return result;
 		}
 		
-		result = imgService.saveImgList(imgList);
-		
-		return result;
+		System.out.println("컨트롤 탈출");
+		return true;
 	}
 
 }
