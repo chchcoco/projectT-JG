@@ -272,7 +272,7 @@ public class MemberInfoView extends JFrame {
 				List<PostDTO> myPostList = memberInfoController.findMyPostList(loginInfo);
 				
 				if(myPostList.size() != 0) {
-					new MemberPostView(loginInfo).setVisible(true);;
+					new MemberPostView(loginInfo).setVisible(true);
 					dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "아직 게시글을 작성하지 않으셨습니다.", "게시글 존재하지 않음", JOptionPane.INFORMATION_MESSAGE);

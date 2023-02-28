@@ -103,8 +103,10 @@ public class MemberPostView extends JFrame {
 
 		/* 필요 페이지 수를 알아낸 후 */
 		int pageNumber = 0;
-		if((myPostList.size() % 5) == 0) {
+		if((myPostList.size() > 5) && (myPostList.size() % 5) == 0) {
 			pageNumber = myPostList.size() / 5;
+		} else if((myPostList.size() < 5)) {
+			pageNumber = 1;
 		} else {
 			pageNumber = (myPostList.size() / 5) + 1;
 		}
@@ -151,8 +153,16 @@ public class MemberPostView extends JFrame {
 			});
 		}
 
-		for (int i = 0; i < 5; i++) {
-			myPostPanel.PanelMaker(loginInfo, bodyPanel, myPostList.get(i));
+		if(myPostList.size() < 5) {
+			
+			for(int i = 0; i < myPostList.size(); i++) {
+				myPostPanel.PanelMaker(loginInfo, bodyPanel, myPostList.get(i));
+			}
+		} else {
+			
+			for (int i = 0; i < 5; i++) {
+				myPostPanel.PanelMaker(loginInfo, bodyPanel, myPostList.get(i));
+			}
 		}
 	}
 }
