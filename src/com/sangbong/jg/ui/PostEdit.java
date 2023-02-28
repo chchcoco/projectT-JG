@@ -162,7 +162,7 @@ public class PostEdit extends JFrame {
 		textContext.setFont(new Font("나눔고딕", Font.PLAIN, 15));
 		textContext.setText(postInfo.getPostContext());
 		textContext.setLineWrap(true);
-		textContext.setBounds(12, 10, 948, 287);
+		textContext.setBounds(12, 10, 948, 388);
 		bodyPanel.add(textContext);
 
 		/*img의 url을 저장하는 list*/
@@ -180,106 +180,21 @@ public class PostEdit extends JFrame {
 				}
 			}
 		});
-		btnNewButton_2_3.setBounds(12, 353, 180, 130);
+		btnNewButton_2_3.setBounds(780, 432, 180, 37);
 		bodyPanel.add(btnNewButton_2_3);
-
-		JButton btnNewButton_2_3_1 = new JButton("등록한 이미지 유지");
-		btnNewButton_2_3_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String imgUrl = new ImgView().getImgUrl();
-				if (imgUrl != null ? true : false) {
-					if(imgUrlList.size() > 1) {
-						imgUrlList.set(1, imgUrl);
-					} else {
-						imgUrlList.add(imgUrl);
-					}
-				}
-			}
-		});
-		btnNewButton_2_3_1.setBounds(204, 353, 180, 130);
-		bodyPanel.add(btnNewButton_2_3_1);
-
-		JButton btnNewButton_2_3_1_1 = new JButton("등록한 이미지 유지");
-		btnNewButton_2_3_1_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String imgUrl = new ImgView().getImgUrl();
-				if (imgUrl != null ? true : false) {
-					if(imgUrlList.size() > 2) {
-						imgUrlList.set(2, imgUrl);
-					} else {
-						imgUrlList.add(imgUrl);
-					}
-				}
-			}
-		});
-		btnNewButton_2_3_1_1.setBounds(396, 353, 180, 130);
-		bodyPanel.add(btnNewButton_2_3_1_1);
-
-		JButton btnNewButton_2_3_1_2 = new JButton("등록한 이미지 유지");
-		btnNewButton_2_3_1_2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String imgUrl = new ImgView().getImgUrl();
-				if (imgUrl != null ? true : false) {
-					if(imgUrlList.size() > 3) {
-						imgUrlList.set(3, imgUrl);
-					} else {
-						imgUrlList.add(imgUrl);
-					}
-				}
-			}
-		});
-		btnNewButton_2_3_1_2.setBounds(588, 353, 180, 130);
-		bodyPanel.add(btnNewButton_2_3_1_2);
-
-		JButton btnNewButton_2_3_1_3 = new JButton("등록한 이미지 유지");
-		btnNewButton_2_3_1_3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String imgUrl = new ImgView().getImgUrl();
-				if (imgUrl != null ? true : false) {
-					if(imgUrlList.size() > 4) {
-						imgUrlList.set(4, imgUrl);
-					} else {
-						imgUrlList.add(imgUrl);
-					}
-				}
-			}
-		});
-		btnNewButton_2_3_1_3.setBounds(780, 353, 180, 130);
-		bodyPanel.add(btnNewButton_2_3_1_3);
 
 		/* 게시글에 저장된 이미지가 있다면 불러오는 코드*/
 		List<ImgDTO> imgList = new ImgController().getAllImgByPost(postInfo);
 		if (imgList != null) {
 			for (int i = 0; i < imgList.size(); i++) {
-				switch (i) {
-				case 0:
 					btnNewButton_2_3.setIcon(new ImageIcon(imgList.get(i).getImgUrl()));
-					break;
-				case 1:
-					btnNewButton_2_3_1_1.setIcon(new ImageIcon(imgList.get(i).getImgUrl()));
-					break;
-				case 2:
-					btnNewButton_2_3_1_1.setIcon(new ImageIcon(imgList.get(i).getImgUrl()));
-					break;
-				case 3:
-					btnNewButton_2_3_1_1.setIcon(new ImageIcon(imgList.get(i).getImgUrl()));
-					break;
-				case 4:
-					btnNewButton_2_3_1_1.setIcon(new ImageIcon(imgList.get(i).getImgUrl()));
-					break;
-				default:
-					System.out.println("응 없어~");
 				}
 			}
-		}
+		
 
 		textField_1 = new JTextField();
 		textField_1.setText(postInfo.getPrice() + "");
-		textField_1.setBounds(12, 308, 370, 37);
+		textField_1.setBounds(12, 432, 370, 37);
 		bodyPanel.add(textField_1);
 		textField_1.setColumns(10);
 

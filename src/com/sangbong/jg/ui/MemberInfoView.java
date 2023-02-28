@@ -67,6 +67,7 @@ public class MemberInfoView extends JFrame {
 		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
 
+
 		JLabel writeReportLabel = new JLabel("신고글 작성하기");
 		writeReportLabel.setBounds(24, 630, 200, 28);
 		writeReportLabel.setForeground(new Color(255, 0, 0));
@@ -95,6 +96,7 @@ public class MemberInfoView extends JFrame {
 		viewAllLabel.setBounds(27, 111, 200, 33);
 		viewAllLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
 		ctgPanel.add(viewAllLabel);
+
 
 		JPanel mainPanel = new JPanel();
 		mainPanel.setBackground(new Color(255, 255, 255));
@@ -196,7 +198,7 @@ public class MemberInfoView extends JFrame {
 		editNameButton.setForeground(new Color(70, 70, 70));
 		editNameButton.setFont(notoSansRegular("Regular").deriveFont(Font.PLAIN, 20f));
 		editNameButton.setBackground(new Color(212, 212, 212));
-		editNameButton.setBounds(824, 149, 144, 60);
+		editNameButton.setBounds(741, 149, 227, 60);
 		bodyPanel.add(editNameButton);
 		editNameButton.addActionListener(new ActionListener() {
 
@@ -220,7 +222,7 @@ public class MemberInfoView extends JFrame {
 		editPwdButton.setForeground(new Color(70, 70, 70));
 		editPwdButton.setFont(notoSansRegular("Regular").deriveFont(Font.PLAIN, 20f));
 		editPwdButton.setBackground(new Color(212, 212, 212));
-		editPwdButton.setBounds(811, 244, 157, 60);
+		editPwdButton.setBounds(741, 244, 227, 60);
 		bodyPanel.add(editPwdButton);
 		editPwdButton.addActionListener(new ActionListener() {
 
@@ -259,7 +261,7 @@ public class MemberInfoView extends JFrame {
 		toMemberPostViewButton.setForeground(new Color(70, 70, 70));
 		toMemberPostViewButton.setFont(notoSansRegular("Regular").deriveFont(Font.PLAIN, 20f));
 		toMemberPostViewButton.setBackground(new Color(212, 212, 212));
-		toMemberPostViewButton.setBounds(757, 457, 209, 60);
+		toMemberPostViewButton.setBounds(743, 339, 225, 60);
 		bodyPanel.add(toMemberPostViewButton);
 		toMemberPostViewButton.addActionListener(new ActionListener() {
 			
