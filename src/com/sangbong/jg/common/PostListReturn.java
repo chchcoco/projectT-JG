@@ -2,16 +2,20 @@ package com.sangbong.jg.common;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import com.sangbong.jg.img.controller.ImgController;
 import com.sangbong.jg.model.dto.CategoryDTO;
+import com.sangbong.jg.model.dto.ImgDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
 import com.sangbong.jg.model.dto.PostDTO;
 import com.sangbong.jg.post.controller.PostBoardController;
@@ -28,9 +32,10 @@ import com.sangbong.jg.ui.PostOnePage;
  * 					 현재 PostController, PostDTO 변경 이슈로 인해 미완 상태.
  * 2023/02/23 (신예찬) 기능 완성
  * 2023/02/25 (신예찬) PageOnePage이동시 MemberDTO를 함께 전송하도록 변경
+ * 2023/02/27 (신예찬) 외부 창 호출 이벤트 작동시, 이 클래스를 사용하고 있는 page를 닫도록 수정
  * </pre>
  * @author 신예찬
- * @version 1.0.2
+ * @version 1.0.3
  * @see 
  * */
 public class PostListReturn {
@@ -54,16 +59,26 @@ public class PostListReturn {
 //		bodyPanel.add(post);
 		post.setLayout(null);
 		
+		List<ImgDTO> imgList = new ImgController().getAllImgByPost(postInfo);
 		JLabel postImage = new JLabel("이미지");
-		postImage.setIcon(null);
+		if(imgList.size() > 0) {
+			ImageIcon icon = new ImageIcon(imgList.get(0).getImgUrl());
+			Image img = icon.getImage();
+			icon = new ImageIcon(img.getScaledInstance(110, 110, Image.SCALE_SMOOTH));
+			postImage = new JLabel(icon);
+		} else {
+			postImage = new JLabel("이미지\n없음");
+		}
 		postImage.setOpaque(true);
+		postImage.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
+		postImage.setHorizontalAlignment(JLabel.CENTER);
 		postImage.setBackground(new Color(0, 255, 128));
 		postImage.setBounds(10, 10, 110, 110);
 		post.add(postImage);
 		
 		JLabel postTitleLabel_1 = new JLabel(postDTO.getItemName());
 		postTitleLabel_1.setForeground(new Color(70, 70, 70));
-		postTitleLabel_1.setFont(new Font("Dialog", Font.PLAIN, 20));
+		postTitleLabel_1.setFont(new Font("나눔스퀘어 네오 ExtraBold", Font.PLAIN, 20));
 		postTitleLabel_1.setBounds(132, 10, 168, 29);
 		post.add(postTitleLabel_1);
 		

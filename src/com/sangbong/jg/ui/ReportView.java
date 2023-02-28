@@ -103,8 +103,8 @@ public class ReportView extends JFrame {
 		contentPane.setLayout(null);
 
 		/* 우측의 카테고리를 출력하는 메소드. */
-		rightAsset = new PostRightAsset(loginInfo);
-		JPanel ctgPanel = rightAsset.getCtgPanel(this);
+		rightAsset = new PostRightAsset(loginInfo, this);
+		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
 		
 		JPanel mainPanel = new JPanel();
