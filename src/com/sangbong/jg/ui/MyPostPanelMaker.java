@@ -15,7 +15,6 @@ import javax.swing.SwingConstants;
 
 import com.sangbong.jg.model.dto.MemberDTO;
 import com.sangbong.jg.model.dto.PostDTO;
-import com.sangbong.jg.model.dto.ReportDTO;
 
 /**
  * <pre>
@@ -80,7 +79,6 @@ public void PanelMaker(MemberDTO loginInfo, JPanel bodyPanel, PostDTO post) {
 			public void mouseClicked(MouseEvent e) {
 				new PostOnePage(loginInfo, post).setVisible(true);
 			}
-			
 		});
 	}
 }

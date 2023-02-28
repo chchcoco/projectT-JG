@@ -1,7 +1,6 @@
 package com.sangbong.jg.ui;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,23 +45,6 @@ public class PostCategoryAdmin extends JFrame {
 	private List<PostDTO> postList;
 	private int page = 0;
 	private MemberDTO loginInfo;
-
-	/**
-	 * Launch the application.
-	 */
-//	public static void main(String[] args) {
-//		
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					PostCategoryAdmin frame = new PostCategoryAdmin(null, null);
-//					frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
 
 	/**
 	 * Create the frame.
@@ -173,8 +155,6 @@ public class PostCategoryAdmin extends JFrame {
 		}
 		
 		postListReturn.locatePostList(postPanel, bodyPanel);
-
-		
 	}
 	
 	
