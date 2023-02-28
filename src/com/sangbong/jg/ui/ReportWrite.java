@@ -124,7 +124,7 @@ public class ReportWrite extends JFrame {
 
 		JPanel topPanel = new JPanel();
 		topPanel.setBackground(new Color(255, 255, 255));
-		topPanel.setBounds(12, 10, 980, 158);
+		topPanel.setBounds(12, 10, 980, 100);
 		mainPanel.add(topPanel);
 		topPanel.setLayout(null);
 
@@ -161,63 +161,43 @@ public class ReportWrite extends JFrame {
 
 		JPanel bodyPanel = new JPanel();
 		bodyPanel.setBackground(new Color(245, 245, 245));
-		bodyPanel.setBounds(12, 303, 980, 368);
+		bodyPanel.setBounds(12, 273, 980, 398);
 		mainPanel.add(bodyPanel);
 		bodyPanel.setLayout(null);
 
 		JTextArea textContext = new JTextArea();
-		textContext.setBounds(12, 23, 948, 196);
+		textContext.setBounds(12, 23, 956, 352);
 		textContext.setForeground(new Color(70, 70, 70));
 		textContext.setFont(new Font("나눔고딕", Font.PLAIN, 15));
 		textContext.setText("");
 		textContext.setLineWrap(true);
 		bodyPanel.add(textContext);
 
-		JButton btnNewButton_2_3 = new JButton("image");
-		btnNewButton_2_3.setBounds(12, 229, 180, 130);
-		bodyPanel.add(btnNewButton_2_3);
-
-		JButton btnNewButton_2_3_1 = new JButton("image");
-		btnNewButton_2_3_1.setBounds(204, 229, 180, 130);
-		bodyPanel.add(btnNewButton_2_3_1);
-
-		JButton btnNewButton_2_3_1_1 = new JButton("image");
-		btnNewButton_2_3_1_1.setBounds(396, 229, 180, 130);
-		bodyPanel.add(btnNewButton_2_3_1_1);
-
-		JButton btnNewButton_2_3_1_2 = new JButton("image");
-		btnNewButton_2_3_1_2.setBounds(588, 229, 180, 130);
-		bodyPanel.add(btnNewButton_2_3_1_2);
-
-		JButton btnNewButton_2_3_1_3 = new JButton("image");
-		btnNewButton_2_3_1_3.setBounds(780, 229, 180, 130);
-		bodyPanel.add(btnNewButton_2_3_1_3);
-
 		JLabel lblNewLabel = new JLabel("신고대상의 이메일*");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel.setFont(new Font("굴림", Font.PLAIN, 15));
-		lblNewLabel.setBounds(12, 182, 141, 30);
+		lblNewLabel.setBounds(12, 151, 141, 30);
 		mainPanel.add(lblNewLabel);
 
 		textField_1 = new JTextField();
-		textField_1.setBounds(165, 183, 250, 30);
+		textField_1.setBounds(165, 152, 250, 30);
 		mainPanel.add(textField_1);
 		textField_1.setColumns(10);
 
 		JLabel lblNewLabel_1 = new JLabel("* 표시가 있는 항목은 필수로 작성되어야 합니다.");
-		lblNewLabel_1.setBounds(427, 190, 300, 15);
+		lblNewLabel_1.setBounds(428, 159, 300, 15);
 		mainPanel.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_2 = new JLabel("신고사유*");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNewLabel_2.setFont(new Font("굴림", Font.PLAIN, 15));
-		lblNewLabel_2.setBounds(12, 233, 141, 30);
+		lblNewLabel_2.setBounds(12, 211, 141, 30);
 		mainPanel.add(lblNewLabel_2);
 
 		String[] pList = new String[]{"스팸", "광고", "비방", "기타"};
 
 		JComboBox comboBox_1 = new JComboBox(pList);
-		comboBox_1.setBounds(165, 236, 50, 25);
+		comboBox_1.setBounds(165, 214, 50, 25);
 		mainPanel.add(comboBox_1);
 		
 		JButton editButton = new JButton("등록");
@@ -231,7 +211,7 @@ public class ReportWrite extends JFrame {
 				boolean result = (resultReport != null)/*&& isImgUpload*/? true : false;
 				if(result) {
 					JOptionPane.showMessageDialog(null, "등록완료");
-					new ReportOnePage(loginInfo, resultReport).setVisible(true);
+					new PostCategory(loginInfo).setVisible(true);
 					dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "등록실패");

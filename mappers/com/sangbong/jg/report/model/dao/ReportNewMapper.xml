@@ -40,17 +40,17 @@
 	
 	<select id="reportGet" parameterType="com.sangbong.jg.model.dto.ReportDTO" resultMap="reportResultMap">
 		SELECT
-	 		  A.REPROT_CODE
-			, A.REPROTER_EMAIL
+	 		  A.REPORT_CODE
+			, A.REPORTER_EMAIL
 			, A.REPORTED_EMAIL
-			, A.REPROT_REASON
+			, A.REPORT_REASON
 			, A.REPORT_DATE
-			, A.REPROT_CONTEXT
-			, A.REPROT_APPROVAL
+			, A.REPORT_CONTEXT
+			, A.REPORT_APPROVAL
 		  FROM REPORT A
-		 WHERE A.REPROTER_EMAIL = #{reporterEmail}
+		 WHERE A.REPORTER_EMAIL = #{reporterEmail}
 		   AND A.REPORTED_EMAIL = #{reportedEmail}
-		   AND A.REPROT_REASON = #{reportReason}
+		   AND A.REPORT_REASON = #{reportReason}
 		   AND A.REPORT_DATE = SYSDATE
 		   
 	</select>
