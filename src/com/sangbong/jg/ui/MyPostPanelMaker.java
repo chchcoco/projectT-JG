@@ -4,17 +4,21 @@ import static com.sangbong.jg.common.SetFont.notoSansRegular;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
+import com.sangbong.jg.img.controller.ImgController;
+import com.sangbong.jg.model.dto.ImgDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
 import com.sangbong.jg.model.dto.PostDTO;
 
@@ -54,9 +58,23 @@ public void PanelMaker(MemberDTO loginInfo, JPanel bodyPanel, PostDTO post) {
 		reportTitleLabel.setBounds(0, 0, 446, 35);
 		reportPanel.add(reportTitleLabel);
 		
-		JButton btnNewButton = new JButton("이미지");
-		btnNewButton.setBounds(872, 0, 84, 84);
-		reportPanel.add(btnNewButton);
+		JLabel postImage = new JLabel("이미지");
+		postImage.setBounds(872, 0, 84, 84);
+		ImgController imgController = new ImgController();
+		ImgDTO imgDTO = new ImgDTO();
+		imgDTO = imgController.getAllImgByPost(post).get(0);
+		if(imgDTO.getImgCode() != null) {
+			ImageIcon icon = new ImageIcon(imgDTO.getImgUrl());
+			Image img = icon.getImage();
+			icon = new ImageIcon(img.getScaledInstance(84, 84, Image.SCALE_SMOOTH));
+			postImage = new JLabel(icon);
+		} else {
+			postImage = new JLabel("이미지없음");
+		}
+		postImage.setOpaque(true);
+		postImage.setHorizontalAlignment(JLabel.CENTER);
+		postImage.setBackground(new Color(0, 255, 128));
+		reportPanel.add(postImage);
 		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		String date = dateFormat.format(post.getPostDate());
