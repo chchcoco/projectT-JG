@@ -1,5 +1,7 @@
 package com.sangbong.jg.ui;
 
+import static com.sangbong.jg.common.SetFont.notoSansRegular;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -92,7 +94,7 @@ public class PostDelete extends JFrame {
 		
 		JLabel lblNewLabel_1 = new JLabel("게시글 삭제를 진행하시겠습니까?");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("굴림", Font.PLAIN, 15));
+		lblNewLabel_1.setFont(notoSansRegular("Regular").deriveFont(Font.PLAIN, 15f));
 		lblNewLabel_1.setBounds(490, 307, 300, 30);
 		panel.add(lblNewLabel_1);
 		

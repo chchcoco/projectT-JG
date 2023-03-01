@@ -1,5 +1,7 @@
 package com.sangbong.jg.ui;
 
+import static com.sangbong.jg.common.SetFont.notoSansRegular;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -114,7 +116,7 @@ public class PostEdit extends JFrame {
 		JLabel superCategoryLabel = new JLabel("게시판 글쓰기");
 		superCategoryLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		superCategoryLabel.setForeground(new Color(70, 70, 70));
-		superCategoryLabel.setFont(new Font("Dialog", Font.PLAIN, 40));
+		superCategoryLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 40f));
 		superCategoryLabel.setBounds(12, 19, 258, 35);
 		topPanel.add(superCategoryLabel);
 
@@ -160,6 +162,7 @@ public class PostEdit extends JFrame {
 		JTextArea textContext = new JTextArea();
 		textContext.setForeground(new Color(70, 70, 70));
 		textContext.setFont(new Font("나눔고딕", Font.PLAIN, 15));
+		textContext.setFont(notoSansRegular("Regular").deriveFont(Font.PLAIN, 15f));
 		textContext.setText(postInfo.getPostContext());
 		textContext.setLineWrap(true);
 		textContext.setBounds(12, 10, 948, 388);
@@ -226,7 +229,7 @@ public class PostEdit extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		editButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
+		editButton.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
 		editButton.setForeground(new Color(70, 70, 70));
 		editButton.setBackground(new Color(212, 212, 212));
 	}

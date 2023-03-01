@@ -7,27 +7,17 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.awt.event.ActionEvent;
-import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Color;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
 import javax.swing.ScrollPaneConstants;
 
 import static com.sangbong.jg.common.SetFont.notoSansRegular;
-import javax.swing.JTextPane;
 import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 /**
  * <pre>
@@ -97,7 +87,7 @@ public class MemberManagerUI extends JFrame {
 		
 		JLabel superCategoryLabel = new JLabel("회원 관리");
 		superCategoryLabel.setForeground(new Color(70, 70, 70));
-		superCategoryLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 18));
+		superCategoryLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 18f));
 		superCategoryLabel.setBounds(12, 10, 558, 35);
 		topPanel.add(superCategoryLabel);
 		
@@ -105,7 +95,7 @@ public class MemberManagerUI extends JFrame {
 		postManagerButton.addMouseListener(new MouseAdapter() {
 			
 		});
-		postManagerButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
+		postManagerButton.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
 		postManagerButton.setForeground(new Color(70, 70, 70));
 		postManagerButton.setBackground(new Color(255, 128, 128));
 		postManagerButton.setBounds(848, 10, 120, 72);

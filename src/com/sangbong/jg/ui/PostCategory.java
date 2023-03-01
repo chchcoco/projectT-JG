@@ -23,6 +23,8 @@ import com.sangbong.jg.model.dto.MemberDTO;
 import com.sangbong.jg.model.dto.PostDTO;
 import com.sangbong.jg.model.dto.PostImgDTO;
 
+import static com.sangbong.jg.common.SetFont.notoSansRegular;
+
 
 /**
  * <pre>
@@ -111,7 +113,7 @@ public class PostCategory extends JFrame {
 //		}
 		JLabel categoryLabel = new JLabel(category == null ? "전체게시글" : category.getCategoryName());
 		categoryLabel.setForeground(new Color(70, 70, 70));
-		categoryLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 18));
+		categoryLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 18f));
 		categoryLabel.setBounds(12, 10, 678, 35);
 		topPanel.add(categoryLabel);
 		
@@ -128,7 +130,7 @@ public class PostCategory extends JFrame {
 			}
 		});
 		
-		memberInfoButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
+		memberInfoButton.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
 		memberInfoButton.setForeground(new Color(70, 70, 70));
 		memberInfoButton.setBackground(new Color(0, 255, 128));
 		memberInfoButton.setBounds(848, 10, 120, 72);
@@ -148,17 +150,11 @@ public class PostCategory extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		writeButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
+		writeButton.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
 		writeButton.setForeground(new Color(70, 70, 70));
 		writeButton.setBackground(new Color(212, 212, 212));
 		writeButton.setBounds(716, 10, 120, 72);
 		topPanel.add(writeButton);
-		
-//		JLabel juniorCategoryLabel = new JLabel(category == null ? "전체게시글" : category.getCategoryName());
-//		juniorCategoryLabel.setForeground(new Color(70, 70, 70));
-//		juniorCategoryLabel.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 14));
-//		juniorCategoryLabel.setBounds(12, 46, 678, 20);
-//		topPanel.add(juniorCategoryLabel);
 		
 		JPanel bodyPanel = new JPanel();
 		bodyPanel.setBackground(new Color(245, 245, 245));
@@ -198,28 +194,4 @@ public class PostCategory extends JFrame {
 	public PostCategory() {
 		this(null);
 	}
-	
-//	public void run() {
-//		while(true) {
-//			if(Application.shutdown == 1) {
-//				System.out.println("스레드");
-//				Application.shutdown = 0;
-//				dispose();
-//			}
-//		}
-//	}
-
-	
-	/* 해당 기능 PostListReturn클래스로 다시 옮김 */
-//	public void goPost(MemberDTO loginInfo, PostDTO postInfo) {
-//		// 게시글 상세조회 페이지로 이동
-//		new PostOnePage(loginInfo, postInfo).setVisible(true);
-//		disposePage(this);
-//	}
-	
-//	private void disposePage(JFrame page) {
-//		page.dispose();
-//	}
-
-
 }
