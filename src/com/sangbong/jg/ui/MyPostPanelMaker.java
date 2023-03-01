@@ -1,5 +1,7 @@
 package com.sangbong.jg.ui;
 
+import static com.sangbong.jg.common.SetFont.notoSansRegular;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -42,13 +44,13 @@ public void PanelMaker(MemberDTO loginInfo, JPanel bodyPanel, PostDTO post) {
 		reportPanel.add(reportReasonLabel);
 		reportReasonLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		reportReasonLabel.setForeground(new Color(70, 70, 70));
-		reportReasonLabel.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
+		reportReasonLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 14f));
 		
 		JLabel reportTitleLabel = new JLabel();
 		String reportTitle = post.getItemName();
 		reportTitleLabel.setText(reportTitle);
 		reportTitleLabel.setForeground(new Color(70, 70, 70));
-		reportTitleLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 18));
+		reportTitleLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 18f));
 		reportTitleLabel.setBounds(0, 0, 446, 35);
 		reportPanel.add(reportTitleLabel);
 		
@@ -61,7 +63,7 @@ public void PanelMaker(MemberDTO loginInfo, JPanel bodyPanel, PostDTO post) {
 		JLabel reportedEmailLabel = new JLabel(date);
 		reportedEmailLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		reportedEmailLabel.setForeground(new Color(70, 70, 70));
-		reportedEmailLabel.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
+		reportedEmailLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 14f));
 		reportedEmailLabel.setBounds(10, 68, 436, 16);
 		reportPanel.add(reportedEmailLabel);
 		
@@ -69,7 +71,7 @@ public void PanelMaker(MemberDTO loginInfo, JPanel bodyPanel, PostDTO post) {
 		textContext.setBounds(448, 10, 412, 64);
 		reportPanel.add(textContext);
 		textContext.setForeground(new Color(70, 70, 70));
-		textContext.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 14));
+		textContext.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 14f));
 		textContext.setText(post.getPostContext());
 		textContext.setLineWrap(true);
 		textContext.setEditable(false);

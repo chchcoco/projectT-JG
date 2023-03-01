@@ -7,19 +7,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Color;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
 import javax.swing.ScrollPaneConstants;
 
@@ -91,12 +84,12 @@ public class PostCtgList extends JFrame {
 		
 		JLabel superCategoryLabel = new JLabel("선택한 상위 카테고리명");
 		superCategoryLabel.setForeground(new Color(70, 70, 70));
-		superCategoryLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 18));
+		superCategoryLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 18f));
 		superCategoryLabel.setBounds(12, 10, 678, 35);
 		topPanel.add(superCategoryLabel);
 		
 		JButton memberInfoButton = new JButton("회원정보");
-		memberInfoButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
+		memberInfoButton.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
 		memberInfoButton.setForeground(new Color(70, 70, 70));
 		memberInfoButton.setBackground(new Color(0, 255, 128));
 		memberInfoButton.setBounds(848, 10, 120, 72);
@@ -107,7 +100,7 @@ public class PostCtgList extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		writeButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
+		writeButton.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
 		writeButton.setForeground(new Color(70, 70, 70));
 		writeButton.setBackground(new Color(212, 212, 212));
 		writeButton.setBounds(716, 10, 120, 72);
@@ -146,13 +139,13 @@ public class PostCtgList extends JFrame {
 		
 		JLabel postTitleLabel_1_1 = new JLabel("게시글 제목");
 		postTitleLabel_1_1.setForeground(new Color(70, 70, 70));
-		postTitleLabel_1_1.setFont(new Font("Dialog", Font.PLAIN, 20));
+		postTitleLabel_1_1.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
 		postTitleLabel_1_1.setBounds(132, 10, 168, 29);
 		panel_1.add(postTitleLabel_1_1);
 		
 		JLabel priceLabel_1_1 = new JLabel("999,999,000 원");
 		priceLabel_1_1.setForeground(new Color(70, 70, 70));
-		priceLabel_1_1.setFont(new Font("나눔스퀘어 네오 ExtraBold", Font.PLAIN, 20));
+		priceLabel_1_1.setFont(notoSansRegular("Black").deriveFont(Font.PLAIN, 20f));
 		priceLabel_1_1.setBounds(132, 91, 168, 29);
 		panel_1.add(priceLabel_1_1);
 		

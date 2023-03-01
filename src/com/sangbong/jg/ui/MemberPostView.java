@@ -79,13 +79,13 @@ public class MemberPostView extends JFrame {
 
 		JLabel viewTitle = new JLabel("내 정보 보기");
 		viewTitle.setForeground(new Color(70, 70, 70));
-		viewTitle.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 18));
+		viewTitle.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 18f));
 		viewTitle.setBounds(12, 10, 678, 35);
 		topPanel.add(viewTitle);
 
 		JLabel postTitleLabel = new JLabel(loginInfo.getMemName() + "님이 작성하신 게시글 목록");
 		postTitleLabel.setForeground(new Color(70, 70, 70));
-		postTitleLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 32));
+		postTitleLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 32f));
 		postTitleLabel.setBounds(12, 76, 678, 50);
 		topPanel.add(postTitleLabel);
 

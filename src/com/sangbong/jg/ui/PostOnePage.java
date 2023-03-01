@@ -1,5 +1,7 @@
 package com.sangbong.jg.ui;
 
+import static com.sangbong.jg.common.SetFont.notoSansRegular;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -110,7 +112,7 @@ public class PostOnePage extends JFrame {
 		CategoryDTO ctgDTO = new CategoryController().getOneCategoryByCode(postDTO.getCategoryCode());
 		JLabel categoryLabel = new JLabel(ctgDTO.getCategoryName());
 		categoryLabel.setForeground(new Color(70, 70, 70));
-		categoryLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 18));
+		categoryLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 18f));
 		categoryLabel.setBounds(12, 10, 678, 35);
 		topPanel.add(categoryLabel);
 		
@@ -130,7 +132,7 @@ public class PostOnePage extends JFrame {
 				}
 			}
 		});
-		deleteButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
+		deleteButton.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
 		deleteButton.setForeground(new Color(70, 70, 70));
 		deleteButton.setBackground(new Color(241, 87, 87));
 		deleteButton.setBounds(848, 76, 120, 72);
@@ -155,7 +157,7 @@ public class PostOnePage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		editButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
+		editButton.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
 		editButton.setForeground(new Color(70, 70, 70));
 		editButton.setBackground(new Color(212, 212, 212));
 		editButton.setBounds(716, 76, 120, 72);
@@ -163,21 +165,15 @@ public class PostOnePage extends JFrame {
 		
 		JLabel postTitleLabel = new JLabel(postDTO.getItemName());
 		postTitleLabel.setForeground(new Color(70, 70, 70));
-		postTitleLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 32));
+		postTitleLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 32f));
 		postTitleLabel.setBounds(12, 76, 678, 50);
 		topPanel.add(postTitleLabel);
 		
 		JLabel dateLabel = new JLabel(new StringBuilder().append(postDTO.getPostDate()).toString());
 		dateLabel.setForeground(new Color(70, 70, 70));
-		dateLabel.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 14));
+		dateLabel.setFont(notoSansRegular("Regular").deriveFont(Font.PLAIN, 14f));
 		dateLabel.setBounds(12, 128, 250, 20);
 		topPanel.add(dateLabel);
-		
-//		JLabel juniorCategoryLabel = new JLabel(postDTO.getCategoryCode());
-//		juniorCategoryLabel.setForeground(new Color(70, 70, 70));
-//		juniorCategoryLabel.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 14));
-//		juniorCategoryLabel.setBounds(12, 46, 678, 20);
-//		topPanel.add(juniorCategoryLabel);
 		
 		JLabel profilePic = new JLabel("");
 		profilePic.setIcon(new ImageIcon("images/profilePic.png"));
@@ -200,7 +196,7 @@ public class PostOnePage extends JFrame {
 		JLabel myName = new JLabel(loginInfo.getMemName());
 		myName.setHorizontalAlignment(SwingConstants.RIGHT);
 		myName.setForeground(new Color(70, 70, 70));
-		myName.setFont(new Font("Dialog", Font.PLAIN, 16));
+		myName.setFont(notoSansRegular("Regular").deriveFont(Font.PLAIN, 16f));
 		myName.setBounds(784, 25, 128, 20);
 		topPanel.add(myName);
 		
@@ -213,20 +209,20 @@ public class PostOnePage extends JFrame {
 		JLabel priceLabel = new JLabel(new StringBuilder().append(postDTO.getPrice()).toString());
 
 		priceLabel.setForeground(new Color(70, 70, 70));
-		priceLabel.setFont(new Font("나눔스퀘어 네오 ExtraBold", Font.PLAIN, 40));
+		priceLabel.setFont(notoSansRegular("Black").deriveFont(Font.PLAIN, 40f));
 		priceLabel.setBounds(467, 10, 501, 50);
 		bodyPanel.add(priceLabel);
 		
 		JLabel authorEmailLabel = new JLabel(postDTO.getWriter());
 		authorEmailLabel.setForeground(new Color(70, 70, 70));
 		authorEmailLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		authorEmailLabel.setFont(new Font("나눔스퀘어 Bold", Font.PLAIN, 14));
+		authorEmailLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 14f));
 		authorEmailLabel.setBounds(467, 84, 501, 25);
 		bodyPanel.add(authorEmailLabel);
 		
 		JTextArea textContext = new JTextArea();
 		textContext.setForeground(new Color(70, 70, 70));
-		textContext.setFont(new Font("나눔고딕", Font.PLAIN, 15));
+		textContext.setFont(notoSansRegular("Regular").deriveFont(Font.PLAIN, 15f));
 		textContext.setText(postDTO.getPostContext());
 		textContext.setLineWrap(true);
 		textContext.setBounds(467, 116, 501, 287);
@@ -250,107 +246,6 @@ public class PostOnePage extends JFrame {
 		imgLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		imgLabel.setBounds(12, 10, 394, 394);
 		bodyPanel.add(imgLabel);
-		
-//		JLabel lblNewLabel_9 = new JLabel("1");
-//		lblNewLabel_9.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				if(imgList != null && imgList.size() > 0) {
-//					
-//					imgLabel = inputLabel(imgLabel, imgList.get(0));
-//				}
-//			}
-//		});
-//		lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
-//		lblNewLabel_9.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 16));
-//		lblNewLabel_9.setBounds(162, 425, 14, 15);
-//		bodyPanel.add(lblNewLabel_9);
-//		
-//		JLabel lblNewLabel_9_1 = new JLabel("2");
-//		lblNewLabel_9_1.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				if(imgList != null && imgList.size() > 1) {
-//					
-//					imgLabel = inputLabel(imgLabel, imgList.get(1));
-//				}
-//			}
-//		});
-//		lblNewLabel_9_1.setHorizontalAlignment(SwingConstants.CENTER);
-//		lblNewLabel_9_1.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 16));
-//		lblNewLabel_9_1.setBounds(188, 425, 14, 15);
-//		bodyPanel.add(lblNewLabel_9_1);
-//		
-//		JLabel lblNewLabel_9_2 = new JLabel("3");
-//		lblNewLabel_9_2.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				if(imgList != null && imgList.size() > 2) {
-//					
-//					imgLabel = inputLabel(imgLabel, imgList.get(2));
-//				}
-//			}
-//		});
-//		lblNewLabel_9_2.setHorizontalAlignment(SwingConstants.CENTER);
-//		lblNewLabel_9_2.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 16));
-//		lblNewLabel_9_2.setBounds(214, 425, 14, 15);
-//		bodyPanel.add(lblNewLabel_9_2);
-//		
-//		JLabel lblNewLabel_9_3 = new JLabel("4");
-//		lblNewLabel_9_3.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				if(imgList != null && imgList.size() > 3) {
-//					
-//					imgLabel = inputLabel(imgLabel, imgList.get(3));
-//				}
-//			}
-//		});
-//		lblNewLabel_9_3.setHorizontalAlignment(SwingConstants.CENTER);
-//		lblNewLabel_9_3.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 16));
-//		lblNewLabel_9_3.setBounds(240, 425, 14, 15);
-//		bodyPanel.add(lblNewLabel_9_3);
-//		
-//		JLabel lblNewLabel_9_4 = new JLabel("5");
-//		lblNewLabel_9_4.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				if(imgList != null && imgList.size() > 4) {
-//					
-//					imgLabel = inputLabel(imgLabel, imgList.get(4));
-//				}
-//			}
-//		});
-//		lblNewLabel_9_4.setHorizontalAlignment(SwingConstants.CENTER);
-//		lblNewLabel_9_4.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 16));
-//		lblNewLabel_9_4.setBounds(266, 425, 14, 15);
-//		bodyPanel.add(lblNewLabel_9_4);
-//		
-//		JLabel backButton = new JLabel("돌아가기");
-//		backButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
-//		backButton.setHorizontalAlignment(SwingConstants.CENTER);
-//		backButton.setBounds(454, 456, 100, 27);
-//		bodyPanel.add(backButton);
-//		backButton.addMouseListener(new MouseAdapter() {
-//
-//			public void mouseClicked(MouseEvent e) {
-//				new PostCategory(loginInfo, ctgDTO).setVisible(true);;
-//				dispose();
-//			}
-//
-//		});
-		
-//		JLabel nextButton = new JLabel("다음 페이지  >");
-//		nextButton.setHorizontalAlignment(SwingConstants.RIGHT);
-//		nextButton.setFont(new Font("Dialog", Font.PLAIN, 20));
-//		nextButton.setBounds(563, 456, 128, 27);
-//		bodyPanel.add(nextButton);
-//		
-//		JLabel previousButton = new JLabel("<  이전 페이지");
-//		previousButton.setHorizontalAlignment(SwingConstants.LEFT);
-//		previousButton.setFont(new Font("Dialog", Font.PLAIN, 20));
-//		previousButton.setBounds(318, 456, 128, 27);
-//		bodyPanel.add(previousButton);
 		
 	}
 	

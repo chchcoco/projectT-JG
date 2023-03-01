@@ -1,5 +1,7 @@
 package com.sangbong.jg.ui;
 
+import static com.sangbong.jg.common.SetFont.notoSansRegular;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -91,27 +93,6 @@ public class ReportWrite extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		//		JPanel ctgPanel = new JPanel();
-		//		ctgPanel.setBackground(new Color(245, 245, 245));
-		//		ctgPanel.setBounds(0, 0, 248, 681);
-		//		contentPane.add(ctgPanel);
-		//		ctgPanel.setLayout(null);
-		//		
-		//		JScrollPane scrollPane = new JScrollPane();
-		//		scrollPane.setBounds(12, 154, 224, 517);
-		//		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		//		ctgPanel.add(scrollPane);
-		//		
-		//		JLabel titleLabel = new JLabel("New label");
-		//		titleLabel.setBounds(24, 10, 204, 67);
-		//		titleLabel.setIcon(new ImageIcon("images/title.png"));
-		//		ctgPanel.add(titleLabel);
-		//		
-		//		JLabel viewAllLabel = new JLabel("전체 게시판");
-		//		viewAllLabel.setBounds(27, 111, 200, 33);
-		//		viewAllLabel.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
-		//		ctgPanel.add(viewAllLabel);
-
 		rightAsset = new PostRightAsset(loginInfo, this);
 		JPanel ctgPanel = rightAsset.getCtgPanel();
 		contentPane.add(ctgPanel);
@@ -131,7 +112,7 @@ public class ReportWrite extends JFrame {
 		JLabel superCategoryLabel = new JLabel("게시판 글쓰기");
 		superCategoryLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		superCategoryLabel.setForeground(new Color(70, 70, 70));
-		superCategoryLabel.setFont(new Font("Dialog", Font.PLAIN, 40));
+		superCategoryLabel.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 40f));
 		superCategoryLabel.setBounds(12, 19, 258, 35);
 		topPanel.add(superCategoryLabel);
 
@@ -140,24 +121,12 @@ public class ReportWrite extends JFrame {
 		profilePic.setBounds(924, 10, 44, 44);
 		topPanel.add(profilePic);
 
-
-//		textField = new JTextField();
-//		textField.setBounds(12, 113, 956, 35);
-//		topPanel.add(textField);
-//		textField.setColumns(10);
-
 		List<CategoryDTO> categoryList = new CategoryController().getCategoryList();
 
 		String[] sList = new String[categoryList.size()];
 		for(int i = 0; i < sList.length; i++) {
 			sList[i] = categoryList.get(i).getCategoryName();
 		}
-
-//		JComboBox comboBox = new JComboBox(sList);
-//		//comboBox.setModel(new DefaultComboBoxModel(new String[] {"카테고리"}));
-//		comboBox.setToolTipText("");
-//		comboBox.setBounds(12, 83, 139, 23);
-//		topPanel.add(comboBox);
 
 		JPanel bodyPanel = new JPanel();
 		bodyPanel.setBackground(new Color(245, 245, 245));
@@ -168,14 +137,14 @@ public class ReportWrite extends JFrame {
 		JTextArea textContext = new JTextArea();
 		textContext.setBounds(12, 23, 956, 352);
 		textContext.setForeground(new Color(70, 70, 70));
-		textContext.setFont(new Font("나눔고딕", Font.PLAIN, 15));
+		textContext.setFont(notoSansRegular("Regular").deriveFont(Font.PLAIN, 15f));
 		textContext.setText("");
 		textContext.setLineWrap(true);
 		bodyPanel.add(textContext);
 
 		JLabel lblNewLabel = new JLabel("신고대상의 이메일*");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel.setFont(new Font("굴림", Font.PLAIN, 15));
+		lblNewLabel.setFont(notoSansRegular("Regular").deriveFont(Font.PLAIN, 15f));
 		lblNewLabel.setBounds(12, 151, 141, 30);
 		mainPanel.add(lblNewLabel);
 
@@ -190,7 +159,7 @@ public class ReportWrite extends JFrame {
 
 		JLabel lblNewLabel_2 = new JLabel("신고사유*");
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_2.setFont(new Font("굴림", Font.PLAIN, 15));
+		lblNewLabel_2.setFont(notoSansRegular("Regular").deriveFont(Font.PLAIN, 15f));
 		lblNewLabel_2.setBounds(12, 211, 141, 30);
 		mainPanel.add(lblNewLabel_2);
 
@@ -199,15 +168,15 @@ public class ReportWrite extends JFrame {
 		JComboBox comboBox_1 = new JComboBox(pList);
 		comboBox_1.setBounds(165, 214, 50, 25);
 		mainPanel.add(comboBox_1);
-		
+
 		JButton editButton = new JButton("등록");
 		editButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 				ReportDTO resultReport = new ReportNewController().newReport( loginInfo.getEmail(), /* 신고대상 이메일 */textField_1.getText(), comboBox_1.getSelectedItem().toString() ,textContext.getText());
 				/*수정 필요*/
-//				boolean isImgUpload = new ImgController().insertImgPost(imgUrlList, resultPost);
+				//				boolean isImgUpload = new ImgController().insertImgPost(imgUrlList, resultPost);
 				boolean result = (resultReport != null)/*&& isImgUpload*/? true : false;
 				if(result) {
 					JOptionPane.showMessageDialog(null, "등록완료");
@@ -223,9 +192,9 @@ public class ReportWrite extends JFrame {
 		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
-			
+
 		});
-		editButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
+		editButton.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 20f));
 		editButton.setForeground(new Color(70, 70, 70));
 		editButton.setBackground(new Color(212, 212, 212));
 	}
