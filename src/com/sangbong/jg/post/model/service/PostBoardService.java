@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.PostDTO;
+import com.sangbong.jg.model.dto.PostImgDTO;
 import com.sangbong.jg.post.model.dao.PostBoardMapper;
 
 public class PostBoardService {
@@ -47,6 +48,26 @@ public class PostBoardService {
 		sqlSession.close();
 		
 		return postList; 
+	}
+
+	public List<PostImgDTO> getAllPostWithImg() {
+
+		SqlSession sqlSession = getSqlSession();
+		mapper = sqlSession.getMapper(PostBoardMapper.class);
+		
+		List<PostImgDTO> postImgList = mapper.selectAllPostWithImg();
+		
+		return postImgList;
+	}
+
+	public List<PostImgDTO> getAllPostWithImg(CategoryDTO category) {
+
+		SqlSession sqlSession = getSqlSession();
+		mapper = sqlSession.getMapper(PostBoardMapper.class);
+		
+		List<PostImgDTO> postImgList = mapper.selectAllPostWithImgByCtg(category);
+		
+		return postImgList;
 	}
 
 }

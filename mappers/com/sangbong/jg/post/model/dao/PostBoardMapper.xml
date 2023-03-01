@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.sangbong.jg.post.model.dao.PostBoardMapper">
 	
-	 <resultMap type="com.sangbong.jg.model.dto.PostDTO" id="postResultMap">
+	<resultMap type="com.sangbong.jg.model.dto.PostDTO" id="postResultMap">
 	 	<id property="postCode" column="POST_CODE"/>
 	 	<result property="categoryCode" column="CATEGORY_CODE"/>
 	 	<result property="writer" column="WRITER"/>
@@ -11,7 +11,20 @@
 	 	<result property="deleteYn" column="DELETE_YN"/>
 	 	<result property="postDate" column="POST_DATE"/>
 	 	<result property="postContext" column="POST_CONTEXT"/>
-	 </resultMap>
+	</resultMap>
+	<resultMap type="com.sangbong.jg.model.dto.PostImgDTO" id="postWithImgMap">
+		<id property="postCode" column="POST_CODE"/>
+	 	<result property="categoryCode" column="CATEGORY_CODE"/>
+	 	<result property="writer" column="WRITER"/>
+	 	<result property="price" column="PRICE"/>
+	 	<result property="itemName" column="ITEM_NAME"/>
+	 	<result property="deleteYn" column="DELETE_YN"/>
+	 	<result property="postDate" column="POST_DATE"/>
+	 	<result property="postContext" column="POST_CONTEXT"/>	 	
+	 	<result property="imgCode" column="IMG_CODE"/>
+	 	<result property="imgUrl" column="IMG_URL"/>
+	</resultMap>
+	
 	
 	<select id="selectAllPost" resultMap="postResultMap">
 		 SELECT
@@ -40,6 +53,43 @@
 		 	  , A.POST_CONTEXT
 		   FROM POST A
 		  WHERE A.CATEGORY_CODE = #{categoryCode} 
+		    AND A.DELETE_YN = 'N'
+		  ORDER BY A.POST_DATE DESC
+	</select>
+	
+	<select id="selectAllPostWithImg" resultMap="postWithImgMap">
+		 SELECT
+		 	    A.POST_CODE
+		 	  , A.CATEGORY_CODE
+		 	  , A.WRITER
+		 	  , A.PRICE
+		 	  , A.ITEM_NAME
+		 	  , A.DELETE_YN
+		 	  , A.POST_DATE
+		 	  , A.POST_CONTEXT
+		 	  , B.IMG_CODE
+		 	  , B.IMG_URL
+		   FROM POST A
+		   LEFT JOIN IMG B ON(A.POST_CODE = B.POST_CODE)
+		  WHERE A.DELETE_YN = 'N'
+		  ORDER BY A.POST_DATE DESC
+	</select>
+	
+	<select id="selectAllPostWithImgByCtg" resultMap="postWithImgMap" parameterType="com.sangbong.jg.model.dto.CategoryDTO">
+		SELECT
+		 	    A.POST_CODE
+		 	  , A.CATEGORY_CODE
+		 	  , A.WRITER
+		 	  , A.PRICE
+		 	  , A.ITEM_NAME
+		 	  , A.DELETE_YN
+		 	  , A.POST_DATE
+		 	  , A.POST_CONTEXT
+		 	  , B.IMG_CODE
+		 	  , B.IMG_URL
+		   FROM POST A
+		   LEFT JOIN IMG B ON(A.POST_CODE = B.POST_CODE)
+		  WHERE A.CATEGORY_CODE = #{categoryCode}
 		    AND A.DELETE_YN = 'N'
 		  ORDER BY A.POST_DATE DESC
 	</select>
