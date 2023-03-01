@@ -59,7 +59,6 @@ public void PanelMaker(MemberDTO loginInfo, JPanel bodyPanel, PostDTO post) {
 		reportPanel.add(reportTitleLabel);
 		
 		JLabel postImage = new JLabel("이미지");
-		postImage.setBounds(872, 0, 84, 84);
 		ImgController imgController = new ImgController();
 		ImgDTO imgDTO = new ImgDTO();
 		imgDTO = imgController.getAllImgByPost(post).get(0);
@@ -71,6 +70,7 @@ public void PanelMaker(MemberDTO loginInfo, JPanel bodyPanel, PostDTO post) {
 		} else {
 			postImage = new JLabel("이미지없음");
 		}
+		postImage.setBounds(872, 0, 84, 84);
 		postImage.setOpaque(true);
 		postImage.setHorizontalAlignment(JLabel.CENTER);
 		postImage.setBackground(new Color(0, 255, 128));
