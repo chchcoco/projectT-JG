@@ -251,94 +251,94 @@ public class PostOnePage extends JFrame {
 		imgLabel.setBounds(12, 10, 394, 394);
 		bodyPanel.add(imgLabel);
 		
-		JLabel lblNewLabel_9 = new JLabel("1");
-		lblNewLabel_9.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(imgList != null && imgList.size() > 0) {
-					
-					imgLabel = inputLabel(imgLabel, imgList.get(0));
-				}
-			}
-		});
-		lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_9.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 16));
-		lblNewLabel_9.setBounds(162, 425, 14, 15);
-		bodyPanel.add(lblNewLabel_9);
-		
-		JLabel lblNewLabel_9_1 = new JLabel("2");
-		lblNewLabel_9_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(imgList != null && imgList.size() > 1) {
-					
-					imgLabel = inputLabel(imgLabel, imgList.get(1));
-				}
-			}
-		});
-		lblNewLabel_9_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_9_1.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 16));
-		lblNewLabel_9_1.setBounds(188, 425, 14, 15);
-		bodyPanel.add(lblNewLabel_9_1);
-		
-		JLabel lblNewLabel_9_2 = new JLabel("3");
-		lblNewLabel_9_2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(imgList != null && imgList.size() > 2) {
-					
-					imgLabel = inputLabel(imgLabel, imgList.get(2));
-				}
-			}
-		});
-		lblNewLabel_9_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_9_2.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 16));
-		lblNewLabel_9_2.setBounds(214, 425, 14, 15);
-		bodyPanel.add(lblNewLabel_9_2);
-		
-		JLabel lblNewLabel_9_3 = new JLabel("4");
-		lblNewLabel_9_3.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(imgList != null && imgList.size() > 3) {
-					
-					imgLabel = inputLabel(imgLabel, imgList.get(3));
-				}
-			}
-		});
-		lblNewLabel_9_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_9_3.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 16));
-		lblNewLabel_9_3.setBounds(240, 425, 14, 15);
-		bodyPanel.add(lblNewLabel_9_3);
-		
-		JLabel lblNewLabel_9_4 = new JLabel("5");
-		lblNewLabel_9_4.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if(imgList != null && imgList.size() > 4) {
-					
-					imgLabel = inputLabel(imgLabel, imgList.get(4));
-				}
-			}
-		});
-		lblNewLabel_9_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_9_4.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 16));
-		lblNewLabel_9_4.setBounds(266, 425, 14, 15);
-		bodyPanel.add(lblNewLabel_9_4);
-		
-		JLabel backButton = new JLabel("돌아가기");
-		backButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
-		backButton.setHorizontalAlignment(SwingConstants.CENTER);
-		backButton.setBounds(454, 456, 100, 27);
-		bodyPanel.add(backButton);
-		backButton.addMouseListener(new MouseAdapter() {
-
-			public void mouseClicked(MouseEvent e) {
-				new PostCategory(loginInfo, ctgDTO).setVisible(true);;
-				dispose();
-			}
-
-		});
+//		JLabel lblNewLabel_9 = new JLabel("1");
+//		lblNewLabel_9.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				if(imgList != null && imgList.size() > 0) {
+//					
+//					imgLabel = inputLabel(imgLabel, imgList.get(0));
+//				}
+//			}
+//		});
+//		lblNewLabel_9.setHorizontalAlignment(SwingConstants.CENTER);
+//		lblNewLabel_9.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 16));
+//		lblNewLabel_9.setBounds(162, 425, 14, 15);
+//		bodyPanel.add(lblNewLabel_9);
+//		
+//		JLabel lblNewLabel_9_1 = new JLabel("2");
+//		lblNewLabel_9_1.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				if(imgList != null && imgList.size() > 1) {
+//					
+//					imgLabel = inputLabel(imgLabel, imgList.get(1));
+//				}
+//			}
+//		});
+//		lblNewLabel_9_1.setHorizontalAlignment(SwingConstants.CENTER);
+//		lblNewLabel_9_1.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 16));
+//		lblNewLabel_9_1.setBounds(188, 425, 14, 15);
+//		bodyPanel.add(lblNewLabel_9_1);
+//		
+//		JLabel lblNewLabel_9_2 = new JLabel("3");
+//		lblNewLabel_9_2.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				if(imgList != null && imgList.size() > 2) {
+//					
+//					imgLabel = inputLabel(imgLabel, imgList.get(2));
+//				}
+//			}
+//		});
+//		lblNewLabel_9_2.setHorizontalAlignment(SwingConstants.CENTER);
+//		lblNewLabel_9_2.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 16));
+//		lblNewLabel_9_2.setBounds(214, 425, 14, 15);
+//		bodyPanel.add(lblNewLabel_9_2);
+//		
+//		JLabel lblNewLabel_9_3 = new JLabel("4");
+//		lblNewLabel_9_3.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				if(imgList != null && imgList.size() > 3) {
+//					
+//					imgLabel = inputLabel(imgLabel, imgList.get(3));
+//				}
+//			}
+//		});
+//		lblNewLabel_9_3.setHorizontalAlignment(SwingConstants.CENTER);
+//		lblNewLabel_9_3.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 16));
+//		lblNewLabel_9_3.setBounds(240, 425, 14, 15);
+//		bodyPanel.add(lblNewLabel_9_3);
+//		
+//		JLabel lblNewLabel_9_4 = new JLabel("5");
+//		lblNewLabel_9_4.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				if(imgList != null && imgList.size() > 4) {
+//					
+//					imgLabel = inputLabel(imgLabel, imgList.get(4));
+//				}
+//			}
+//		});
+//		lblNewLabel_9_4.setHorizontalAlignment(SwingConstants.CENTER);
+//		lblNewLabel_9_4.setFont(new Font("나눔스퀘어 네오 Regular", Font.PLAIN, 16));
+//		lblNewLabel_9_4.setBounds(266, 425, 14, 15);
+//		bodyPanel.add(lblNewLabel_9_4);
+//		
+//		JLabel backButton = new JLabel("돌아가기");
+//		backButton.setFont(new Font("나눔스퀘어 네오 Bold", Font.PLAIN, 20));
+//		backButton.setHorizontalAlignment(SwingConstants.CENTER);
+//		backButton.setBounds(454, 456, 100, 27);
+//		bodyPanel.add(backButton);
+//		backButton.addMouseListener(new MouseAdapter() {
+//
+//			public void mouseClicked(MouseEvent e) {
+//				new PostCategory(loginInfo, ctgDTO).setVisible(true);;
+//				dispose();
+//			}
+//
+//		});
 		
 //		JLabel nextButton = new JLabel("다음 페이지  >");
 //		nextButton.setHorizontalAlignment(SwingConstants.RIGHT);

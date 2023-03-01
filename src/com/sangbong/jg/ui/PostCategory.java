@@ -16,13 +16,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.sangbong.jg.category.controller.CategoryController;
 import com.sangbong.jg.common.PostListReturn;
 import com.sangbong.jg.common.PostRightAsset;
 import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
 import com.sangbong.jg.model.dto.PostDTO;
-import com.sangbong.jg.run.Application;
+import com.sangbong.jg.model.dto.PostImgDTO;
 
 
 /**
@@ -49,6 +48,7 @@ public class PostCategory extends JFrame {
 	private PostListReturn postListReturn;
 	private CategoryDTO category;
 	private List<PostDTO> postList;
+	private List<PostImgDTO> postImgList;
 	private int page = 0;
 	private MemberDTO loginInfo;
 
@@ -171,24 +171,21 @@ public class PostCategory extends JFrame {
 		postListReturn = new PostListReturn(loginInfo, this);
 		
 		if(this.category == null) {
-			postList = postListReturn.getAllPost();
+			postImgList = postListReturn.getAllPost();
 		} else {
-			postList = postListReturn.getCtgPost(category);
+			postImgList = postListReturn.getCtgPost(category);
 		}
 		
 		List<JPanel> postPanel = new ArrayList<>();
 		for(int i = 0 + 12*page; i < 12*(page+1); i++) {
-			if(i>=postList.size()) {
+			if(i>=postImgList.size()) {
 				break;
 			}
-			postPanel.add(postListReturn.getPost(postList.get(i)));
+			postPanel.add(postListReturn.getPost(postImgList.get(i)));
 		}
 		
 		postListReturn.locatePostList(postPanel, bodyPanel);
 
-//		System.out.println(Application.shutdown);
-//		Thread thread = new Thread(this);
-//		thread.start();
 
 	}
 	

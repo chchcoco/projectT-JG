@@ -1,5 +1,7 @@
 package com.sangbong.jg.common;
 
+import static com.sangbong.jg.common.SetFont.notoSansRegular;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -18,10 +20,9 @@ import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.ImgDTO;
 import com.sangbong.jg.model.dto.MemberDTO;
 import com.sangbong.jg.model.dto.PostDTO;
+import com.sangbong.jg.model.dto.PostImgDTO;
 import com.sangbong.jg.post.controller.PostBoardController;
 import com.sangbong.jg.ui.PostOnePage;
-
-import static com.sangbong.jg.common.SetFont.notoSansRegular;
 
 /**
  * <pre>
@@ -49,24 +50,24 @@ public class PostListReturn {
 		this.page = page;
 	}
 
-	public JPanel getPost(PostDTO postDTO) {	
+	public JPanel getPost(PostImgDTO postImgDTO) {	
 
-		PostDTO postInfo = postDTO;
+		PostImgDTO postInfo = postImgDTO;
 
 		JPanel post = new JPanel();
 		post.setBounds(27, 10, 300, 130);
 		//		bodyPanel.add(post);
 		post.setLayout(null);
 
-		List<ImgDTO> imgList = new ImgController().getAllImgByPost(postInfo);
+//		List<ImgDTO> imgList = new ImgController().getAllImgByPost(postInfo);
 		JLabel postImage = new JLabel("이미지");
-		if(imgList.size() > 0) {
-			ImageIcon icon = new ImageIcon(imgList.get(0).getImgUrl());
+		if(postInfo.getImgCode() != null) {
+			ImageIcon icon = new ImageIcon(postInfo.getImgUrl());
 			Image img = icon.getImage();
 			icon = new ImageIcon(img.getScaledInstance(110, 110, Image.SCALE_SMOOTH));
 			postImage = new JLabel(icon);
 		} else {
-			postImage = new JLabel("이미지\n없음");
+			postImage = new JLabel("이미지없음");
 		}
 		postImage.setOpaque(true);
 		postImage.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 14f));
@@ -75,19 +76,19 @@ public class PostListReturn {
 		postImage.setBounds(10, 10, 110, 110);
 		post.add(postImage);
 
-		JLabel postTitleLabel_1 = new JLabel(postDTO.getItemName());
+		JLabel postTitleLabel_1 = new JLabel(postInfo.getItemName());
 		postTitleLabel_1.setForeground(new Color(70, 70, 70));
 		postTitleLabel_1.setFont(notoSansRegular("Black").deriveFont(Font.PLAIN, 20f));
 		postTitleLabel_1.setBounds(132, 10, 168, 29);
 		post.add(postTitleLabel_1);
 
-		JLabel priceLabel = new JLabel(postDTO.getPrice()+" 원");
+		JLabel priceLabel = new JLabel(postInfo.getPrice()+" 원");
 		priceLabel.setForeground(new Color(70, 70, 70));
 		priceLabel.setFont(notoSansRegular("Black").deriveFont(Font.PLAIN, 20f));
 		priceLabel.setBounds(132, 91, 168, 29);
 		post.add(priceLabel);
 
-		JLabel postWriterEmail = new JLabel(postDTO.getWriter());
+		JLabel postWriterEmail = new JLabel(postInfo.getWriter());
 		postWriterEmail.setHorizontalAlignment(SwingConstants.LEFT);
 		postWriterEmail.setForeground(new Color(70, 70, 70));
 		postWriterEmail.setFont(notoSansRegular("Bold").deriveFont(Font.PLAIN, 14f));
@@ -106,20 +107,20 @@ public class PostListReturn {
 		return post;
 	}
 
-	public List<PostDTO> getAllPost(){
+	public List<PostImgDTO> getAllPost(){
 		
 		PostBoardController postBoardController = new PostBoardController();
-		List<PostDTO> postList = postBoardController.getAllPost();
+		List<PostImgDTO> postImgList = postBoardController.getAllPostWithImg();
 
-		return postList;
+		return postImgList;
 	}
 
-	public List<PostDTO> getCtgPost(CategoryDTO category){
+	public List<PostImgDTO> getCtgPost(CategoryDTO category){
 
 		PostBoardController postBoardController = new PostBoardController();
-		List<PostDTO> postList = postBoardController.getAllPost(category);
+		List<PostImgDTO> postImgList = postBoardController.getAllPostWithImg(category);
 
-		return postList;
+		return postImgList;
 	}
 
 	public void locatePostList(List<JPanel> postList, JPanel bodyPanel) {
@@ -134,10 +135,15 @@ public class PostListReturn {
 		}
 	}
 
-	public void goPost(MemberDTO loginInfo, PostDTO postInfo) {
+	public void goPost(MemberDTO loginInfo, PostImgDTO postInfo) {
 		
+		PostDTO postData = new PostDTO(postInfo.getCategoryCode()
+				, postInfo.getWriter(), postInfo.getPostCode()
+				, postInfo.getPrice(), postInfo.getItemName()
+				, postInfo.getDeleteYn(), postInfo.getPostDate()
+				, postInfo.getPostContext());
 		// 게시글 상세조회 페이지로 이동
-		new PostOnePage(loginInfo, postInfo).setVisible(true);
+		new PostOnePage(loginInfo, postData).setVisible(true);
 		page.dispose();
 	}
 }

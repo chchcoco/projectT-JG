@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sangbong.jg.model.dto.CategoryDTO;
 import com.sangbong.jg.model.dto.PostDTO;
+import com.sangbong.jg.model.dto.PostImgDTO;
 import com.sangbong.jg.post.model.service.PostBoardService;
 
 public class PostBoardController {
@@ -25,6 +26,20 @@ public class PostBoardController {
 		
 		
 		return postList;
+	}
+
+	public List<PostImgDTO> getAllPostWithImg() {
+		
+		List<PostImgDTO> postImgList = postBoardServise.getAllPostWithImg();
+		
+		return postImgList;
+	}
+
+	public List<PostImgDTO> getAllPostWithImg(CategoryDTO category) {
+		// TODO Auto-generated method stub
+		List<PostImgDTO> postImgList = postBoardServise.getAllPostWithImg(category);
+		
+		return postImgList;
 	}
 
 }
