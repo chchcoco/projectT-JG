@@ -62,7 +62,8 @@
 	 
 	 <delete id="updateDeacYn" parameterType="hashMap">
 	 	UPDATE MEMBER A
-	 	   SET (A.DEAC_YN, A.DEAC_DATE) = ('Y', SYSDATE)
+	 	   SET A.DEAC_YN = 'Y'
+	 	   	 , A.DEAC_DATE = SYSDATE
 	 	 WHERE A.EMAIL = #{ email }
 	 </delete>
 	 
