@@ -52,7 +52,7 @@ public class LogIn extends JFrame {
 
 		JPanel panel = new JPanel();
 
-		lblNewLabel.setBounds(340, 0, 600, 150);
+		lblNewLabel.setBounds(340, 0, 550, 150);
 		lblNewLabel.setIcon(new ImageIcon("images/title.png"));
 
 		JLabel label = new JLabel("이메일");
@@ -108,7 +108,7 @@ public class LogIn extends JFrame {
 			}
 		});
 
-		logBtn.setBounds(340, 505, 600, 50);
+		logBtn.setBounds(390, 505, 500, 50);
 		panel.setLayout(null);
 
 		panel.add(label);
@@ -128,7 +128,7 @@ public class LogIn extends JFrame {
 				dispose();
 			}
 		});
-		btnNewButton.setBounds(340, 574, 600, 50);
+		btnNewButton.setBounds(390, 574, 500, 50);
 		panel.add(btnNewButton);
 		lblNewLabel.setBackground(new Color(0, 0, 0));
 		lblNewLabel.setBounds(340, 0, 600, 150);

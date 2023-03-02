@@ -120,11 +120,6 @@ public class PostEdit extends JFrame {
 		superCategoryLabel.setBounds(12, 19, 258, 35);
 		topPanel.add(superCategoryLabel);
 
-		JLabel profilePic = new JLabel("");
-		profilePic.setIcon(new ImageIcon("images/profilePic.png"));
-		profilePic.setBounds(924, 10, 44, 44);
-		topPanel.add(profilePic);
-
 		textField = new JTextField();
 		textField.setText(postInfo.getItemName());
 		textField.setBounds(12, 113, 956, 35);

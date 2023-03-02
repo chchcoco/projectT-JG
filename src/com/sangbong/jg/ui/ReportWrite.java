@@ -116,11 +116,6 @@ public class ReportWrite extends JFrame {
 		superCategoryLabel.setBounds(12, 19, 258, 35);
 		topPanel.add(superCategoryLabel);
 
-		JLabel profilePic = new JLabel("");
-		profilePic.setIcon(new ImageIcon("images/profilePic.png"));
-		profilePic.setBounds(924, 10, 44, 44);
-		topPanel.add(profilePic);
-
 		List<CategoryDTO> categoryList = new CategoryController().getCategoryList();
 
 		String[] sList = new String[categoryList.size()];

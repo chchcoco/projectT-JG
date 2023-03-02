@@ -59,6 +59,7 @@ public void PanelMaker(MemberDTO loginInfo, JPanel bodyPanel, PostDTO post) {
 		reportPanel.add(reportTitleLabel);
 		
 		JLabel postImage = new JLabel("이미지");
+		/*indexOutOfBounds 경고*/
 		ImgController imgController = new ImgController();
 		ImgDTO imgDTO = new ImgDTO();
 		imgDTO = imgController.getAllImgByPost(post).get(0);
